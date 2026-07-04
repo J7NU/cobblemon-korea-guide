@@ -154,12 +154,34 @@ a{color:var(--blue)}
 .filterbar button{font-family:var(--pixel);font-size:11px;padding:7px 11px;border-radius:3px;border:2px solid var(--line);background:var(--panel2);color:var(--muted);cursor:pointer}
 .filterbar button.on{background:var(--blue);color:#0c1a26;border-color:#2d6a96}
 
-@media (max-width:600px){
-  td,th{padding:6px 5px;font-size:13.5px}
+/* ---- 터치·iOS ---- */
+button,.tab,.typebtn,.biomebtn,.filterbar button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(hover:none){
+  .tab:hover{background:var(--panel);color:var(--muted)}
+  .tab.on:hover{background:var(--red);color:#fff}
+  .resetbtn:hover{border-color:var(--line);color:var(--muted)}
+  .winnerrow button:hover{border-color:var(--line)}
+}
+@supports(padding-bottom:env(safe-area-inset-bottom)){
+  body{padding-bottom:max(60px,calc(20px + env(safe-area-inset-bottom)))}
+  .tabs{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+}
+/* 바이옴 스폰 결과: content-visibility로 초기 렌더 비용 절감 */
+#spawnResultBody{content-visibility:auto;contain-intrinsic-size:auto 400px}
+
+@media(max-width:600px){
+  body{font-size:14px}
+  td,th{padding:6px 5px;font-size:13px}
   .card{padding:13px}
   .typegrid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
   .scoreboard .p .score{font-size:22px}
   .winnerrow{flex-direction:column}
+  .tab{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .typebtn{min-height:44px}
+  .biomebtn{min-height:44px}
+  .filterbar button{min-height:44px;padding:10px 11px}
+  /* 모든 테이블 가로 스크롤 안전화 — HTML 수정 없이 CSS만으로 */
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%}
 }
 </style>
 </head>
@@ -868,6 +890,9 @@ const ITEMS=[
 ["레시피 찾는 법","recipe book","조합대 레시피북에서 영어 이름으로 검색","FAQ"]
 ];
 
+/* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
+const _lazyTab={};
+
 /* ===== 검색 ===== */
 const q=document.getElementById('q'),res=document.getElementById('results'),clearBtn=document.getElementById('clearq');
 function norm(s){return s.toLowerCase().replace(/\s/g,'')}
@@ -892,7 +917,9 @@ document.getElementById('tabs').addEventListener('click',e=>{
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
   document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
   b.classList.add('on');
-  document.getElementById('pane-'+b.dataset.pane).classList.add('on');
+  const pane=b.dataset.pane;
+  document.getElementById('pane-'+pane).classList.add('on');
+  if(_lazyTab[pane]){_lazyTab[pane]();delete _lazyTab[pane];}
   window.scrollTo({top:0});
 });
 
@@ -933,13 +960,16 @@ document.getElementById('tabs').addEventListener('click',e=>{
   }
   const grid=document.getElementById('typegrid');
   if(!grid)return;
-  TYPE_ORDER.forEach(t=>{
-    const b=document.createElement('button');
-    b.className='typebtn';b.type='button';b.textContent=t;
-    b.style.background=TYPE_COLOR[t];b.dataset.type=t;
-    grid.appendChild(b);
-  });
   let selType=null;
+  /* 지연 렌더: 상성표 탭 첫 활성 시 버튼 생성 (18 DOM nodes 절약) */
+  _lazyTab.types=function(){
+    TYPE_ORDER.forEach(t=>{
+      const b=document.createElement('button');
+      b.className='typebtn';b.type='button';b.textContent=t;
+      b.style.background=TYPE_COLOR[t];b.dataset.type=t;
+      grid.appendChild(b);
+    });
+  };
   const emptyCard=document.getElementById('typeEmptyCard'),resultCard=document.getElementById('typeResultCard');
   const titleEl=document.getElementById('typeResultTitle'),bodyEl=document.getElementById('typeResultBody');
   function chipRow(label,arr){
@@ -1031,7 +1061,10 @@ document.getElementById('tabs').addEventListener('click',e=>{
     save(st);renderScore();
     wrap.innerHTML='<p class="emptytype">'+label+' — 다음 미션은 위 버튼으로 뽑아줘</p>';
   });
-  document.getElementById('missionListAll').innerHTML=MISSIONS.map(m=>'<div class="mrow"><span class="tag '+DIFF_TAG[m[0]]+'">'+m[0]+'</span><span>'+m[1]+'</span></div>').join('');
+  /* 지연 렌더: 미션 탭 첫 활성 시 목록 생성 (45 DOM nodes 절약) */
+  _lazyTab.mission=function(){
+    document.getElementById('missionListAll').innerHTML=MISSIONS.map(m=>'<div class="mrow"><span class="tag '+DIFF_TAG[m[0]]+'">'+m[0]+'</span><span>'+m[1]+'</span></div>').join('');
+  };
 })();
 
 /* ===== v2/Phase2: 바이옴 스폰 브라우저 ===== */
@@ -1129,12 +1162,15 @@ document.getElementById('tabs').addEventListener('click',e=>{
   const RARITY_ORDER=['common','uncommon','rare','ultra'];
   let selBiome=null,rarityFilter='all';
 
-  BIOMES.forEach(b=>{
-    const btn=document.createElement('button');
-    btn.className='biomebtn';btn.type='button';btn.dataset.id=b.id;
-    btn.innerHTML='<span class="emoji">'+b.emoji+'</span>'+b.name;
-    grid.appendChild(btn);
-  });
+  /* 지연 렌더: 바이옴 스폰 탭 첫 활성 시 버튼 생성 (32 DOM nodes 절약) */
+  _lazyTab.spawn=function(){
+    BIOMES.forEach(b=>{
+      const btn=document.createElement('button');
+      btn.className='biomebtn';btn.type='button';btn.dataset.id=b.id;
+      btn.innerHTML='<span class="emoji">'+b.emoji+'</span>'+b.name;
+      grid.appendChild(btn);
+    });
+  };
 
   const emptyCard=document.getElementById('spawnEmptyCard'),resultCard=document.getElementById('spawnResultCard');
   const emojiEl=document.getElementById('spawnBiomeEmoji'),nameEl=document.getElementById('spawnBiomeName'),descEl=document.getElementById('spawnBiomeDesc'),bodyEl=document.getElementById('spawnResultBody');
