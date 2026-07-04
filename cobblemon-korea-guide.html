@@ -230,6 +230,39 @@ button, input, select, summary { min-height: 44px; }
   .scoreboard .p .score { font-size: 28px; }
   .card { padding: var(--space-4); }
 }
+/* ===== JIN-706 Dex CSS ===== */
+.pmon{color:var(--amber);cursor:pointer;font-weight:600;text-decoration:underline;text-decoration-style:dotted;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(hover:hover){.pmon:hover{color:#ffd966}}
+.sph{background:var(--panel2);border:2px dashed var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;color:var(--muted);image-rendering:pixelated;box-sizing:border-box}
+.sprite-tip{position:fixed;z-index:9999;background:var(--panel);border:2px solid var(--amber);border-radius:6px;padding:10px 12px;box-shadow:5px 5px 0 rgba(0,0,0,.5);pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:88px;transition:opacity .12s;opacity:0}
+.sprite-tip.show{opacity:1}
+.sprite-tip .tip-kr{font-family:var(--font-body);font-size:12px;color:var(--text);text-align:center}
+.sprite-tip .tip-en{font-size:11px;color:var(--muted);text-align:center}
+.dex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:7px;margin:10px 0;content-visibility:auto;contain-intrinsic-size:auto 600px}
+.dex-card{background:var(--panel2);border:2px solid var(--line);border-radius:4px;padding:7px 4px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(hover:hover){.dex-card:hover{border-color:var(--amber)}}
+.dex-card.sel{border-color:var(--red);background:#2a1c1e}
+.dex-card .dc-num{font-family:var(--font-body);font-size:10px;color:var(--muted);margin-top:2px}
+.dex-card .dc-kr{font-family:var(--font-body);font-size:11px;color:var(--text);margin-top:1px;line-height:1.3;word-break:keep-all}
+.dex-detail{background:var(--panel);border:2px solid var(--amber);border-radius:4px;padding:16px;margin:0 0 14px;box-shadow:5px 5px 0 rgba(0,0,0,.3);display:none;animation:cardin .2s ease}
+.dex-detail.show{display:block}
+.dex-detail-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
+.dex-detail-info{flex:1;min-width:130px}
+.dex-detail-info .d-kr{font-family:var(--font-body);font-size:22px;color:var(--amber);margin-bottom:4px}
+.dex-detail-info .d-en{color:var(--blue);font-size:14px;margin-bottom:6px}
+.dex-nav{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.dex-nav button{font-family:var(--font-body);font-size:11px;padding:7px 12px;border:2px solid var(--line);background:var(--panel2);color:var(--text);border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(hover:hover){.dex-nav button:hover{border-color:var(--amber)}}
+.dex-spawn-section{margin-top:10px}
+.dex-spawn-section h3{font-family:var(--font-body);color:var(--green);font-size:13px;margin-bottom:6px}
+.spawn-entry{display:flex;align-items:center;gap:6px;padding:5px 4px;border-bottom:1px solid #2a303c;font-size:13px;flex-wrap:wrap}
+.spawn-entry:last-child{border-bottom:none}
+.spawn-entry .s-cond{width:100%;font-size:12px;color:var(--muted);padding-left:4px}
+@media(max-width:600px){
+  .dex-grid{grid-template-columns:repeat(auto-fill,minmax(70px,1fr))}
+  .dex-card .dc-kr{font-size:10px}
+  .dex-detail{padding:12px}
+}
 </style>
 </head>
 <body>
@@ -264,6 +297,7 @@ button, input, select, summary { min-height: 44px; }
   <button class="tab" data-pane="types">상성표</button>
   <button class="tab" data-pane="mission">미션</button>
   <button class="tab" data-pane="tips">팁</button>
+  <button class="tab" data-pane="dex">도감</button>
 </nav>
 
 <main>
@@ -741,11 +775,214 @@ button, input, select, summary { min-height: 44px; }
   </div>
 </section>
 
+<!-- ============ 도감 ============ -->
+<section class="pane" id="pane-dex">
+  <div class="card" style="padding:10px 14px 8px;margin-bottom:10px">
+    <p style="font-size:13px;color:var(--muted)">포켓몬 카드 클릭 → 상세 정보. 스프라이트는 원격 지연 로드 · 오프라인 시 ? 표시.</p>
+  </div>
+  <div id="dexDetail" class="dex-detail"></div>
+  <div id="dexGrid" class="dex-grid"></div>
+</section>
+
 </main>
 
 <footer>비공식 팬 가이드 · Cobblemon 1.6~1.7 자료 기준 (2026.07) · 게임 내 표기가 항상 우선 · v2: 시작하기 / 상성표 / 미션 / FAQ 추가</footer>
 
 <script>
+/* ===== JIN-706: 전역 유틸 ===== */
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+/* 영어이름 → 국가도감 번호 (스프라이트 CDN용) */
+const DEX_NUM={
+Bulbasaur:1,Ivysaur:2,Venusaur:3,Charmander:4,Charmeleon:5,Charizard:6,
+Squirtle:7,Wartortle:8,Blastoise:9,Caterpie:10,Metapod:11,Butterfree:12,
+Pidgey:16,Pidgeotto:17,Pidgeot:18,Rattata:19,
+Pikachu:25,Raichu:26,Pichu:172,Sandshrew:27,
+Nidoran:32,Nidoqueen:31,Nidoking:34,
+Clefairy:35,Clefable:36,Vulpix:37,Ninetales:38,
+Jigglypuff:39,Wigglytuff:40,Zubat:41,Golbat:42,Crobat:169,
+Oddish:43,Gloom:44,Vileplume:45,Bellossom:182,
+Paras:46,Diglett:50,Meowth:52,Psyduck:54,Golduck:55,
+Mankey:56,Growlithe:58,Arcanine:59,
+Poliwag:60,Poliwhirl:61,Poliwrath:62,Politoed:186,
+Abra:63,Kadabra:64,Alakazam:65,
+Machop:66,Machoke:67,Machamp:68,
+Bellsprout:69,Weepinbell:70,Victreebel:71,
+Tentacool:72,Geodude:74,Graveler:75,Golem:76,
+Ponyta:77,Rapidash:78,Slowpoke:79,Slowbro:80,Slowking:199,
+Magnemite:81,Magneton:82,Magnezone:462,
+Doduo:84,Seel:86,Grimer:88,Shellder:90,Cloyster:91,
+Gastly:92,Haunter:93,Gengar:94,Onix:95,Steelix:208,
+Drowzee:96,Krabby:98,Voltorb:100,Exeggcute:102,Exeggutor:103,
+Cubone:104,Marowak:105,Hitmonlee:106,Hitmonchan:107,
+Lickitung:108,Lickilicky:463,Koffing:109,
+Rhyhorn:111,Rhydon:112,Rhyperior:464,
+Happiny:440,Chansey:113,Blissey:242,
+Tangela:114,Tangrowth:465,Kangaskhan:115,
+Horsea:116,Seadra:117,Kingdra:230,
+Goldeen:118,Seaking:119,Staryu:120,Starmie:121,
+"Mr. Mime":122,Scyther:123,Scizor:212,Kleavor:900,
+Jynx:124,Smoochum:238,Electabuzz:125,Elekid:239,Electivire:466,
+Magmar:126,Magby:240,Magmortar:467,
+Pinsir:127,Tauros:128,Magikarp:129,Gyarados:130,
+Lapras:131,Ditto:132,
+Eevee:133,Vaporeon:134,Jolteon:135,Flareon:136,
+Espeon:196,Umbreon:197,Leafeon:470,Glaceon:471,Sylveon:700,
+Porygon:137,"Porygon2":233,"Porygon-Z":474,
+Omanyte:138,Omastar:139,Kabuto:140,Kabutops:141,Aerodactyl:142,
+Snorlax:143,Dratini:147,Dragonair:148,Dragonite:149,
+Mewtwo:150,Mew:151,
+Chikorita:152,Cyndaquil:155,Totodile:158,
+Togepi:175,Togetic:176,Togekiss:468,
+Marill:183,Sudowoodo:185,Aipom:190,Sunkern:191,Sunflora:192,
+Yanma:193,Yanmega:469,Wooper:194,Quagsire:195,
+Misdreavus:200,Mismagius:429,Unown:201,Dunsparce:206,
+Shuckle:213,Heracross:214,Sneasel:215,Weavile:461,
+Teddiursa:216,Ursaring:217,Ursaluna:901,Magcargo:219,
+Swinub:220,Piloswine:221,Mamoswine:473,
+Corsola:222,Remoraid:223,Mantine:226,Skarmory:227,
+Houndour:228,Houndoom:229,Phanpy:231,Donphan:232,
+Larvitar:246,Pupitar:247,Tyranitar:248,
+Treecko:252,Torchic:255,Blaziken:257,Mudkip:258,
+Wingull:278,Pelipper:279,Ralts:280,Kirlia:281,Gardevoir:282,Gallade:475,
+Shroomish:285,Slakoth:287,Nosepass:299,Probopass:476,Roselia:315,
+Absol:359,Snorunt:361,Glalie:362,
+Duskull:355,Dusclops:356,Dusknoir:477,
+Feebas:349,Milotic:350,Clamperl:366,Huntail:367,Gorebyss:368,
+Lileep:345,Cradily:346,Anorith:347,Armaldo:348,
+Bagon:371,Shelgon:372,Salamence:373,
+Beldum:374,Metang:375,Metagross:376,
+Turtwig:387,Chimchar:390,Piplup:393,
+Cranidos:408,Rampardos:409,Shieldon:410,Bastiodon:411,
+Roserade:407,Riolu:447,Lucario:448,
+Gible:443,Gabite:444,Garchomp:445,
+Gliscor:472,Froslass:478,Munna:517,
+Oshawott:501,Tepig:498,Timburr:532,Gurdurr:533,Conkeldurr:534,
+Roggenrola:524,Boldore:525,Gigalith:526,
+Cottonee:546,Hippopotas:449,
+Tirtouga:564,Carracosta:565,Archen:566,Archeops:567,
+Minccino:572,Zorua:570,Zoroark:571,
+Joltik:595,Elgyem:605,Solosis:577,Vanillite:582,
+Axew:610,Fraxure:611,Haxorus:612,
+Rufflet:627,Braviary:628,
+Deino:633,Zweilous:634,Hydreigon:635,
+Chespin:650,Fennekin:653,Froakie:656,
+Spritzee:682,Aromatisse:683,Swirlix:684,Slurpuff:685,Malamar:687,
+Honedge:679,Doublade:680,Aegislash:681,
+Tyrunt:696,Tyrantrum:697,Amaura:698,Aurorus:699,
+Phantump:708,Trevenant:709,Pumpkaboo:710,Gourgeist:711,
+Goomy:704,Sliggoo:705,Goodra:706,
+Rowlet:722,Litten:725,Popplio:728,
+Crabrawler:739,Crabominable:740,Charjabug:737,Vikavolt:738,
+Mimikyu:778,Dreepy:886,Drakloak:887,Dragapult:888,
+Grookey:810,Scorbunny:813,Sobble:816,
+Applin:840,Flapple:841,Appletun:842,
+Sinistea:854,Polteageist:855,Milcery:868,Alcremie:869,
+Dracozolt:882,Arctozolt:883,Dracovish:884,Arctovish:885,
+Duraludon:886,
+Sprigatito:906,Fuecoco:909,Quaxly:912,
+Charcadet:963,Armarouge:964,Ceruledge:965,
+Gimmighoul:999,Gholdengo:1000,
+Dudunsparce:982,Sandile:551,
+Dipplin:1011,Hydrapple:1017,Archaludon:1018,
+Poltchageist:1012,Sinistcha:1013,
+Articuno:144,Rayquaza:384
+};
+
+/* 스프라이트 URL (PokeAPI GitHub CDN, loading=lazy) */
+function spriteUrl(en){const n=DEX_NUM[en];return n?'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+n+'.png':null}
+function _spriteFail(img){
+  const s=img.width||64;
+  const ph=document.createElement('div');
+  ph.className='sph';
+  ph.style.cssText='width:'+s+'px;height:'+s+'px;font-size:'+(s*0.38|0)+'px';
+  ph.textContent='?';
+  if(img.parentNode)img.parentNode.replaceChild(ph,img);
+}
+function sImgHtml(en,size){
+  const u=spriteUrl(en);
+  if(!u)return '<div style="width:'+size+'px;height:'+size+'px;font-size:'+(size*0.38|0)+'px" class="sph">?</div>';
+  return '<img src="'+u+'" width="'+size+'" height="'+size+'" loading="lazy" style="image-rendering:pixelated;display:block;margin:0 auto" alt="" onerror="_spriteFail(this)">';
+}
+
+/* ===== 호버 프리뷰 (데스크톱) / 탭 프리뷰 (모바일) ===== */
+const _tip=(function(){
+  const el=document.createElement('div');
+  el.className='sprite-tip';
+  document.body.appendChild(el);
+  let tid=null,mobilePmon=null;
+
+  function pos(pmon){
+    const r=pmon.getBoundingClientRect();
+    const tipW=110,tipH=108;
+    let x=r.right+8, y=r.top-8;
+    if(x+tipW>window.innerWidth-4)x=r.left-tipW-8;
+    if(y+tipH>window.innerHeight-4)y=window.innerHeight-tipH-4;
+    if(y<4)y=4;
+    el.style.left=x+'px';el.style.top=y+'px';
+  }
+  function show(pmon){
+    clearTimeout(tid);
+    const kr=pmon.dataset.kr,en=pmon.dataset.en;
+    el.innerHTML=sImgHtml(en,64)+'<div class="tip-kr">'+esc(kr)+'</div><div class="tip-en">'+esc(en)+'</div>';
+    pos(pmon);el.classList.add('show');
+  }
+  function hide(){tid=setTimeout(()=>el.classList.remove('show'),80)}
+
+  const isHover=()=>window.matchMedia('(hover:hover)').matches;
+
+  document.addEventListener('mouseover',e=>{
+    const p=e.target.closest('.pmon');if(p&&isHover())show(p);
+  });
+  document.addEventListener('mouseout',e=>{
+    if(e.target.closest('.pmon')&&isHover())hide();
+  });
+  document.addEventListener('click',e=>{
+    const p=e.target.closest('.pmon');
+    if(!p){if(mobilePmon){hide();mobilePmon=null;}return;}
+    if(!isHover()){
+      if(mobilePmon!==p){mobilePmon=p;show(p);return;}
+      mobilePmon=null;
+    }
+    hide();openDex(p.dataset.kr,p.dataset.en);
+  });
+  return {show,hide};
+})();
+
+/* ===== 도감 열기 (글로벌) ===== */
+const _DEX_IDX={};
+function _buildDexIdx(){DEX.forEach(([kr,en],i)=>_DEX_IDX[kr]=i);}
+
+function openDex(kr,en){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  const dt=document.querySelector('[data-pane="dex"]');
+  if(dt)dt.classList.add('on');
+  const dp=document.getElementById('pane-dex');
+  if(dp)dp.classList.add('on');
+  if(_lazyTab&&_lazyTab.dex){_lazyTab.dex();delete _lazyTab.dex;}
+  if(!Object.keys(_DEX_IDX).length)_buildDexIdx();
+  let idx=_DEX_IDX[kr];
+  if(idx===undefined){const c=kr.replace(/\(.*?\)/g,'').trim();idx=_DEX_IDX[c];}
+  if(idx!==undefined)_selectDex(idx);
+  else _showDexNoEntry(kr,en);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function _showDexNoEntry(kr,en){
+  const detail=document.getElementById('dexDetail');
+  if(!detail)return;
+  detail.innerHTML=
+    '<div class="dex-detail-top">'
+    +'<div style="flex-shrink:0">'+sImgHtml(en,96)+'</div>'
+    +'<div class="dex-detail-info">'
+    +'<div class="d-kr">'+esc(kr)+'</div>'
+    +'<div class="d-en">'+esc(en)+'</div>'
+    +(DEX_NUM[en]?'<div style="font-size:12px;color:var(--muted);margin-top:2px">No.'+DEX_NUM[en]+'</div>':'')
+    +'</div></div>'
+    +'<p style="font-size:13px;color:var(--muted);margin-top:8px">도감 목록에 없는 포켓몬 (특수 스폰 한정)</p>';
+  detail.classList.add('show');
+}
+
 /* ===== 포켓몬 한↔영 사전 ===== */
 const DEX=[
 ["이상해씨","Bulbasaur"],["이상해풀","Ivysaur"],["이상해꽃","Venusaur"],
@@ -840,7 +1077,11 @@ const DEX=[
 ["마빌크","Milcery"],["마휘핑","Alcremie"],
 ["나오하","Sprigatito"],["뜨아거","Fuecoco"],["꾸왁스","Quaxly"],
 ["모으령","Gimmighoul"],["타부자고","Gholdengo"],
-["카르본","Charcadet"],["카디나르마","Armarouge"],["파라블레이즈","Ceruledge"]
+["카르본","Charcadet"],["카디나르마","Armarouge"],["파라블레이즈","Ceruledge"],
+["꼬렛","Rattata"],["구구","Pidgey"],["치릴리","Cottonee"],["타랑고","Joltik"],
+["깨물부기","Sandile"],["히포포타스","Hippopotas"],["바닐프티","Vanillite"],
+["앱솔","Absol"],["드래꼰","Dreepy"],["유니란","Solosis"],["골비람","Elgyem"],
+["프리져","Articuno"],["레쿠쟈","Rayquaza"]
 ];
 
 /* ===== 아이템 사전 (검색용) ===== */
@@ -950,7 +1191,7 @@ function search(v){
   const pm=DEX.filter(([k,e])=>norm(k).includes(t)||norm(e).includes(t)).slice(0,12);
   const it=ITEMS.filter(([k,e,i])=>norm(k).includes(t)||norm(e).includes(t)).slice(0,12);
   let html='';
-  if(pm.length){html+=pm.map(([k,e])=>`<div class="rrow"><div class="left"><span class="tag red">포켓몬</span><span class="kr">${k}</span><span class="en">${e}</span></div></div>`).join('')}
+  if(pm.length){html+=pm.map(([k,e])=>`<div class="rrow"><div class="left"><span class="tag red">포켓몬</span><span class="kr pmon" data-kr="${esc(k)}" data-en="${esc(e)}">${esc(k)}</span><span class="en">${esc(e)}</span></div></div>`).join('')}
   if(it.length){html+=it.map(([k,e,i,c])=>`<div class="rrow"><div class="left"><span class="tag green">${c}</span><span class="kr">${k}</span><span class="en">${e}</span></div><div class="info">${i}</div></div>`).join('')}
   if(!html)html='<div class="nores">결과 없음 — 철자를 확인하거나 영어로 검색해봐</div>';
   res.innerHTML=html;res.classList.add('show');
@@ -969,6 +1210,61 @@ document.getElementById('tabs').addEventListener('click',e=>{
   if(_lazyTab[pane]){_lazyTab[pane]();delete _lazyTab[pane];}
   window.scrollTo({top:0});
 });
+
+/* ===== 도감 페이지 ===== */
+const _RB={common:['흔함','gray'],uncommon:['보통','green'],rare:['희귀','blue'],ultra:['초희귀','gold']};
+let _dexSelIdx=-1;
+
+_lazyTab.dex=function(){
+  const grid=document.getElementById('dexGrid');
+  if(!grid||grid.childElementCount>0)return;
+  if(!Object.keys(_DEX_IDX).length)_buildDexIdx();
+  DEX.forEach(([kr,en],i)=>{
+    const c=document.createElement('div');
+    c.className='dex-card';c.dataset.idx=i;
+    c.innerHTML=sImgHtml(en,52)+'<div class="dc-num">No.'+(DEX_NUM[en]||'?')+'</div><div class="dc-kr">'+esc(kr)+'</div>';
+    grid.appendChild(c);
+  });
+  grid.addEventListener('click',e=>{
+    const c=e.target.closest('.dex-card');if(!c)return;
+    _selectDex(parseInt(c.dataset.idx));
+  });
+};
+
+function _selectDex(idx){
+  if(idx<0||idx>=DEX.length)return;
+  _dexSelIdx=idx;
+  const [kr,en]=DEX[idx];
+  document.querySelectorAll('.dex-card').forEach((c,i)=>c.classList.toggle('sel',i===idx));
+  const selCard=document.querySelector('.dex-card.sel');
+  if(selCard)selCard.scrollIntoView({block:'nearest',behavior:'smooth'});
+  const spawns=(window._SPAWN_MAP||{})[kr]||[];
+  const spawnHtml=spawns.length
+    ?'<div class="dex-spawn-section"><h3>스폰 바이옴</h3>'
+      +spawns.map(s=>{
+        const [rl,rc]=_RB[s.rarity]||['?','gray'];
+        return '<div class="spawn-entry"><span class="tag '+rc+'">'+rl+'</span><span>'+esc(s.emoji)+' '+esc(s.biome)+'</span>'+(s.cond?'<div class="s-cond">↳ '+esc(s.cond)+'</div>':'')+'</div>';
+      }).join('')+'</div>'
+    :'<p style="font-size:13px;color:var(--muted);margin-top:8px">바이옴 스폰 정보 없음 (진화형·전설·희귀 특수 스폰)</p>';
+  const prevBtn=idx>0?'<button data-nav="'+(idx-1)+'">◀ '+esc(DEX[idx-1][0])+'</button>':'';
+  const nextBtn=idx<DEX.length-1?'<button data-nav="'+(idx+1)+'">'+esc(DEX[idx+1][0])+' ▶</button>':'';
+  const numBadge=DEX_NUM[en]?'<div style="font-size:12px;color:var(--muted);margin-top:2px">No.'+DEX_NUM[en]+'</div>':'';
+  const detail=document.getElementById('dexDetail');
+  detail.innerHTML=
+    '<div class="dex-detail-top">'
+    +'<div style="flex-shrink:0">'+sImgHtml(en,96)+'</div>'
+    +'<div class="dex-detail-info">'
+    +'<div class="d-kr">'+esc(kr)+'</div>'
+    +'<div class="d-en">'+esc(en)+'</div>'
+    +numBadge
+    +'<div class="dex-nav">'+prevBtn+nextBtn+'</div>'
+    +'</div></div>'+spawnHtml;
+  detail.classList.add('show');
+  detail.querySelectorAll('[data-nav]').forEach(btn=>{
+    btn.addEventListener('click',()=>_selectDex(parseInt(btn.dataset.nav)));
+  });
+  detail.scrollIntoView({block:'start',behavior:'smooth'});
+}
 
 /* ===== v2: 타입 상성표 ===== */
 (function(){
@@ -1240,8 +1536,9 @@ document.getElementById('tabs').addEventListener('click',e=>{
       html+='<div class="raritygroup"><h3><span class="tag '+rcolor+'">'+rlabel+'</span></h3>';
       html+=list.map(m=>{
         const cond=m[3]?'<div class="cond">↳ '+m[3]+'</div>':'';
-        const en=m[1]?'<span class="en">'+m[1]+'</span>':'';
-        return '<div class="mon"><span class="kr">'+m[0]+'</span>'+en+cond+'</div>';
+        const en=m[1]?'<span class="en">'+esc(m[1])+'</span>':'';
+        const nameEl='<span class="kr pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+esc(m[0])+'</span>';
+        return '<div class="mon">'+nameEl+en+cond+'</div>';
       }).join('');
       html+='</div>';
     });
@@ -1259,6 +1556,13 @@ document.getElementById('tabs').addEventListener('click',e=>{
     document.querySelectorAll('#rarityFilter button').forEach(x=>x.classList.remove('on'));
     b.classList.add('on');rarityFilter=b.dataset.r;render();
   });
+  /* 스폰맵 빌드 — 도감에서 스폰 바이옴 표시용 */
+  window._SPAWN_MAP={};
+  BIOMES.forEach(b=>b.mons.forEach(m=>{
+    const k=m[0];
+    if(!window._SPAWN_MAP[k])window._SPAWN_MAP[k]=[];
+    window._SPAWN_MAP[k].push({biome:b.name,emoji:b.emoji,rarity:m[2],cond:m[3]||null});
+  }));
 })();
 </script>
 </body>
