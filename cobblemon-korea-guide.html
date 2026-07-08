@@ -287,8 +287,6 @@ button, input, select, summary { min-height: 44px; }
   <button class="tab" data-pane="mega">메가진화</button>
   <button class="tab" data-pane="gimmick">다이맥스·테라·Z</button>
   <button class="tab" data-pane="battle">배틀 기초</button>
-  <button class="tab" data-pane="breed">육성</button>
-  <button class="tab" data-pane="start">초반 공략</button>
   <button class="tab" data-pane="items">아이템 사전</button>
   <button class="tab" data-pane="fossil">화석</button>
   <button class="tab" data-pane="struct">구조물·던전</button>
@@ -569,90 +567,6 @@ button, input, select, summary { min-height: 44px; }
   </div>
 </section>
 
-<!-- ============ 육성 (교배·개체값) ============ -->
-<section class="pane" id="pane-breed">
-
-  <div class="card">
-    <h2>교배 <span class="tag red">Cobbreeding 애드온 필요</span></h2>
-    <p class="note"><b class="sure">⚠</b> 기본 Cobblemon엔 <b>교배·알 시스템이 없어.</b> 아래 교배·유전 내용은 <b>Cobbreeding 애드온</b>(현재 미설치, Cobblemon 1.7 대응판 있음)을 깔아야 작동해. 순정에서 목장블록(Pasture Block)은 <b>포켓몬 보관·방목</b> 용도만. <span class="kv">단 개체값(IV)·노력치(EV)·이로치 확률은 순정에도 존재해.</span></p>
-    <h3>교배 방법 (Cobbreeding 설치 시)</h3>
-    <ul>
-      <li><b>목장블록</b>에 방목된 <b>호환되는 암수 2마리</b> → 활성화 시 약 <b>15분당 알 1개</b> 생성</li>
-      <li>알은 목장블록 하단 둥지에 생김 → <b>들고 다니며 걸음 수</b>를 채우면 부화</li>
-      <li>가라르 화석 4종 등 일부는 교배 불가</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>개체값(IV)·유전</h2>
-    <p><b>개체값(IV)</b> = 포켓몬 개체의 잠재 능력치(0~31). <b>잡은 뒤엔 변경 불가</b> → 좋은 IV는 교배로 물려줘.</p>
-    <ul>
-      <li><b>붉은실(Destiny Knot)</b>: 지닌 부모의 IV 12개 중 <b>5개를 유전</b>(기본 3개보다 많음) — 육성 필수템</li>
-      <li><b>파워 아이템</b>: 특정 능력치의 IV를 콕 집어 유전</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>성격·특성·알기술</h2>
-    <ul>
-      <li><b>성격(Nature)</b>: 능력치 하나 +10% / 다른 하나 -10%. <b>변함없는돌(Everstone)</b>을 지닌 부모의 성격이 유전됨</li>
-      <li><b>알기술(Egg Move)</b>: <b>미러허브(Mirror Herb)</b>를 지니면 같은 목장의 다른 포켓몬이 가진 알기술을 습득(10~20분)</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>노력치(EV)·이로치</h2>
-    <ul>
-      <li><b>노력치(EV)</b>: 배틀로 쌓는 능력치 보너스. <b>총 510, 한 능력치 최대 252</b></li>
-      <li>쓰러뜨린 포켓몬 종류마다 특정 능력치 EV를 줌</li>
-      <li><b>이로치</b> 확률 기본 <b>1/8192</b> (config로 조정 가능, 화석 부활로도)</li>
-    </ul>
-    <p class="note">경쟁전·강한 포켓몬이 목표면 순서: <b>IV(붉은실) → 성격(변함없는돌) → EV 트레이닝</b>.</p>
-  </div>
-</section>
-
-<!-- ============ 초반 공략 루트 ============ -->
-<section class="pane" id="pane-start">
-
-  <div class="card">
-    <h2>1. 시작 (0~1일차)</h2>
-    <ul>
-      <li><b>스타터 선택</b> — 월드당 1회, 되돌리기 불가. (스타터 종은 야생에서 초희귀로도 스폰됨)</li>
-      <li><b>포켓볼 확보</b>: <b>아프리콘(Apricorn)</b> 나무 열매를 말려 볼로 조합</li>
-      <li><b>침대</b> 하나 확보 — 포켓몬 회복이 제일 빠름</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>2. 전력 키우기 (초중반)</h2>
-    <ul>
-      <li>야생 배틀로 레벨업, 팀을 <b>4~6마리</b>로 — 타입 다양하게 구성</li>
-      <li><b>진화 아이템</b> 모으기(진화 탭 참고): 링크케이블·진화의돌 등</li>
-      <li>돈(포켓달러): <b>트레이너전 승리</b>·아이템 판매로 확보</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>3. 목표·확장</h2>
-    <ul>
-      <li><b>상성표</b> 익혀서 유리한 타입으로 팀 배치</li>
-      <li><b>구조물·던전</b> 탐험(구조물 탭) → 희귀 아이템·포켓몬</li>
-      <li><b>화석 발굴</b>로 옛 포켓몬 부활</li>
-      <li><b>Megasite</b> 찾아 메가진화 준비(메가진화 탭) → 배틀 기믹 확장</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>초보가 자주 놓치는 것</h2>
-    <ul>
-      <li>파티가 꽉 차면 새로 잡은 포켓몬은 <b>PC로 자동 이동</b></li>
-      <li>진화는 <b>파티 화면에서 진화 버튼을 직접 눌러야</b> 됨(자동 아님). 변함없는돌 지니면 진화 안 함</li>
-      <li>소형 포켓몬은 <b>어깨 탑승</b>(웅크+우클릭), 큰 포켓몬은 <b>라이딩</b>(웅크+우클릭)으로 이동 빨라짐</li>
-      <li><b>JEI</b>로 조합 레시피, <b>Xaero 미니맵</b>으로 길·구조물 찾기</li>
-    </ul>
-  </div>
-</section>
-
 <!-- ============ 아이템 ============ -->
 <section class="pane" id="pane-items">
   <div class="card">
@@ -738,6 +652,7 @@ button, input, select, summary { min-height: 44px; }
       <li>화석 발굴지 구조물에서 <b>수상한 모래(Suspicious Sand)</b> / <b>수상한 자갈(Suspicious Gravel)</b>을 찾는다. 일반 블록과 미묘하게 텍스처가 달라.</li>
       <li>수상한 블록에 솔을 <b>우클릭 꾹</b> — 낮은 확률로 화석이 나온다. 발굴지마다 <b>확정 화석 1개</b>가 보장돼 있으니 모든 수상한 블록을 다 털 것.</li>
     </ol>
+    <p class="note">📷 발굴지(화석 나오는 지형) <b>실제 생김새</b>는 <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites" target="_blank">공식 위키 Fossil Dig Sites →</a>에서 사진으로 확인 (구조물 탭 표에서 지형별로 바로 링크됨).</p>
   </div>
 
   <div class="card">
@@ -788,30 +703,32 @@ button, input, select, summary { min-height: 44px; }
 <!-- ============ 구조물 ============ -->
 <section class="pane" id="pane-struct">
   <div class="card">
-    <h2>화석 발굴지 위치 (바이옴별)</h2>
+    <h2>화석 발굴지 위치 (바이옴별) <span class="tag blue">이름 클릭=위키 사진</span></h2>
+    <p class="note">📷 발굴지 <b>이름을 누르면</b> 공식 위키에서 그 지형의 <b>실제 생김새(사진)</b>를 볼 수 있어. 게임에서 찾을 때 참고해.</p>
     <table>
       <tr><th>발굴지</th><th>생성 위치</th></tr>
-      <tr><td class="kr">Oak / Birch / Spruce Tree<br><span class="kv">쓰러진 선사시대 나무</span></td><td>참나무·자작나무·가문비나무가 자라는 모든 바이옴 지상. 뿌리 밑에 수상한 자갈</td></tr>
-      <tr><td class="kr">Sandy Den</td><td>모래가 있는 바이옴 (해변 제외)</td></tr>
-      <tr><td class="kr">Sunscorched Den / Remains</td><td>사막 계열</td></tr>
-      <tr><td class="kr">Eroded Pillar</td><td>붉은 모래 바이옴 (황무지/메사)</td></tr>
-      <tr><td class="kr">Frozen Pond / Frozen Spike</td><td>얼음이 어는 모든 바이옴 (바다 제외)</td></tr>
-      <tr><td class="kr">Powdered Deposit</td><td>눈이 많은 바이옴 — 가루눈 더미 아래</td></tr>
-      <tr><td class="kr">Preserved Skeleton</td><td>얼음이 있는 바다 — 뼈블록 얼음 덩어리 (모래+자갈 둘 다, 가라르 화석 4종 모두 확정)</td></tr>
-      <tr><td class="kr">Lush Den / Mud Pit</td><td>정글</td></tr>
-      <tr><td class="kr">Rooted Pit</td><td>늪 — 맹그로브 뿌리+진흙 더미</td></tr>
-      <tr><td class="kr">Dripstone Oasis</td><td>석순 동굴 (y10 ~ -37)</td></tr>
-      <tr><td class="kr">Enhydro Agate / Mossy Pond</td><td>무성한 동굴 (y10 ~ -37) — <b>심층암 물의돌 광석 확정</b></td></tr>
-      <tr><td class="kr">Hydrothermal Vents</td><td>일반·미온 바다 바닥 — 현무암 기둥+마그마</td></tr>
-      <tr><td class="kr">Vibrant Hydrothermal Vents</td><td>따뜻한 바다</td></tr>
-      <tr><td class="kr">Submerged Impact / Spike, Underwater Fissure</td><td>바다 바닥</td></tr>
-      <tr><td class="kr">Suspicious Mound</td><td>지상 초원 계열 흙더미</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Oak_Tree" target="_blank">Oak</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Birch_Tree" target="_blank">Birch</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Spruce_Tree" target="_blank">Spruce</a> Tree<br><span class="kv">쓰러진 선사시대 나무</span></td><td>참나무·자작나무·가문비나무가 자라는 모든 바이옴 지상. 뿌리 밑에 수상한 자갈</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Sandy_Den" target="_blank">Sandy Den</a></td><td>모래가 있는 바이옴 (해변 제외)</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Sunscorched_Den" target="_blank">Sunscorched Den</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Sunscorched_Remains" target="_blank">Remains</a></td><td>사막 계열</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Eroded_Pillar" target="_blank">Eroded Pillar</a></td><td>붉은 모래 바이옴 (황무지/메사)</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Frozen_Pond" target="_blank">Frozen Pond</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Frozen_Spike" target="_blank">Frozen Spike</a></td><td>얼음이 어는 모든 바이옴 (바다 제외)</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Powdered_Deposit" target="_blank">Powdered Deposit</a></td><td>눈이 많은 바이옴 — 가루눈 더미 아래</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Preserved_Skeleton" target="_blank">Preserved Skeleton</a></td><td>얼음이 있는 바다 — 뼈블록 얼음 덩어리 (모래+자갈 둘 다, 가라르 화석 4종 모두 확정)</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Lush_Den" target="_blank">Lush Den</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Mud_Pit" target="_blank">Mud Pit</a></td><td>정글</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Rooted_Pit" target="_blank">Rooted Pit</a></td><td>늪 — 맹그로브 뿌리+진흙 더미</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Dripstone_Oasis" target="_blank">Dripstone Oasis</a></td><td>석순 동굴 (y10 ~ -37)</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Enhydro_Agate" target="_blank">Enhydro Agate</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Mossy_Pond" target="_blank">Mossy Pond</a></td><td>무성한 동굴 (y10 ~ -37) — <b>심층암 물의돌 광석 확정</b></td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Hydrothermal_Vents" target="_blank">Hydrothermal Vents</a></td><td>일반·미온 바다 바닥 — 현무암 기둥+마그마</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Vibrant_Hydrothermal_Vents" target="_blank">Vibrant Hydrothermal Vents</a></td><td>따뜻한 바다</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Submerged_Impact" target="_blank">Submerged Impact</a> / <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Submerged_Spike" target="_blank">Spike</a>, <a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Underwater_Fissure" target="_blank">Underwater Fissure</a></td><td>바다 바닥</td></tr>
+      <tr><td class="kr"><a href="https://wiki.cobblemon.com/index.php/Fossil_Dig_Sites#Prehistoric_Suspicious_Mound" target="_blank">Suspicious Mound</a></td><td>지상 초원 계열 흙더미</td></tr>
     </table>
     <p class="note">가장 쉬운 파밍: 눈에 잘 띄는 <b>쓰러진 나무</b>(비밀의호박=프테라)와 <b>Preserved Skeleton</b>(얼음 바다, 가라르 화석 전부).</p>
   </div>
 
   <div class="card">
     <h2>유적 (Ruins) — 모으령 & 유물 코인</h2>
+    <p class="note">📷 <a href="https://wiki.cobblemon.com/index.php/Ruins" target="_blank">위키에서 유적 종류·실제 사진 보기 →</a></p>
     <p>세계 곳곳에 생성되는 고대 유적. <b>유물 코인(Relic Coin)</b>과 코인 주머니, 고대 몬스터볼 재료가 나오고 <b>모으령(Gimmighoul)</b>이 서식해.</p>
     <ul>
       <li>유물 코인 <b>999개</b>를 모아 모으령을 레벨업 → <b>타부자고(Gholdengo)</b></li>
@@ -821,6 +738,7 @@ button, input, select, summary { min-height: 44px; }
 
   <div class="card">
     <h2>미니 던전 (Mini Dungeons)</h2>
+    <p class="note">📷 <a href="https://wiki.cobblemon.com/index.php/Mini_Dungeon" target="_blank">위키에서 미니 던전 구조·실제 사진 보기 →</a></p>
     <p>지하에 생성되는 던전으로, 바닐라 <b>시련 스포너(Trial Spawner)</b>가 포켓몬을 소환해. 타입 테마별 방이 있고 클리어 보상으로 좋은 전리품(진화 아이템, 사탕 등)이 나와. 지하 탐험 중 발견하면 꼭 털 것.</p>
   </div>
 
