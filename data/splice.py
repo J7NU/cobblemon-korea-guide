@@ -40,7 +40,7 @@ block=r'''  /* ===== 스폰 데이터 (Cobblemon 공식 spawn_pool_world, GitLab
   const SP=window._SP||[],BSPEC=window._BSPEC||{},UNIV=window._UNIV||[],SDET=window._SDET||{};
   %META%
   const _METABY={};BIOME_META.forEach(m=>_METABY[m.id]=m);
-  function e2mon(e){const s=SP[e[0]]||['?','?'];return [s[0],s[1],R2[e[1]],e[2]||''];}
+  function e2mon(e){const s=SP[e[0]]||['?','?',0];return [s[0],s[1],R2[e[1]],e[2]||'',s[2]||0];}
   const BIOMES=BIOME_META.map(m=>({id:m.id,emoji:m.emoji,name:m.name,desc:m.desc,mcid:m.mcid,mons:(BSPEC[m.id]||[]).map(e2mon)}));
   const LAND=new Set(BIOME_META.filter(m=>m.id!=='nether'&&m.id!=='end').map(m=>m.id));
   const RARITY_ORDER=['common','uncommon','rare','ultra'];
@@ -59,23 +59,19 @@ block=r'''  /* ===== 스폰 데이터 (Cobblemon 공식 spawn_pool_world, GitLab
   const emptyCard=document.getElementById('spawnEmptyCard'),resultCard=document.getElementById('spawnResultCard');
   const emojiEl=document.getElementById('spawnBiomeEmoji'),nameEl=document.getElementById('spawnBiomeName'),descEl=document.getElementById('spawnBiomeDesc'),bodyEl=document.getElementById('spawnResultBody');
 
+  const SPR_BASE='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
   function monRows(list){
-    let html='';
-    RARITY_ORDER.forEach(r=>{
-      if(rarityFilter!=='all'&&rarityFilter!==r)return;
-      const sub=list.filter(m=>m[2]===r);
-      if(!sub.length)return;
-      const [rlabel,rcolor]=RB[r];
-      html+='<div class="raritygroup"><h3><span class="tag '+rcolor+'">'+rlabel+'</span> <span style="font-size:12px;color:var(--muted);font-weight:400">'+sub.length+'종</span></h3>';
-      html+=sub.map(m=>{
-        const cond=m[3]?'<div class="cond">↳ '+m[3]+'</div>':'';
-        const en=m[1]?'<span class="en">'+esc(m[1])+'</span>':'';
-        const nm='<span class="kr pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+esc(m[0])+'</span>';
-        return '<div class="mon">'+nm+en+cond+'</div>';
-      }).join('');
-      html+='</div>';
-    });
-    return html;
+    const items=(rarityFilter==='all')?list:list.filter(m=>m[2]===rarityFilter);
+    if(!items.length)return '';
+    return '<div class="sp-grid">'+items.map(m=>{
+      const num=m[4];
+      const img=num
+        ?'<img class="sp-spr" src="'+SPR_BASE+num+'.png" width="38" height="38" loading="lazy" decoding="async" alt="" onerror="if(window._spriteFail)_spriteFail(this)">'
+        :'<div class="sp-spr sph">?</div>';
+      const cond=m[3]?' · <span class="sp-c">'+esc(m[3])+'</span>':'';
+      return '<div class="sp-chip '+m[2]+' pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+img
+        +'<div class="sp-tx"><div class="sp-k">'+esc(m[0])+'</div><div class="sp-e">'+esc(m[1])+cond+'</div></div></div>';
+    }).join('')+'</div>';
   }
 
   function render(){

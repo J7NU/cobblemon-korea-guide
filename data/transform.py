@@ -12,17 +12,22 @@ CUT = 13   # targeted span >= CUT -> treat as universal (collapse only)
 
 def is_broad(r): return any('is_overworld' in t for t in r.get('tags_raw', []))
 
+slug2num = json.load(open('data/slug2num.json'))
 by_sp = collections.defaultdict(list)
 kr_of = {}
+num_of = {}
 for r in d:
     by_sp[r['en']].append(r)
     kr_of[r['en']] = r['kr']
+    if r['en'] not in num_of:
+        n = slug2num.get(r.get('slug', ''))
+        if n: num_of[r['en']] = n
 
 species = sorted(by_sp.keys())
 SP, sp_idx = [], {}
 for en in species:
     sp_idx[en] = len(SP)
-    SP.append([kr_of[en], en])
+    SP.append([kr_of[en], en, num_of.get(en, 0)])   # [kr, en, dexnum(0=없음)]
 
 BSPEC = {b: [] for b in BIOME_IDS}   # biomeId -> [ [spIdx, rIdx, cond], ... ]
 UNIV = []                             # [ [spIdx, rIdx, cond], ... ]
