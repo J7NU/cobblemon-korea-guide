@@ -1245,7 +1245,7 @@ function _toggleCaught(en,idx){
   const btn=document.getElementById('dexCatchBtn');
   if(btn){const caught=_caughtSet.has(en);btn.textContent=caught?'잡음 해제':'✓ 잡았다';btn.classList.toggle('caught-state',caught);}
 }
-_updateProgress();
+/* 주의: _updateProgress() 즉시 호출은 DEX 선언(const, TDZ) 뒤에서 해야 함 — DEX 배열 정의 직후로 이동 */
 
 function openDex(kr,en){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -1379,6 +1379,7 @@ const DEX=[
 ["루기아","Lugia"],["칠색조","Ho-Oh"],
 ["던지미","Throh"],["타격귀","Sawk"],["레오꼬","Litleo"],["화염레오","Pyroar"]
 ];
+_updateProgress(); /* 수집 진행바 초기화 — DEX 선언 이후 시점 */
 
 /* ===== 아이템 사전 (검색용) ===== */
 const ITEMS=[
