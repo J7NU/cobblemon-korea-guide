@@ -60,18 +60,29 @@ block=r'''  /* ===== 스폰 데이터 (Cobblemon 공식 spawn_pool_world, GitLab
   const emojiEl=document.getElementById('spawnBiomeEmoji'),nameEl=document.getElementById('spawnBiomeName'),descEl=document.getElementById('spawnBiomeDesc'),bodyEl=document.getElementById('spawnResultBody');
 
   const SPR_BASE='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-  function monRows(list){
-    const items=(rarityFilter==='all')?list:list.filter(m=>m[2]===rarityFilter);
-    if(!items.length)return '';
-    return '<div class="sp-grid">'+items.map(m=>{
-      const num=m[4];
-      const img=num
-        ?'<img class="sp-spr" src="'+SPR_BASE+num+'.png" width="38" height="38" loading="lazy" decoding="async" alt="" onerror="if(window._spriteFail)_spriteFail(this)">'
-        :'<div class="sp-spr sph">?</div>';
-      const cond=m[3]?' · <span class="sp-c">'+esc(m[3])+'</span>':'';
-      return '<div class="sp-chip '+m[2]+' pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+img
-        +'<div class="sp-tx"><div class="sp-k">'+esc(m[0])+'</div><div class="sp-e">'+esc(m[1])+cond+'</div></div></div>';
-    }).join('')+'</div>';
+  // 희귀도 토글 열림 상태 (재렌더 간 유지). 기본: 희귀도 열림, 전역 닫힘
+  const rOpen={common:true,uncommon:true,rare:true,ultra:true,univ:false};
+  function chip(m){
+    const num=m[4];
+    const img=num
+      ?'<img class="sp-spr" src="'+SPR_BASE+num+'.png" width="38" height="38" loading="lazy" decoding="async" alt="" onerror="if(window._spriteFail)_spriteFail(this)">'
+      :'<div class="sp-spr sph">?</div>';
+    const cond=m[3]?' · <span class="sp-c">'+esc(m[3])+'</span>':'';
+    return '<div class="sp-chip '+m[2]+' pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+img
+      +'<div class="sp-tx"><div class="sp-k">'+esc(m[0])+'</div><div class="sp-e">'+esc(m[1])+cond+'</div></div></div>';
+  }
+  function chipGrid(items){ return '<div class="sp-grid">'+items.map(chip).join('')+'</div>'; }
+  // 희귀도별 <details> 토글 (흔함/보통/희귀/초희귀)
+  function raritySections(list){
+    let h='';
+    RARITY_ORDER.forEach(r=>{
+      if(rarityFilter!=='all'&&rarityFilter!==r)return;
+      const sub=list.filter(m=>m[2]===r);
+      if(!sub.length)return;
+      const [lab,col]=RB[r];
+      h+='<details class="rbox '+r+'" data-r="'+r+'"'+(rOpen[r]?' open':'')+'><summary><span class="tag '+col+'">'+lab+'</span><span class="rcount">'+sub.length+'종</span></summary>'+chipGrid(sub)+'</details>';
+    });
+    return h;
   }
 
   function render(){
@@ -80,16 +91,21 @@ block=r'''  /* ===== 스폰 데이터 (Cobblemon 공식 spawn_pool_world, GitLab
     emptyCard.style.display='none';resultCard.style.display='block';
     emojiEl.textContent=b.emoji;nameEl.textContent=b.name;
     descEl.innerHTML=b.desc+(b.mcid?' <br><span style="color:var(--blue);font-size:12px">마크 바이옴: '+b.mcid+'</span>':'');
-    let html=monRows(b.mons);
+    let html=raritySections(b.mons);
     if(!html)html='<p class="emptytype">이 필터에 해당하는 포켓몬이 없어</p>';
     if(LAND.has(b.id)&&UNIV.length){
       const specIdx=new Set((BSPEC[b.id]||[]).map(e=>e[0]));
-      const uList=UNIV.filter(e=>!specIdx.has(e[0])).map(e2mon);
-      const uh=monRows(uList);
-      if(uh)html+='<details class="univbox"><summary>🌍 이 외 <b>전역 스폰</b> 더보기 <span class="kv">(아무 바이옴이나 나오는 '+uList.length+'종)</span></summary><div class="univbody">'+uh+'</div></details>';
+      let uList=UNIV.filter(e=>!specIdx.has(e[0])).map(e2mon);
+      if(rarityFilter!=='all')uList=uList.filter(m=>m[2]===rarityFilter);
+      if(uList.length)html+='<details class="univbox" data-r="univ"'+(rOpen.univ?' open':'')+'><summary>🌍 이 외 <b>전역 스폰</b> 더보기 <span class="kv">(아무 바이옴이나 나오는 '+uList.length+'종)</span></summary><div class="univbody">'+chipGrid(uList)+'</div></details>';
     }
     bodyEl.innerHTML=html;
   }
+  // 토글 열림 상태 저장 (toggle 이벤트는 버블 안 함 → capture)
+  bodyEl.addEventListener('toggle',e=>{
+    const dt=e.target.closest&&e.target.closest('details[data-r]');
+    if(dt)rOpen[dt.dataset.r]=dt.open;
+  },true);
 
   grid.addEventListener('click',e=>{
     const b=e.target.closest('.biomebtn');if(!b)return;

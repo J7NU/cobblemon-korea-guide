@@ -270,9 +270,9 @@ button, input, select, summary { min-height: 44px; }
 .spawn-entry{display:flex;align-items:center;gap:6px;padding:5px 4px;border-bottom:1px solid #2a303c;font-size:13px;flex-wrap:wrap}
 .spawn-entry:last-child{border-bottom:none}
 .spawn-entry .s-cond{width:100%;font-size:12px;color:var(--muted);padding-left:4px}
-/* 바이옴 스폰: 가로 칩 그리드 (B안) */
-.sp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:10px 0}
-.sp-chip{display:flex;align-items:center;gap:9px;background:var(--surface-2);border:1px solid var(--border);border-left-width:4px;border-radius:8px;padding:7px 10px 7px 8px;color:var(--text);text-decoration:none;font-weight:400}
+/* 바이옴 스폰: 가로 칩 2열 그리드 (B안) */
+.sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:8px 0}
+.sp-chip{display:flex;align-items:center;gap:9px;background:var(--surface-2);border:1px solid var(--border);border-left-width:4px;border-radius:8px;padding:7px 10px 7px 8px;color:var(--text);text-decoration:none;font-weight:400;min-width:0}
 .sp-chip.common{border-left-color:#9aa3b2}
 .sp-chip.uncommon{border-left-color:#6fce97}
 .sp-chip.rare{border-left-color:#8ec6f5}
@@ -284,6 +284,20 @@ button, input, select, summary { min-height: 44px; }
 .sp-e{font-size:11px;color:var(--text-tertiary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sp-c{color:var(--text-secondary)}
 .sp-spr.sph,.sph{display:flex;align-items:center;justify-content:center;background:var(--surface);border-radius:4px;color:var(--text-tertiary);font-size:14px}
+/* 희귀도별 토글 */
+.rbox{border:1px solid var(--border);border-left-width:3px;border-radius:8px;margin:8px 0;overflow:hidden}
+.rbox.common{border-left-color:#9aa3b2}
+.rbox.uncommon{border-left-color:#6fce97}
+.rbox.rare{border-left-color:#8ec6f5}
+.rbox.ultra{border-left-color:#f0cd85}
+.rbox>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;padding:9px 12px;background:var(--surface-2);-webkit-tap-highlight-color:transparent}
+.rbox>summary::-webkit-details-marker{display:none}
+.rbox>summary::marker{content:''}
+.rbox>summary:before{content:'▸';color:var(--muted);font-size:12px;display:inline-block;width:10px}
+.rbox[open]>summary:before{content:'▾'}
+.rbox[open]>summary{border-bottom:1px solid var(--border)}
+.rbox .rcount{font-size:12px;color:var(--text-tertiary)}
+.rbox .sp-grid{padding:0 12px 12px;margin:10px 0 0}
 .univbox{margin-top:16px;border-top:1px solid var(--border);padding-top:12px}
 .univbox>summary{cursor:pointer;font-size:14px;padding:10px 4px;list-style:none;color:var(--text);border-radius:4px}
 .univbox>summary::-webkit-details-marker{display:none}
@@ -785,7 +799,7 @@ button, input, select, summary { min-height: 44px; }
     <div class="spawnhdr"><span class="big" id="spawnBiomeEmoji"></span><h2 id="spawnBiomeName" style="margin:0"></h2></div>
     <p class="kv" id="spawnBiomeDesc"></p>
     <div id="spawnResultBody"></div>
-    <p class="note">Cobblemon 공식 스폰 데이터(spawn_pool_world) 전체를 바이옴별로 정리했어 — 873종 수록. 카드 왼쪽 색 띠 = 희귀도(회색 흔함·초록 보통·파랑 희귀·금색 초희귀). 각 바이옴 특유 종이 먼저, "아무 바이옴이나 나오는" 전역 스폰은 아래 <b>전역 스폰 더보기</b>에 접혀 있어. 서버 버전·데이터팩에 따라 다를 수 있으니, 게임 내에서 잡은 포켓몬의 도감을 열면 실제 발견 위치가 정확히 나와.</p>
+    <p class="note">Cobblemon 공식 스폰 데이터(spawn_pool_world) 전체를 바이옴별로 정리했어 — 873종 수록. 희귀도별로 접었다 펼 수 있고(흔함·보통·희귀·초희귀), 칩 왼쪽 색 띠도 희귀도야. 각 바이옴 특유 종이 먼저, "아무 바이옴이나 나오는" 전역 스폰은 아래 <b>전역 스폰 더보기</b>에 접혀 있어. 서버 버전·데이터팩에 따라 다를 수 있으니, 게임 내에서 잡은 포켓몬의 도감을 열면 실제 발견 위치가 정확히 나와.</p>
   </div>
 </section>
 
@@ -2069,18 +2083,29 @@ window._SDET={"0":[["plains",1,"밤","6-31"],["forest",1,"밤","6-31"],["jungle"
   const emojiEl=document.getElementById('spawnBiomeEmoji'),nameEl=document.getElementById('spawnBiomeName'),descEl=document.getElementById('spawnBiomeDesc'),bodyEl=document.getElementById('spawnResultBody');
 
   const SPR_BASE='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/';
-  function monRows(list){
-    const items=(rarityFilter==='all')?list:list.filter(m=>m[2]===rarityFilter);
-    if(!items.length)return '';
-    return '<div class="sp-grid">'+items.map(m=>{
-      const num=m[4];
-      const img=num
-        ?'<img class="sp-spr" src="'+SPR_BASE+num+'.png" width="38" height="38" loading="lazy" decoding="async" alt="" onerror="if(window._spriteFail)_spriteFail(this)">'
-        :'<div class="sp-spr sph">?</div>';
-      const cond=m[3]?' · <span class="sp-c">'+esc(m[3])+'</span>':'';
-      return '<div class="sp-chip '+m[2]+' pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+img
-        +'<div class="sp-tx"><div class="sp-k">'+esc(m[0])+'</div><div class="sp-e">'+esc(m[1])+cond+'</div></div></div>';
-    }).join('')+'</div>';
+  // 희귀도 토글 열림 상태 (재렌더 간 유지). 기본: 희귀도 열림, 전역 닫힘
+  const rOpen={common:true,uncommon:true,rare:true,ultra:true,univ:false};
+  function chip(m){
+    const num=m[4];
+    const img=num
+      ?'<img class="sp-spr" src="'+SPR_BASE+num+'.png" width="38" height="38" loading="lazy" decoding="async" alt="" onerror="if(window._spriteFail)_spriteFail(this)">'
+      :'<div class="sp-spr sph">?</div>';
+    const cond=m[3]?' · <span class="sp-c">'+esc(m[3])+'</span>':'';
+    return '<div class="sp-chip '+m[2]+' pmon" data-kr="'+esc(m[0])+'" data-en="'+esc(m[1])+'">'+img
+      +'<div class="sp-tx"><div class="sp-k">'+esc(m[0])+'</div><div class="sp-e">'+esc(m[1])+cond+'</div></div></div>';
+  }
+  function chipGrid(items){ return '<div class="sp-grid">'+items.map(chip).join('')+'</div>'; }
+  // 희귀도별 <details> 토글 (흔함/보통/희귀/초희귀)
+  function raritySections(list){
+    let h='';
+    RARITY_ORDER.forEach(r=>{
+      if(rarityFilter!=='all'&&rarityFilter!==r)return;
+      const sub=list.filter(m=>m[2]===r);
+      if(!sub.length)return;
+      const [lab,col]=RB[r];
+      h+='<details class="rbox '+r+'" data-r="'+r+'"'+(rOpen[r]?' open':'')+'><summary><span class="tag '+col+'">'+lab+'</span><span class="rcount">'+sub.length+'종</span></summary>'+chipGrid(sub)+'</details>';
+    });
+    return h;
   }
 
   function render(){
@@ -2089,16 +2114,21 @@ window._SDET={"0":[["plains",1,"밤","6-31"],["forest",1,"밤","6-31"],["jungle"
     emptyCard.style.display='none';resultCard.style.display='block';
     emojiEl.textContent=b.emoji;nameEl.textContent=b.name;
     descEl.innerHTML=b.desc+(b.mcid?' <br><span style="color:var(--blue);font-size:12px">마크 바이옴: '+b.mcid+'</span>':'');
-    let html=monRows(b.mons);
+    let html=raritySections(b.mons);
     if(!html)html='<p class="emptytype">이 필터에 해당하는 포켓몬이 없어</p>';
     if(LAND.has(b.id)&&UNIV.length){
       const specIdx=new Set((BSPEC[b.id]||[]).map(e=>e[0]));
-      const uList=UNIV.filter(e=>!specIdx.has(e[0])).map(e2mon);
-      const uh=monRows(uList);
-      if(uh)html+='<details class="univbox"><summary>🌍 이 외 <b>전역 스폰</b> 더보기 <span class="kv">(아무 바이옴이나 나오는 '+uList.length+'종)</span></summary><div class="univbody">'+uh+'</div></details>';
+      let uList=UNIV.filter(e=>!specIdx.has(e[0])).map(e2mon);
+      if(rarityFilter!=='all')uList=uList.filter(m=>m[2]===rarityFilter);
+      if(uList.length)html+='<details class="univbox" data-r="univ"'+(rOpen.univ?' open':'')+'><summary>🌍 이 외 <b>전역 스폰</b> 더보기 <span class="kv">(아무 바이옴이나 나오는 '+uList.length+'종)</span></summary><div class="univbody">'+chipGrid(uList)+'</div></details>';
     }
     bodyEl.innerHTML=html;
   }
+  // 토글 열림 상태 저장 (toggle 이벤트는 버블 안 함 → capture)
+  bodyEl.addEventListener('toggle',e=>{
+    const dt=e.target.closest&&e.target.closest('details[data-r]');
+    if(dt)rOpen[dt.dataset.r]=dt.open;
+  },true);
 
   grid.addEventListener('click',e=>{
     const b=e.target.closest('.biomebtn');if(!b)return;
