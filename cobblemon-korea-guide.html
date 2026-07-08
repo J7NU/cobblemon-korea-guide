@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1218">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="코블몬 가이드">
 <title>코블몬 한국어 가이드</title>
 <style>
 
@@ -128,6 +136,7 @@ details .inner{padding:0 12px 12px}
 ul{padding-left:18px;margin:6px 0}
 ol{padding-left:26px;margin:6px 0}
 li{margin:4px 0;padding-left:3px}
+code{background:var(--surface-2);padding:1px 6px;border-radius:4px;font-size:13px;color:var(--warning);word-break:break-all}
 .steps li{margin:8px 0}
 footer{max-width:860px;margin:24px auto;padding:0 16px;color:var(--text-secondary);font-size:12px;text-align:center}
 a{color:var(--info)}
@@ -1148,6 +1157,26 @@ button, input, select, summary { min-height: 44px; }
       <li>게임 내 조합대 <b>레시피북</b>에서 영어 이름 검색 (JEI/EMI 모드가 있으면 더 편함)</li>
       <li>버전이 바뀌면 레시피가 바뀔 수 있으니 <b>게임 내 표기가 항상 정답</b></li>
     </ol>
+  </div>
+  <div class="card">
+    <h2>유용한 명령어 <span class="tag gold">치트/OP 필요</span></h2>
+    <p class="kv">싱글 = 치트 허용 켜기, 서버 = OP 권한 필요. 메가·기믹 테스트할 때 편해.</p>
+    <table>
+      <tr><th>명령어</th><th>설명</th></tr>
+      <tr><td class="kr"><b>/pokespawn</b> &lt;종&gt;</td><td>근처에 야생 포켓몬 스폰 (별칭 /spawnpokemon)</td></tr>
+      <tr><td class="kr"><b>/pokegive</b> &lt;종&gt; [속성]</td><td>내 파티에 지급. 남에게 = /givepokemonother &lt;대상&gt; &lt;종&gt;</td></tr>
+      <tr><td class="kr"><b>/pokeedit</b> &lt;슬롯&gt; [속성]</td><td>파티 슬롯 포켓몬 편집 (별칭 /pokemonedit)</td></tr>
+      <tr><td class="kr"><b>/pokeheal</b> [대상]</td><td>파티 전체 회복 (별칭 /healpokemon)</td></tr>
+      <tr><td class="kr"><b>/pc</b></td><td>PC 박스 열기</td></tr>
+      <tr><td class="kr"><b>/checkspawn</b> &lt;희귀도&gt;</td><td>현재 위치 스폰 가능 목록 (common·uncommon·rare·ultra-rare)</td></tr>
+    </table>
+    <h3>속성(attributes) 예시</h3>
+    <ul>
+      <li><code>shiny</code> 이로치 · <code>level=50</code> 레벨 · <code>nature=adamant</code> 성격 · <code>ability=</code> 특성</li>
+      <li>예: <code>/pokespawn charizard shiny level=50 nature=adamant</code></li>
+      <li>예: <code>/pokeedit 1 shiny level=100</code> (1번 슬롯을 이로치·100레벨로)</li>
+    </ul>
+    <p class="note">메가스톤·테라오브 같은 <b>Mega Showdown 아이템</b>은 명령어보다 <b>크리에이티브 인벤토리 검색</b>(또는 JEI)으로 꺼내는 게 확실 — 아이템 ID가 버전마다 달라.</p>
   </div>
   <div class="card">
     <h2>둘이서 플레이 꿀팁</h2>
