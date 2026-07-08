@@ -148,6 +148,11 @@ a{color:var(--info)}
 .chip{display:inline-flex;align-items:center;font-family:var(--font-body);font-size:12px;padding:6px 10px;border-radius:4px;color:#1c1c1c}
 .emptytype{color:var(--text-secondary);text-align:center;padding:18px 8px;font-size:14px}
 
+/* ---- 2타입 방어 계산기 ---- */
+.dual-section{margin-top:12px}
+.dual-group{margin:10px 0}
+.dual-group-label{font-size:13px;font-weight:700;margin-bottom:6px}
+
 /* ---- v2: 커플 미션 ---- */
 .scoreboard{display:flex;align-items:center;justify-content:space-between;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:12px;margin:10px 0;gap:10px}
 .scoreboard .p{text-align:center;flex:1;min-width:0}
@@ -263,6 +268,18 @@ button, input, select, summary { min-height: 44px; }
   .dex-card .dc-kr{font-size:10px}
   .dex-detail{padding:12px}
 }
+/* ---- 체크리스트 배지·진행바 (JIN-checklist) ---- */
+.dex-card{position:relative}
+.dc-caught{position:absolute;top:3px;right:3px;width:15px;height:15px;background:var(--success);border-radius:50%;font-size:8px;color:#fff;display:none;align-items:center;justify-content:center;line-height:1;font-weight:700;pointer-events:none}
+.dex-card.caught .dc-caught{display:flex}
+.dex-card.caught{border-color:var(--success)}
+.dex-progress-wrap{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-4) var(--space-5);margin:0 0 10px}
+.dex-progress-label{font-size:13px;color:var(--text-secondary);margin-bottom:6px}
+.dex-progress-track{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
+.dex-progress-fill{height:100%;background:var(--success);border-radius:4px;width:0%;transition:width .25s}
+.dex-catch-btn{font-family:var(--font-body);font-size:11px;padding:7px 12px;border:2px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:44px}
+@media(hover:hover){.dex-catch-btn:hover{border-color:var(--success)}}
+.dex-catch-btn.caught-state{border-color:var(--success);background:rgba(79,184,122,0.14);color:var(--success)}
 </style>
 </head>
 <body>
@@ -439,7 +456,7 @@ button, input, select, summary { min-height: 44px; }
       <tr><td class="kr">심해의이빨</td><td class="en">Deep Sea Tooth</td><td><b class="sure">Hydrothermal Vents, Preserved Skeleton</b></td></tr>
       <tr><td class="kr">심해의비늘</td><td class="en">Deep Sea Scale</td><td><b class="sure">Hydrothermal Vents, Preserved Skeleton</b></td></tr>
       <tr><td class="kr">검은휘석</td><td class="en">Black Augurite</td><td><b class="sure">Eroded Pillar, Sandy Den</b> — 스라크 → <b>사마자르(Kleavor)</b> 진화용</td></tr>
-      <tr><td class="kr">피트블록</td><td class="en">Peat Block</td><td><b class="sure">숲·정글·늪 발굴지</b> — 링곰 → <b>우락곰이(Ursaluna)</b> 진화용 (보름달 밤 사용)</td></tr>
+      <tr><td class="kr">피트블록</td><td class="en">Peat Block</td><td><b class="sure">숲·정글·늪 발굴지</b> — 링곰 → <b>다투곰(Ursaluna)</b> 진화용 (보름달 밤 사용)</td></tr>
       <tr><td class="kr">변함없는돌</td><td class="en">Everstone</td><td>거의 모든 발굴지 — 지니면 진화 방지</td></tr>
       <tr><td class="kr">동글동글돌</td><td class="en">Oval Stone</td><td>전리품 — 핑복→럭키 진화(낮 레벨업)</td></tr>
       <tr><td class="kr">향기주머니</td><td class="en">Sachet</td><td>전리품/드롭</td></tr>
@@ -643,6 +660,27 @@ button, input, select, summary { min-height: 44px; }
     <h2 id="typeResultTitle"></h2>
     <div class="typeresult" id="typeResultBody"></div>
   </div>
+
+  <!-- ---- 2타입 방어 계산기 ---- -->
+  <div class="card" id="typeDualCard">
+    <h2>2타입 방어 계산기</h2>
+    <p class="kv">실전 포켓몬은 타입이 2개! 두 타입을 고르면 공격 타입별 합산 배율을 보여줄게. 두 번째 타입은 '없음'으로 두면 단일 타입 계산도 돼.</p>
+    <div class="dual-section">
+      <h3 style="margin-top:0">첫 번째 타입</h3>
+      <div class="typegrid" id="dualGrid1"></div>
+    </div>
+    <div class="dual-section">
+      <h3>두 번째 타입</h3>
+      <div class="typegrid" id="dualGrid2"></div>
+    </div>
+    <div id="dualEmptyMsg" style="margin-top:10px">
+      <p class="emptytype">첫 번째 타입을 선택하면 결과가 여기 나타나</p>
+    </div>
+    <div id="dualResult" style="display:none;margin-top:14px">
+      <div id="dualResultTitle" style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px"></div>
+      <div class="typeresult" id="dualResultBody"></div>
+    </div>
+  </div>
 </section>
 
 <!-- ============ 미션 ============ -->
@@ -688,6 +726,145 @@ button, input, select, summary { min-height: 44px; }
     </ul>
     <p class="note">소형 포켓몬의 <b>어깨 탑승</b>(웅크리기+우클릭)과 같은 조작이야 — 크기에 따라 어깨에 타거나 내가 올라타는 것.</p>
   </div>
+
+  <div class="card">
+    <h2>라이딩 가능 포켓몬 89종 <span class="tag blue">공식 위키 기준</span></h2>
+    <p>총 <b>89종</b>(지역폼 포함). 유형: <b>육상 / 수상(Boat·Dolphin·Submarine) / 비행(Bird·Jet·Hover·Rocket)</b>. 같은 포켓몬이 여러 유형에 등재될 수 있어.</p>
+    <details>
+      <summary>비행 — Bird (육상+비행)</summary>
+      <div class="inner"><p>
+        리자몽 <span class="en">Charizard</span>,
+        프테라 <span class="en">Aerodactyl</span>,
+        프리져 <span class="en">Articuno</span>,
+        썬더 <span class="en">Zapdos</span>,
+        파이어 <span class="en">Moltres</span>,
+        헤라크로스 <span class="en">Heracross</span>,
+        만타인 <span class="en">Mantine</span>,
+        루기아 <span class="en">Lugia</span>,
+        칠색조 <span class="en">Ho-Oh</span>,
+        플라이곤 <span class="en">Flygon</span>,
+        파비코리 <span class="en">Altaria</span>,
+        트로피우스 <span class="en">Tropius</span>,
+        보만다 <span class="en">Salamence</span>,
+        찌르호크 <span class="en">Staraptor</span>,
+        돈크로우 <span class="en">Honchkrow</span>,
+        워글 <span class="en">Braviary</span> (+히스이 폼),
+        삼삼드래 <span class="en">Hydreigon</span>,
+        불카모스 <span class="en">Volcarona</span>,
+        음번 <span class="en">Noivern</span>,
+        아머까오 <span class="en">Corviknight</span>,
+        찌리비크 <span class="en">Kilowattrel</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>비행 — Jet (육상+비행 고속)</summary>
+      <div class="inner"><p>
+        갸라도스 <span class="en">Gyarados</span>,
+        망나뇽 <span class="en">Dragonite</span>,
+        라티아스 <span class="en">Latias</span>,
+        라티오스 <span class="en">Latios</span>,
+        한카리아스 <span class="en">Garchomp</span>,
+        토게키스 <span class="en">Togekiss</span>,
+        드래펄트 <span class="en">Dragapult</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>비행 — Hover (부유 전용)</summary>
+      <div class="inner"><p>
+        쏘콘 <span class="en">Forretress</span>,
+        점토도리 <span class="en">Claydol</span>,
+        둥실라이드 <span class="en">Drifblim</span>,
+        동탁군 <span class="en">Bronzong</span>,
+        자포코일 <span class="en">Magnezone</span>,
+        야느와르몽 <span class="en">Dusknoir</span>,
+        기기기어르 <span class="en">Klinklang</span>,
+        메타그로스 <span class="en">Metagross</span> (육상도 가능)
+      </p></div>
+    </details>
+    <details>
+      <summary>로켓 — Rocket (육상+수직 상승)</summary>
+      <div class="inner"><p>
+        거북왕 <span class="en">Blastoise</span>,
+        골루그 <span class="en">Golurk</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>수중 — Submarine</summary>
+      <div class="inner"><p>
+        거북왕 <span class="en">Blastoise</span>,
+        왕콘치 <span class="en">Seaking</span>,
+        고래왕자 <span class="en">Wailmer</span>,
+        고래왕 <span class="en">Wailord</span>,
+        시라칸 <span class="en">Relicanth</span>,
+        타타륜 <span class="en">Dhelmise</span>,
+        어써러셔 <span class="en">Dondozo</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>수영 — Dolphin (수상/수중 유영)</summary>
+      <div class="inner"><p>
+        쥬레곤 <span class="en">Dewgong</span>,
+        갸라도스 <span class="en">Gyarados</span>,
+        망나뇽 <span class="en">Dragonite</span>,
+        만타인 <span class="en">Mantine</span>,
+        루기아 <span class="en">Lugia</span>,
+        샤크니아 <span class="en">Sharpedo</span>,
+        드래펄트 <span class="en">Dragapult</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>수상 — Boat (수면 보트)</summary>
+      <div class="inner"><p>
+        켄타로스(팔데아-물) <span class="en">Tauros</span>,
+        라프라스 <span class="en">Lapras</span>,
+        한카리아스 <span class="en">Garchomp</span>
+      </p></div>
+    </details>
+    <details>
+      <summary>육상 전용</summary>
+      <div class="inner"><p>
+        이상해꽃 <span class="en">Venusaur</span>,
+        파라섹트 <span class="en">Parasect</span>,
+        윈디 <span class="en">Arcanine</span>,
+        뿔카노 <span class="en">Rhyhorn</span>,
+        코뿌리 <span class="en">Rhydon</span>,
+        마임맨 <span class="en">Mr. Mime</span>,
+        켄타로스 <span class="en">Tauros</span> (팔데아 3폼 포함),
+        아리아도스 <span class="en">Ariados</span>,
+        키링키 <span class="en">Girafarig</span>,
+        링곰 <span class="en">Ursaring</span>,
+        메꾸리 <span class="en">Piloswine</span>,
+        게을킹 <span class="en">Slaking</span>,
+        폭타 <span class="en">Camerupt</span>,
+        방패톱스 <span class="en">Bastiodon</span>,
+        트리토돈 <span class="en">Gastrodon</span>,
+        내룸벨트 <span class="en">Lickilicky</span>,
+        거대코뿌리 <span class="en">Rhyperior</span>,
+        맘모꾸리 <span class="en">Mamoswine</span>,
+        샤로다 <span class="en">Serperior</span>,
+        제브라이카 <span class="en">Zebstrika</span>,
+        펜드라 <span class="en">Scolipede</span>,
+        불비달마 <span class="en">Darmanitan</span>,
+        암팰리스 <span class="en">Crustle</span>,
+        버프론 <span class="en">Bouffalant</span>,
+        메이클 <span class="en">Skiddo</span>,
+        고고트 <span class="en">Gogoat</span>,
+        견고라스 <span class="en">Tyrantrum</span>,
+        만마드 <span class="en">Mudsdale</span>,
+        신비록 <span class="en">Wyrdeer</span>,
+        다투곰 <span class="en">Ursaluna</span>,
+        포푸니크 <span class="en">Sneasler</span>,
+        클레스퍼트라 <span class="en">Espathra</span>,
+        부르르룸 <span class="en">Revavroom</span>,
+        모토마 <span class="en">Cyclizar</span>,
+        꿈트렁 <span class="en">Orthworm</span>,
+        키키링 <span class="en">Farigiraf</span>,
+        노고고치 <span class="en">Dudunsparce</span>
+      </p></div>
+    </details>
+    <p class="note">출처: 공식 위키 RidingTable (1.7.3 기준) · 갸라도스·망나뇽·드래펄트·루기아·만타인은 3유형 모두 가능</p>
+  </div>
+
   <div class="card">
     <h2>캠프파이어 팟 요리 <span class="tag gold">1.7 신기능</span></h2>
     <p>모닥불 위에 <b>캠프파이어 팟(Campfire Pot)</b>을 올려서 요리하는 시스템. 아프리콘·열매·작물을 재료로 써.</p>
@@ -704,6 +881,51 @@ button, input, select, summary { min-height: 44px; }
       <li><b>방랑 상인</b>이 사카린 묘목·Hearty Grains·비비초 씨앗을 팔아 (1.7.1+)</li>
     </ul>
     <p class="note">레시피는 게임 내 레시피북 + 캠프파이어 팟 UI에서 확인. 세부 조합은 위키 "Cooking" 문서가 기준이야.</p>
+  </div>
+  <div class="card">
+    <h2>포켓 스낵 — 타입별 유인 레시피 <span class="tag blue">Poké Snack</span></h2>
+    <p><b>포켓 스낵</b>을 땅에 설치하면 야생 포켓몬이 유인되고, 최대 9회 소비 후 소멸해. 어떤 타입이 오는지는 "맛"이 아니라 <b>시즈닝 슬롯에 넣은 베리</b>가 결정해.</p>
+    <p><b>타입 유인 원리:</b> "타입 경감 베리"를 시즈닝에 넣으면 해당 타입 포켓몬 스폰 확률이 <b>10배</b>가 돼.</p>
+
+    <h3 style="margin:12px 0 6px;font-size:15px">타입 유인 베리 18종</h3>
+    <table>
+      <tr><th>베리 (한국명)</th><th>영어명</th><th>유인 타입</th></tr>
+      <tr><td class="kr">오카열매</td><td class="en">Occa Berry</td><td>불꽃</td></tr>
+      <tr><td class="kr">물배열매</td><td class="en">Passho Berry</td><td>물</td></tr>
+      <tr><td class="kr">초나열매</td><td class="en">Wacan Berry</td><td>전기</td></tr>
+      <tr><td class="kr">린드열매</td><td class="en">Rindo Berry</td><td>풀</td></tr>
+      <tr><td class="kr">플카열매</td><td class="en">Yache Berry</td><td>얼음</td></tr>
+      <tr><td class="kr">로플열매</td><td class="en">Chople Berry</td><td>격투</td></tr>
+      <tr><td class="kr">으름열매</td><td class="en">Kebia Berry</td><td>독</td></tr>
+      <tr><td class="kr">슈카열매</td><td class="en">Shuca Berry</td><td>땅</td></tr>
+      <tr><td class="kr">바코열매</td><td class="en">Coba Berry</td><td>비행</td></tr>
+      <tr><td class="kr">야파열매</td><td class="en">Payapa Berry</td><td>에스퍼</td></tr>
+      <tr><td class="kr">리체열매</td><td class="en">Tanga Berry</td><td>벌레</td></tr>
+      <tr><td class="kr">루미열매</td><td class="en">Charti Berry</td><td>바위</td></tr>
+      <tr><td class="kr">수불열매</td><td class="en">Kasib Berry</td><td>고스트</td></tr>
+      <tr><td class="kr">하반열매</td><td class="en">Haban Berry</td><td>드래곤</td></tr>
+      <tr><td class="kr">마코열매</td><td class="en">Colbur Berry</td><td>악</td></tr>
+      <tr><td class="kr">바리비열매</td><td class="en">Babiri Berry</td><td>강철</td></tr>
+      <tr><td class="kr">로셀열매</td><td class="en">Roseli Berry</td><td>페어리</td></tr>
+      <tr><td class="kr">카리열매</td><td class="en">Chilan Berry</td><td>노말</td></tr>
+    </table>
+
+    <h3 style="margin:14px 0 6px;font-size:15px">특수 시즈닝 효과</h3>
+    <table>
+      <tr><th>시즈닝</th><th>효과</th></tr>
+      <tr><td class="kr">황금사과 <span class="en">Golden Apple</span></td><td>희귀도 +1티어, 이로치 확률 2배</td></tr>
+      <tr><td class="kr">마법이 걸린 황금사과 <span class="en">Enchanted Golden Apple</span></td><td>희귀도 +10티어, 이로치 확률 10배</td></tr>
+      <tr><td class="kr">스타열매 <span class="en">Starf Berry</span></td><td>이로치 확률 5배</td></tr>
+      <tr><td class="kr">의문열매 <span class="en">Enigma Berry</span></td><td>5% 확률로 숨겨진 특성(Hidden Ability) 개체</td></tr>
+      <tr><td class="kr">자보열매 <span class="en">Jaboca Berry</span></td><td>친밀도 +100</td></tr>
+      <tr><td class="kr">크리열매 <span class="en">Leppa Berry</span></td><td>스폰 레벨 +5</td></tr>
+      <tr><td class="kr">호포열매 <span class="en">Hopo Berry</span></td><td>스폰 레벨 +10</td></tr>
+    </table>
+
+    <h3 style="margin:14px 0 6px;font-size:15px">기본 레시피</h3>
+    <p>캠프파이어 팟에 <b>우유 3 + 꿀 2 + 비비초 1 + Hearty Grains 3 + 시즈닝(최대 3칸)</b> — 정확한 수량은 게임 내 팟 UI가 기준이야.</p>
+    <p><b>시즈닝 조합 예시:</b> 오카열매 + 황금사과 + 스타열매 = 불꽃 타입 유인 + 희귀도↑ + 이로치 5배</p>
+    <p class="note">같은 시즈닝 체계가 <b>낚시 미끼(Poké Bait)</b>에도 적용돼 — 미끼는 꿀 + 갈색버섯 + 밀 + 시즈닝으로 4개 제작. 아프리주스는 맛(매움=가속 / 드라이=스킬 / 달콤=속도 / 신맛=스태미나 / 쓴맛=점프)이 라이딩 스탯을 결정해.</p>
   </div>
   <div class="card">
     <h2>1.7에서 또 달라진 것</h2>
@@ -821,6 +1043,10 @@ button, input, select, summary { min-height: 44px; }
 <section class="pane" id="pane-dex">
   <div class="card" style="padding:10px 14px 8px;margin-bottom:10px">
     <p style="font-size:13px;color:var(--muted)">포켓몬 카드 클릭 → 상세 정보. 스프라이트는 원격 지연 로드 · 오프라인 시 ? 표시.</p>
+  </div>
+  <div id="dexProgressWrap" class="dex-progress-wrap">
+    <div id="dexProgressLabel" class="dex-progress-label">0 / 0 수집</div>
+    <div class="dex-progress-track"><div id="dexProgressFill" class="dex-progress-fill"></div></div>
   </div>
   <div id="dexDetail" class="dex-detail"></div>
   <div id="dexGrid" class="dex-grid"></div>
@@ -996,6 +1222,30 @@ const _tip=(function(){
 /* ===== 도감 열기 (글로벌) ===== */
 const _DEX_IDX={};
 function _buildDexIdx(){DEX.forEach(([kr,en],i)=>_DEX_IDX[kr]=i);}
+
+/* ===== 잡은 포켓몬 체크리스트 ===== */
+const _CAUGHT_KEY='ckg.caught.v1';
+let _caughtSet=(function(){
+  try{const a=JSON.parse(localStorage.getItem(_CAUGHT_KEY));if(Array.isArray(a))return new Set(a);}catch(e){}
+  return new Set();
+})();
+function _saveCaught(){try{localStorage.setItem(_CAUGHT_KEY,JSON.stringify([..._caughtSet]));}catch(e){}}
+function _updateProgress(){
+  const total=DEX.length,n=_caughtSet.size;
+  const lb=document.getElementById('dexProgressLabel'),fi=document.getElementById('dexProgressFill');
+  if(lb)lb.textContent=n+' / '+total+' 수집';
+  if(fi)fi.style.width=(total?Math.round(n/total*100):0)+'%';
+}
+function _toggleCaught(en,idx){
+  if(_caughtSet.has(en))_caughtSet.delete(en);else _caughtSet.add(en);
+  _saveCaught();
+  const cards=document.querySelectorAll('.dex-card');
+  if(cards[idx])cards[idx].classList.toggle('caught',_caughtSet.has(en));
+  _updateProgress();
+  const btn=document.getElementById('dexCatchBtn');
+  if(btn){const caught=_caughtSet.has(en);btn.textContent=caught?'잡음 해제':'✓ 잡았다';btn.classList.toggle('caught-state',caught);}
+}
+_updateProgress();
 
 function openDex(kr,en){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
@@ -1229,7 +1479,8 @@ const ITEMS=[
 ["아프리주스","Aprijuice","캠프파이어 팟 요리 — 라이딩 능력 강화, 아프리콘 베이스 (1.7)","소모품"],
 ["든든한 곡물","Hearty Grains","1.7 신규 작물 — 요리 재료, 방랑 상인 판매","재료"],
 ["사카린 나무","Saccharine","1.7 신규 나무 — 요리 재료, 묘목은 방랑 상인 판매","재료"],
-["마크","Marks","야생 포켓몬이 낚시·날씨·시간대 칭호 마크를 갖고 스폰 (1.7) — 요약 화면에서 확인","FAQ"]
+["마크","Marks","야생 포켓몬이 낚시·날씨·시간대 칭호 마크를 갖고 스폰 (1.7) — 요약 화면에서 확인","FAQ"],
+["타입 유인 베리","type lure berry seasoning","포켓 스낵에 타입 경감 베리(오카=불꽃 등)를 넣으면 해당 타입 스폰 10배","소모품"]
 ];
 
 /* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
@@ -1238,20 +1489,48 @@ const _lazyTab={};
 /* ===== 검색 ===== */
 const q=document.getElementById('q'),res=document.getElementById('results'),clearBtn=document.getElementById('clearq');
 function norm(s){return s.toLowerCase().replace(/\s/g,'')}
+const _SR_RB={common:['흔함','gray'],uncommon:['보통','green'],rare:['희귀','blue'],ultra:['초희귀','gold']};
 function search(v){
   const t=norm(v);
   if(t.length<1){res.classList.remove('show');res.innerHTML='';clearBtn.style.display='none';return}
   clearBtn.style.display='block';
   const pm=DEX.filter(([k,e])=>norm(k).includes(t)||norm(e).includes(t)).slice(0,12);
   const it=ITEMS.filter(([k,e,i])=>norm(k).includes(t)||norm(e).includes(t)).slice(0,12);
+  // 바이옴 스폰 검색 — 포켓몬 이름(한/영)으로 스폰 바이옴 찾기
+  const sp=(window._SPAWN_IDX||[]).filter(m=>norm(m.kr).includes(t)||norm(m.en).includes(t)).slice(0,8);
+  // 타입 검색 — 타입 이름(한/영)으로 상성표 찾기
+  const tpAll=window._TYPE_ORDER||[];
+  const tpEN=window._TYPE_EN||{};
+  const ty=tpAll.filter(n=>norm(n).includes(t)||norm(tpEN[n]||'').includes(t));
   let html='';
   if(pm.length){html+=pm.map(([k,e])=>`<div class="rrow"><div class="left"><span class="tag red">포켓몬</span><span class="kr pmon" data-kr="${esc(k)}" data-en="${esc(e)}">${esc(k)}</span><span class="en">${esc(e)}</span></div></div>`).join('')}
   if(it.length){html+=it.map(([k,e,i,c])=>`<div class="rrow"><div class="left"><span class="tag green">${c}</span><span class="kr">${k}</span><span class="en">${e}</span></div><div class="info">${i}</div></div>`).join('')}
+  if(sp.length){html+=sp.map(m=>{const [rl,rc]=_SR_RB[m.rarity]||['?','gray'];return`<div class="rrow spawnrow" data-biome-id="${esc(m.biomeId)}" style="cursor:pointer"><div class="left"><span class="tag blue">스폰</span><span class="kr">${esc(m.biomeEmoji+' '+m.biomeName)}</span><span class="en">${esc(m.kr)}</span></div><div class="info"><span class="tag ${rc}">${rl}</span>${m.cond?'<span style="color:var(--text-secondary);font-size:12px"> ↳ '+esc(m.cond)+'</span>':''}</div></div>`}).join('')}
+  if(ty.length){html+=ty.map(n=>`<div class="rrow typerow" data-type="${esc(n)}" style="cursor:pointer"><div class="left"><span class="tag gold">타입</span><span class="kr">${esc(n)}</span><span class="en">${esc(tpEN[n]||'')}</span></div><div class="info">상성표에서 보기</div></div>`).join('')}
   if(!html)html='<div class="nores">결과 없음 — 철자를 확인하거나 영어로 검색해봐</div>';
   res.innerHTML=html;res.classList.add('show');
 }
 q.addEventListener('input',e=>search(e.target.value));
 clearBtn.addEventListener('click',()=>{q.value='';search('');q.focus()});
+/* 검색 결과 — 스폰·타입 행 클릭 핸들러 */
+function _openSpawnBiome(biomeId){
+  document.querySelector('.tab[data-pane="spawn"]').click();
+  const btn=document.querySelector('.biomebtn[data-id="'+biomeId+'"]');
+  if(btn)btn.click();
+  window.scrollTo({top:0});
+}
+function _openTypeChart(typeName){
+  document.querySelector('.tab[data-pane="types"]').click();
+  const btn=document.querySelector('.typebtn[data-type="'+typeName+'"]');
+  if(btn)btn.click();
+  window.scrollTo({top:0});
+}
+res.addEventListener('click',e=>{
+  const sr=e.target.closest('.spawnrow');
+  if(sr){_openSpawnBiome(sr.dataset.biomeId);return;}
+  const tr=e.target.closest('.typerow');
+  if(tr){_openTypeChart(tr.dataset.type);return;}
+});
 
 /* ===== 탭 ===== */
 document.getElementById('tabs').addEventListener('click',e=>{
@@ -1276,13 +1555,15 @@ _lazyTab.dex=function(){
   DEX.forEach(([kr,en],i)=>{
     const c=document.createElement('div');
     c.className='dex-card';c.dataset.idx=i;
-    c.innerHTML=sImgHtml(en,52)+'<div class="dc-num">No.'+(DEX_NUM[en]||'?')+'</div><div class="dc-kr">'+esc(kr)+'</div>';
+    if(_caughtSet.has(en))c.classList.add('caught');
+    c.innerHTML=sImgHtml(en,52)+'<div class="dc-caught">✓</div><div class="dc-num">No.'+(DEX_NUM[en]||'?')+'</div><div class="dc-kr">'+esc(kr)+'</div>';
     grid.appendChild(c);
   });
   grid.addEventListener('click',e=>{
     const c=e.target.closest('.dex-card');if(!c)return;
     _selectDex(parseInt(c.dataset.idx));
   });
+  _updateProgress();
 };
 
 function _selectDex(idx){
@@ -1303,6 +1584,8 @@ function _selectDex(idx){
   const prevBtn=idx>0?'<button data-nav="'+(idx-1)+'">◀ '+esc(DEX[idx-1][0])+'</button>':'';
   const nextBtn=idx<DEX.length-1?'<button data-nav="'+(idx+1)+'">'+esc(DEX[idx+1][0])+' ▶</button>':'';
   const numBadge=DEX_NUM[en]?'<div style="font-size:12px;color:var(--muted);margin-top:2px">No.'+DEX_NUM[en]+'</div>':'';
+  const caught=_caughtSet.has(en);
+  const catchBtnHtml='<button id="dexCatchBtn" class="dex-catch-btn'+(caught?' caught-state':'')+'">'+(caught?'잡음 해제':'✓ 잡았다')+'</button>';
   const detail=document.getElementById('dexDetail');
   detail.innerHTML=
     '<div class="dex-detail-top">'
@@ -1311,12 +1594,14 @@ function _selectDex(idx){
     +'<div class="d-kr">'+esc(kr)+'</div>'
     +'<div class="d-en">'+esc(en)+'</div>'
     +numBadge
-    +'<div class="dex-nav">'+prevBtn+nextBtn+'</div>'
+    +'<div class="dex-nav">'+prevBtn+nextBtn+catchBtnHtml+'</div>'
     +'</div></div>'+spawnHtml;
   detail.classList.add('show');
   detail.querySelectorAll('[data-nav]').forEach(btn=>{
     btn.addEventListener('click',()=>_selectDex(parseInt(btn.dataset.nav)));
   });
+  const catchBtn=document.getElementById('dexCatchBtn');
+  if(catchBtn)catchBtn.addEventListener('click',()=>_toggleCaught(en,idx));
   detail.scrollIntoView({block:'start',behavior:'smooth'});
 }
 
@@ -1325,6 +1610,7 @@ function _selectDex(idx){
   const TYPE_COLOR={노말:'#A8A878',불꽃:'#F08030',물:'#6890F0',풀:'#78C850',전기:'#F8D030',얼음:'#98D8D8',격투:'#C03028',독:'#A040A0',땅:'#E0C068',비행:'#A890F0',에스퍼:'#F85888',벌레:'#A8B820',바위:'#B8A038',고스트:'#705898',드래곤:'#7038F8',악:'#705848',강철:'#B8B8D0',페어리:'#EE99AC'};
   const TYPE_EN={노말:'Normal',불꽃:'Fire',물:'Water',풀:'Grass',전기:'Electric',얼음:'Ice',격투:'Fighting',독:'Poison',땅:'Ground',비행:'Flying',에스퍼:'Psychic',벌레:'Bug',바위:'Rock',고스트:'Ghost',드래곤:'Dragon',악:'Dark',강철:'Steel',페어리:'Fairy'};
   const TYPE_ORDER=['노말','불꽃','물','풀','전기','얼음','격투','독','땅','비행','에스퍼','벌레','바위','고스트','드래곤','악','강철','페어리'];
+  window._TYPE_ORDER=TYPE_ORDER; window._TYPE_EN=TYPE_EN;
   const ATK={
     노말:{x2:[],x05:['바위','강철'],x0:['고스트']},
     불꽃:{x2:['풀','얼음','벌레','강철'],x05:['불꽃','물','바위','드래곤'],x0:[]},
@@ -1345,6 +1631,7 @@ function _selectDex(idx){
     강철:{x2:['얼음','바위','페어리'],x05:['불꽃','물','전기','강철'],x0:[]},
     페어리:{x2:['격투','드래곤','악'],x05:['불꽃','독','강철'],x0:[]}
   };
+  window._TYPE_COLOR=TYPE_COLOR; window._ATK=ATK;
   function defenseFor(t){
     const r={x2:[],x05:[],x0:[]};
     TYPE_ORDER.forEach(a=>{
@@ -1392,9 +1679,136 @@ function _selectDex(idx){
   }
   grid.addEventListener('click',e=>{
     const b=e.target.closest('.typebtn');if(!b)return;
-    document.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
+    grid.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
     b.classList.add('on');selType=b.dataset.type;render();
   });
+})();
+
+/* ===== 2타입 방어 계산기 ===== */
+(function(){
+  var card=document.getElementById('typeDualCard');
+  if(!card)return;
+  var sel1=null,sel2=null;
+
+  /* _lazyTab.types 에 체인: 기존 typegrid 초기화 후 dual 그리드도 초기화 */
+  var _prev=_lazyTab.types;
+  _lazyTab.types=function(){if(_prev)_prev();_initDualGrids();};
+
+  function getMult(atkType,defType){
+    var c=(window._ATK||{})[atkType];
+    if(!c)return 1;
+    if(c.x0.includes(defType))return 0;
+    if(c.x2.includes(defType))return 2;
+    if(c.x05.includes(defType))return 0.5;
+    return 1;
+  }
+
+  function calcDual(t1,t2){
+    var TO=window._TYPE_ORDER||[];
+    var groups={x4:[],x2:[],x05:[],x025:[],x0:[]};
+    TO.forEach(function(atkType){
+      var m=getMult(atkType,t1);
+      if(t2)m*=getMult(atkType,t2);
+      /* 배율은 {0,0.25,0.5,1,2,4} 중 하나 — 부동소수 오차 없음 */
+      if(m===4)groups.x4.push(atkType);
+      else if(m===2)groups.x2.push(atkType);
+      else if(m===0.5)groups.x05.push(atkType);
+      else if(m===0.25)groups.x025.push(atkType);
+      else if(m===0)groups.x0.push(atkType);
+      /* m===1 : 생략 */
+    });
+    return groups;
+  }
+
+  function chipRow(label,arr,color){
+    var TC=window._TYPE_COLOR||{};
+    if(!arr.length)return '';
+    return '<div class="dual-group">'
+      +'<div class="dual-group-label" style="color:'+color+'">'+label+'</div>'
+      +'<div class="chiplist">'+arr.map(function(t){
+        return '<span class="chip" style="background:'+(TC[t]||'#888')+'">'+t+'</span>';
+      }).join('')+'</div></div>';
+  }
+
+  function renderDual(){
+    var emptyMsg=document.getElementById('dualEmptyMsg');
+    var resultDiv=document.getElementById('dualResult');
+    var titleEl=document.getElementById('dualResultTitle');
+    var bodyEl=document.getElementById('dualResultBody');
+    var TC=window._TYPE_COLOR||{};
+    if(!sel1){emptyMsg.style.display='';resultDiv.style.display='none';return;}
+    emptyMsg.style.display='none';resultDiv.style.display='';
+    function swatch(t){
+      return '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;'
+        +'background:'+(TC[t]||'#888')+';vertical-align:middle;margin-right:3px"></span>';
+    }
+    titleEl.innerHTML=swatch(sel1)+sel1
+      +(sel2?' + '+swatch(sel2)+sel2+' 방어 배율':' 방어 배율 (단일 타입)');
+    var gr=calcDual(sel1,sel2);
+    var html='';
+    html+=chipRow('4× 치명적 (약점 × 약점)',gr.x4,'var(--danger)');
+    html+=chipRow('2× 아픔 (약점)',gr.x2,'var(--warning)');
+    html+=chipRow('½× 버팀 (강점)',gr.x05,'var(--success)');
+    html+=chipRow('¼× 튼튼 (강점 × 강점)',gr.x025,'var(--info)');
+    html+=chipRow('0× 무효',gr.x0,'var(--text-secondary)');
+    if(!html)html='<p class="emptytype">1배 — 특별한 약점·강점 없음</p>';
+    bodyEl.innerHTML=html;
+  }
+
+  function _initDualGrids(){
+    var g1=document.getElementById('dualGrid1'),g2=document.getElementById('dualGrid2');
+    if(!g1||!g2)return;
+    var TC=window._TYPE_COLOR||{},TO=window._TYPE_ORDER||[];
+
+    /* Grid1: 18가지 타입 버튼 */
+    TO.forEach(function(t){
+      var b=document.createElement('button');
+      b.className='typebtn';b.type='button';b.textContent=t;
+      b.style.background=TC[t]||'#888';b.dataset.type=t;
+      g1.appendChild(b);
+    });
+
+    /* Grid2: '없음' + 18가지 타입 버튼 */
+    var noneBtn=document.createElement('button');
+    noneBtn.className='typebtn dual-none on';noneBtn.type='button';noneBtn.textContent='없음';
+    noneBtn.style.background='#4a5568';noneBtn.style.color='#e2e8f0';noneBtn.dataset.type='';
+    g2.appendChild(noneBtn);
+    TO.forEach(function(t){
+      var b=document.createElement('button');
+      b.className='typebtn';b.type='button';b.textContent=t;
+      b.style.background=TC[t]||'#888';b.dataset.type=t;
+      g2.appendChild(b);
+    });
+
+    /* Grid1 클릭 */
+    g1.addEventListener('click',function(e){
+      var b=e.target.closest('.typebtn');if(!b)return;
+      g1.querySelectorAll('.typebtn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      sel1=b.dataset.type;
+      /* sel1과 같은 타입이 sel2에 있으면 sel2 초기화 */
+      if(sel2===sel1){
+        sel2=null;
+        g2.querySelectorAll('.typebtn').forEach(function(x){x.classList.remove('on');});
+        g2.querySelector('.dual-none').classList.add('on');
+      }
+      /* sel1 타입을 grid2에서 비활성화 (같은 타입 2개 방지) */
+      g2.querySelectorAll('.typebtn').forEach(function(x){
+        if(x.dataset.type===sel1){x.disabled=true;x.style.opacity='0.35';}
+        else{x.disabled=false;x.style.opacity='';}
+      });
+      renderDual();
+    });
+
+    /* Grid2 클릭 */
+    g2.addEventListener('click',function(e){
+      var b=e.target.closest('.typebtn');if(!b||b.disabled)return;
+      g2.querySelectorAll('.typebtn').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      sel2=b.dataset.type||null; /* 빈 문자열(없음) → null */
+      renderDual();
+    });
+  }
 })();
 
 /* ===== v2: 커플 미션 ===== */
@@ -1611,12 +2025,23 @@ function _selectDex(idx){
     b.classList.add('on');rarityFilter=b.dataset.r;render();
   });
   /* 스폰맵 빌드 — 도감에서 스폰 바이옴 표시용 */
+  window._BIOMES=BIOMES;
   window._SPAWN_MAP={};
   BIOMES.forEach(b=>b.mons.forEach(m=>{
     const k=m[0];
     if(!window._SPAWN_MAP[k])window._SPAWN_MAP[k]=[];
     window._SPAWN_MAP[k].push({biome:b.name,emoji:b.emoji,rarity:m[2],cond:m[3]||null});
   }));
+})();
+/* ===== 통합 검색 인덱스 빌드 (페이지 로드 시 1회) ===== */
+window._SPAWN_IDX=(function(){
+  const idx=[];
+  (window._BIOMES||[]).forEach(b=>{
+    b.mons.forEach(m=>{
+      idx.push({kr:m[0],en:m[1],biomeId:b.id,biomeName:b.name,biomeEmoji:b.emoji,rarity:m[2],cond:m[3]||null});
+    });
+  });
+  return idx;
 })();
 </script>
 </body>
