@@ -284,6 +284,7 @@ button, input, select, summary { min-height: 44px; }
 
 <nav class="tabs" id="tabs">
   <button class="tab on" data-pane="evo">진화</button>
+  <button class="tab" data-pane="mega">메가진화</button>
   <button class="tab" data-pane="items">아이템 사전</button>
   <button class="tab" data-pane="fossil">화석</button>
   <button class="tab" data-pane="struct">구조물·던전</button>
@@ -371,6 +372,96 @@ button, input, select, summary { min-height: 44px; }
       <li><b>타부자고</b>(모으령): 유물 코인(Relic Coin) 999개 소지 후 레벨업 — 코인은 유적(Ruins)에서 수집</li>
       <li><b>가라르 야도킹/야도란</b>: 가라두구화관(Galarica Wreath) / 가라두구팔찌(Galarica Cuff) 사용 — 가라두구 열매로 조합</li>
       <li><b>애프룡/단지래플</b>(과사삭벌레): 새콤한사과(Tart Apple) / 달콤한사과(Sweet Apple)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 메가진화 (Mega Showdown) ============ -->
+<section class="pane" id="pane-mega">
+
+  <div class="card">
+    <h2>메가진화란? <span class="tag gold">Mega Showdown 모드</span></h2>
+    <p>배틀 도중 딱 한 번, 특정 포켓몬을 더 강한 <b>«메가» 폼</b>으로 일시 변신시키는 시스템이야. 원작 6세대(XY)에서 나온 방식. <b>순정 코블몬엔 없고</b>, 네가 깐 <b>Cobblemon: Mega Showdown</b> 모드가 추가해줘. (다이맥스·테라스탈·Z기술도 이 모드에 같이 들어있어.)</p>
+    <h3>메가진화하면 뭐가 달라져?</h3>
+    <ul>
+      <li><b>종족값(스탯) 대폭 상승</b> — 보통 공격/특공·스피드 위주로 강해짐</li>
+      <li><b>특성이 메가 전용 특성</b>으로 바뀜 (예: 메가캥카=부모자식사랑, 메가루카리오=적응력)</li>
+      <li>일부는 <b>타입도 변경</b> (메가리자몽X=불꽃/드래곤, 메가갸라도스=물/악)</li>
+      <li>겉모습이 바뀜</li>
+    </ul>
+    <h3>핵심 규칙 3가지</h3>
+    <ul>
+      <li>한 배틀에서 메가진화는 <b>팀 전체 통틀어 딱 1마리, 1회</b></li>
+      <li>배틀이 끝나면 <b>원래 폼으로 복귀</b> (지닌 메가스톤은 그대로 유지 → 다음 배틀에 또 씀)</li>
+      <li>발동하려면 트레이너가 <b>메가팔찌 착용</b> + 그 포켓몬이 <b>자기 전용 메가스톤을 지녀야</b> 함</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>준비물: 메가팔찌 + 메가스톤</h2>
+    <p>두 개가 세트야. <b>팔찌는 월드당 한 번만</b> 만들면 모든 포켓몬 공용, <b>메가스톤은 포켓몬 종류마다 전용</b>으로 하나씩 필요해.</p>
+    <table>
+      <tr><th>아이템</th><th>영어</th><th>용도 / 획득</th></tr>
+      <tr><td class="kr">메가팔찌</td><td class="en">Mega Bracelet</td><td>트레이너가 착용(1회 제작) — 키스톤으로 조합</td></tr>
+      <tr><td class="kr">키스톤</td><td class="en">Key Stone</td><td>메가팔찌 재료 — <b class="sure">Megasite</b>에서 채굴</td></tr>
+      <tr><td class="kr">메가스톤</td><td class="en">Mega Stone</td><td>포켓몬이 지님(전용) — 메가원석으로 조합</td></tr>
+      <tr><td class="kr">메가원석</td><td class="en">Raw Mega Stone</td><td>메가스톤 재료 — <b class="sure">Megasite</b>에서 채굴</td></tr>
+    </table>
+    <h3>Megasite 구조물 찾기</h3>
+    <p>지하 <b>Y:5~20</b> 깊이에 생성되는 <b>구형 짙은 회색·보라 덩어리</b>야. 깔아둔 <b>Xaero 미니맵을 동굴(Cave) 모드</b>로 보면 찾기 쉬워. 금/다이아 곡괭이로 중심까지 파 들어가면 키스톤 또는 메가원석이 나와.</p>
+    <h3>조합법</h3>
+    <ul>
+      <li><b>메가팔찌</b> = 철주괴 5 + 다이아 1 + 키스톤 1 + 아프리콘 2 <span class="kv">(아프리콘 색 = 팔찌 색, 성능은 동일)</span></li>
+      <li><b>메가스톤</b> = 가운데 메가원석 1 + 아래 다이아 1 + 양옆 철주괴 2 + 위 <b>그 포켓몬 관련 키아이템</b> 1</li>
+    </ul>
+    <p class="note">깔려 있는 <b>JEI</b>에서 "mega"로 검색하면 아이템·조합 레시피를 바로 볼 수 있어 — 포켓몬별 정확한 재료 확인은 JEI가 제일 빠름. 만든 팔찌는 인벤토리 <b>«액세서리 화면»의 Mega 슬롯</b>에 껴야 발동돼.</p>
+  </div>
+
+  <div class="card">
+    <h2>실전: 메가진화 시키는 법</h2>
+    <ol>
+      <li>메가팔찌를 <b>액세서리 화면 Mega 슬롯</b>에 착용</li>
+      <li>메가스톤을 <b>핫바</b>에 들고, 진화시킬 포켓몬을 밖으로 <b>내보냄</b></li>
+      <li>그 포켓몬에게 <b>웅크리기 + 좌클릭</b> → 메뉴에서 <b>"Change Held Item(지닌 물건 변경)"</b> → 메가스톤을 지니게</li>
+      <li>배틀 시작 → <b>«Fight»</b> 선택 → 좌하단 <b>«Mega Evolve» 아이콘</b> 클릭 <span class="kv">(무지개색 + 모루 소리 나면 발동 준비 완료)</span></li>
+      <li>기술 선택 → <b>그 턴에 메가진화</b>하면서 행동함</li>
+    </ol>
+    <p class="note">배틀 <b>밖에서</b>도 웅크리기+좌클릭 라디얼 메뉴로 메가폼을 만들 수 있는데 <b>겉모습만</b>이야. 배틀에 들어가면 원래대로 돌아가고, 배틀 안에서 위 순서로 다시 발동해야 해.</p>
+  </div>
+
+  <div class="card">
+    <h2>주요 메가진화 포켓몬 & 메가스톤</h2>
+    <table>
+      <tr><th>포켓몬</th><th>메가스톤 (영어)</th><th>특징</th></tr>
+      <tr><td class="kr">리자몽</td><td class="en">Charizardite X / Y</td><td>X=불꽃/드래곤·단단한발톱 / Y=특공·가뭄</td></tr>
+      <tr><td class="kr">뮤츠</td><td class="en">Mewtwonite X / Y</td><td>최상위권 종족값</td></tr>
+      <tr><td class="kr">이상해꽃</td><td class="en">Venusaurite</td><td>두꺼운지방(내구형)</td></tr>
+      <tr><td class="kr">거북왕</td><td class="en">Blastoisinite</td><td>메가런처(파동 기술 강화)</td></tr>
+      <tr><td class="kr">갸라도스</td><td class="en">Gyaradosite</td><td>물/악, 자기과신</td></tr>
+      <tr><td class="kr">팬텀</td><td class="en">Gengarite</td><td>고스트/독 고화력 딜러</td></tr>
+      <tr><td class="kr">캥카</td><td class="en">Kangaskhanite</td><td>부모자식사랑(공격 2회 판정)</td></tr>
+      <tr><td class="kr">후딘</td><td class="en">Alakazite</td><td>트레이스, 최상위 특공</td></tr>
+      <tr><td class="kr">루카리오</td><td class="en">Lucarionite</td><td>적응력(자속 강화)</td></tr>
+      <tr><td class="kr">한카리아스</td><td class="en">Garchompite</td><td>모래의힘</td></tr>
+      <tr><td class="kr">보만다</td><td class="en">Salamencite</td><td>스카이스킨</td></tr>
+      <tr><td class="kr">마기라스</td><td class="en">Tyranitarite</td><td>모래날림</td></tr>
+      <tr><td class="kr">메타그로스</td><td class="en">Metagrossite</td><td>라이트메탈</td></tr>
+      <tr><td class="kr">핫삼</td><td class="en">Scizorite</td><td>테크니션</td></tr>
+      <tr><td class="kr">헤라크로스</td><td class="en">Heracronite</td><td>스킬링크</td></tr>
+      <tr><td class="kr">디안시</td><td class="en">Diancite</td><td>매지션가드</td></tr>
+    </table>
+    <p class="note">이 외에도 메가폼이 있는 포켓몬은 다수야. 정확한 특성·타입 변화는 포켓몬마다 다르니 JEI나 게임 내 요약 화면에서 확인해.</p>
+  </div>
+
+  <div class="card">
+    <h2>게임하며 참고할 팁</h2>
+    <ul>
+      <li>메가팔찌는 <b>월드당 1번</b>만 만들면 끝 — 키스톤 1개면 충분. 나머지 Megasite 채굴은 <b>메가원석</b> 노려서 파.</li>
+      <li>메가스톤은 <b>포켓몬 1종당 1개</b> 필요. 여러 마리 굴리고 싶으면 메가원석을 그만큼 모아야 해.</li>
+      <li>배틀당 1마리만 되니까 <b>«누구를 메가시킬지» 미리 정하고</b> 그 포켓몬에 스톤을 지니게 해둬.</li>
+      <li>메가폼은 배틀 끝나면 풀리지만 스톤은 계속 지녀 있음 → <b>다음 배틀에 또 발동</b> 가능.</li>
+      <li>상대 트레이너·일부 야생도 메가진화할 수 있어. 방심 금지.</li>
+      <li><b>다이맥스·테라스탈·Z기술</b>도 같은 모드에 포함 — 각각 다이맥스밴드 등 별도 아이템이 필요해. 메가진화부터 익히고 확장하면 됨.</li>
     </ul>
   </div>
 </section>
@@ -1435,7 +1526,12 @@ const ITEMS=[
 ["든든한 곡물","Hearty Grains","1.7 신규 작물 — 요리 재료, 방랑 상인 판매","재료"],
 ["사카린 나무","Saccharine","1.7 신규 나무 — 요리 재료, 묘목은 방랑 상인 판매","재료"],
 ["마크","Marks","야생 포켓몬이 낚시·날씨·시간대 칭호 마크를 갖고 스폰 (1.7) — 요약 화면에서 확인","FAQ"],
-["타입 유인 베리","type lure berry seasoning","포켓 스낵에 타입 경감 베리(오카=불꽃 등)를 넣으면 해당 타입 스폰 10배","소모품"]
+["타입 유인 베리","type lure berry seasoning","포켓 스낵에 타입 경감 베리(오카=불꽃 등)를 넣으면 해당 타입 스폰 10배","소모품"],
+["메가팔찌","Mega Bracelet","키스톤으로 조합(철주괴5+다이아1+아프리콘2) → 액세서리 Mega 슬롯 착용, 메가진화 발동 필수(월드당 1회) [Mega Showdown]","메가진화"],
+["키스톤","Key Stone","Megasite(지하 Y5~20 구형 구조물) 채굴 — 메가팔찌 재료 [Mega Showdown]","메가진화"],
+["메가스톤","Mega Stone","포켓몬이 지니면 배틀 중 메가진화 — 포켓몬별 전용, 메가원석으로 조합 [Mega Showdown]","메가진화"],
+["메가원석","Raw Mega Stone","Megasite 채굴 — 메가스톤 조합 재료 [Mega Showdown]","메가진화"],
+["Megasite","Megasite","지하 Y5~20 구형 짙은 회색·보라 구조물 — 키스톤·메가원석 채굴처 [Mega Showdown]","메가진화"]
 ];
 
 /* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
