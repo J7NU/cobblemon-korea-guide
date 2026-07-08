@@ -285,6 +285,10 @@ button, input, select, summary { min-height: 44px; }
 <nav class="tabs" id="tabs">
   <button class="tab on" data-pane="evo">진화</button>
   <button class="tab" data-pane="mega">메가진화</button>
+  <button class="tab" data-pane="gimmick">다이맥스·테라·Z</button>
+  <button class="tab" data-pane="battle">배틀 기초</button>
+  <button class="tab" data-pane="breed">육성</button>
+  <button class="tab" data-pane="start">초반 공략</button>
   <button class="tab" data-pane="items">아이템 사전</button>
   <button class="tab" data-pane="fossil">화석</button>
   <button class="tab" data-pane="struct">구조물·던전</button>
@@ -462,6 +466,189 @@ button, input, select, summary { min-height: 44px; }
       <li>메가폼은 배틀 끝나면 풀리지만 스톤은 계속 지녀 있음 → <b>다음 배틀에 또 발동</b> 가능.</li>
       <li>상대 트레이너·일부 야생도 메가진화할 수 있어. 방심 금지.</li>
       <li><b>다이맥스·테라스탈·Z기술</b>도 같은 모드에 포함 — 각각 다이맥스밴드 등 별도 아이템이 필요해. 메가진화부터 익히고 확장하면 됨.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 다이맥스·테라스탈·Z기술 (Mega Showdown) ============ -->
+<section class="pane" id="pane-gimmick">
+
+  <div class="card">
+    <h2>배틀 기믹 3종 <span class="tag gold">Mega Showdown 모드</span></h2>
+    <p>메가진화 말고도 Mega Showdown엔 세대별 <b>배틀 강화 기믹</b>이 더 들어있어. 각각 <b>전용 키아이템</b>이 필요하고, 한 배틀에서는 보통 <b>하나만</b> 쓸 수 있어. 처음이면 메가진화부터 익히고 하나씩 늘려가면 돼.</p>
+    <table>
+      <tr><th>기믹</th><th>준비물</th><th>지속</th><th>효과</th></tr>
+      <tr><td class="kr">메가진화</td><td>메가팔찌 + 메가스톤</td><td>배틀 내내</td><td>스탯·특성 강화 <span class="kv">(메가진화 탭)</span></td></tr>
+      <tr><td class="kr">테라스탈</td><td>테라오브 + 테라조각50</td><td>배틀 내내</td><td>타입 교체</td></tr>
+      <tr><td class="kr">Z기술</td><td>Z링 + Z크리스탈</td><td>1회</td><td>초강력 한 방</td></tr>
+      <tr><td class="kr">다이맥스</td><td>다이맥스밴드 + 파워스팟</td><td>3턴</td><td>거대화·HP·맥스기술</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>테라스탈 <span class="en">Terastallization · 9세대</span></h2>
+    <p>포켓몬 타입을 <b>«테라스탈 타입» 하나로 교체</b>해. 약점·저항이 그 타입 기준으로 새로 계산되고, 원래 타입과 같으면 자속 위력이 더 세져.</p>
+    <h3>준비</h3>
+    <ul>
+      <li><b>테라오브(Tera Orb)</b> 또는 <b>옴니링(Omni Ring)</b> 제작·착용</li>
+      <li>바꾸고 싶은 타입의 <b>테라조각(Tera Shard) 50개</b>를 들고 포켓몬에게 <b>우클릭</b> → 테라 타입 지정</li>
+    </ul>
+    <p class="note">조각 타입 = 지정되는 테라 타입. 배틀에서 발동 버튼으로 테라스탈.</p>
+  </div>
+
+  <div class="card">
+    <h2>Z기술 <span class="en">Z-Moves · 7세대</span></h2>
+    <p>배틀당 <b>딱 1회</b> 쓰는 초강력 기술 한 방이야.</p>
+    <h3>준비</h3>
+    <ul>
+      <li>배틀 <b>시작 시 Z링(Z-Ring)을 착용</b>하고 있어야 함</li>
+      <li>Z기술 쓸 포켓몬이 <b>해당 타입 Z크리스탈(Z-Crystal)</b>을 지녀야 함</li>
+      <li>배틀에서 기술 선택 시 <b>좌하단 추가 옵션</b>으로 Z기술 발동</li>
+    </ul>
+    <p class="note">특정 포켓몬 전용 Z크리스탈도 있어(고유 Z기술). 일반 크리스탈은 타입별.</p>
+  </div>
+
+  <div class="card">
+    <h2>다이맥스 <span class="en">Dynamax · 8세대</span></h2>
+    <p><b>3턴간 포켓몬이 거대화</b>해서 HP가 늘고, 모든 기술이 타입별 추가효과가 있는 <b>«맥스 기술»</b>로 바뀌어.</p>
+    <h3>준비 (조건 특이)</h3>
+    <ul>
+      <li><b>다이맥스밴드(Dynamax Band)</b>를 장신구(큐리오) 슬롯에 착용</li>
+      <li><b>파워스팟(Power Spot) 20블록 이내</b>에서만 발동 가능 — 이게 핵심 제약</li>
+      <li>배틀 기술 선택 화면에서 <b>뒤로가기 옆 다이맥스 버튼</b> 클릭</li>
+    </ul>
+    <h3>다이맥스 레벨 (HP 증가량)</h3>
+    <p>HP 보너스는 다이맥스 레벨로 결정 — 기본 <b>+50%</b>, 레벨당 <b>+5%</b>, 최대 <b>+100%</b>. <b>다이맥스캔디(Dynamax Candy)</b>를 먹이면 레벨 상승.</p>
+    <p class="note"><b>맥스머섬(Max Mushroom)</b>은 스폰이 희귀한 다이맥스 관련 재료야. 보이면 챙겨둬.</p>
+  </div>
+</section>
+
+<!-- ============ 배틀·기술 기초 ============ -->
+<section class="pane" id="pane-battle">
+
+  <div class="card">
+    <h2>배틀 기본</h2>
+    <ul>
+      <li>파티에서 포켓몬 선택 후 <b>R키(기본)</b>로 상대를 조준 → 배틀 시작</li>
+      <li>배틀 중 선택지: <b>기술(Fight) / 가방 / 포켓몬 교체 / 도망</b></li>
+      <li>야생전은 포획 기회, 트레이너전은 도망 불가·상금 획득</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>기술 관리 <span class="tag red">TM 주의</span></h2>
+    <p><b>기본 코블몬엔 기술머신(TM)이 없어.</b> 기술은 <b>레벨업</b>으로 배우는 게 기본이야.</p>
+    <ul>
+      <li>이미 배운 기술은 <b>요약 → 기술 화면</b>에서 활성 4칸에 자유롭게 넣고 뺄 수 있어(벤치 기술 시스템)</li>
+      <li>PP = 기술 사용 횟수. 0이 되면 그 기술 못 씀 → 침대·치료 머신으로 회복</li>
+    </ul>
+    <p class="note">TM/TR로 기술을 가르치고 싶으면 <b>«SimpleTMs» 애드온</b>을 따로 깔아야 해(지금 미설치). 설치하면 TM을 손에 들고 우클릭 → 배울 수 있는 포켓몬 목록에서 선택. TM은 32회, TR은 1회용.</p>
+  </div>
+
+  <div class="card">
+    <h2>상태이상</h2>
+    <table>
+      <tr><th>상태</th><th>효과</th></tr>
+      <tr><td class="kr">독 / 맹독</td><td>매턴 HP 감소 (맹독은 점점 더 크게)</td></tr>
+      <tr><td class="kr">화상</td><td>매턴 HP 감소 + 물리 공격력 절반</td></tr>
+      <tr><td class="kr">마비</td><td>스피드 크게 저하 + 25% 확률로 행동 불가</td></tr>
+      <tr><td class="kr">잠 / 얼음</td><td>몇 턴 행동 불가 (일정 확률로 해제)</td></tr>
+      <tr><td class="kr">혼란</td><td>일정 확률로 자기 자신을 공격</td></tr>
+    </table>
+    <p class="note">잡을 땐 상대를 <b>마비·잠</b>으로 만들고 HP를 깎으면 포획률이 크게 올라.</p>
+  </div>
+
+  <div class="card">
+    <h2>능력치 랭크</h2>
+    <p>배틀 중 기술로 능력치를 <b>+6 ~ -6 랭크</b>까지 올리고 내릴 수 있어.</p>
+    <ul>
+      <li>강화기: 칼춤(공격↑↑)·나쁜음모(특공↑↑)·고속이동(스피드↑↑) 등</li>
+      <li>약화기: 상대 능력을 깎아 배틀을 유리하게</li>
+    </ul>
+    <p class="note">타입 상성은 <b>상성표 탭</b>과 같이 보면 배틀이 훨씬 쉬워져.</p>
+  </div>
+</section>
+
+<!-- ============ 육성 (교배·개체값) ============ -->
+<section class="pane" id="pane-breed">
+
+  <div class="card">
+    <h2>교배 <span class="tag red">Cobbreeding 애드온 필요</span></h2>
+    <p class="note"><b class="sure">⚠</b> 기본 Cobblemon엔 <b>교배·알 시스템이 없어.</b> 아래 교배·유전 내용은 <b>Cobbreeding 애드온</b>(현재 미설치, Cobblemon 1.7 대응판 있음)을 깔아야 작동해. 순정에서 목장블록(Pasture Block)은 <b>포켓몬 보관·방목</b> 용도만. <span class="kv">단 개체값(IV)·노력치(EV)·이로치 확률은 순정에도 존재해.</span></p>
+    <h3>교배 방법 (Cobbreeding 설치 시)</h3>
+    <ul>
+      <li><b>목장블록</b>에 방목된 <b>호환되는 암수 2마리</b> → 활성화 시 약 <b>15분당 알 1개</b> 생성</li>
+      <li>알은 목장블록 하단 둥지에 생김 → <b>들고 다니며 걸음 수</b>를 채우면 부화</li>
+      <li>가라르 화석 4종 등 일부는 교배 불가</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>개체값(IV)·유전</h2>
+    <p><b>개체값(IV)</b> = 포켓몬 개체의 잠재 능력치(0~31). <b>잡은 뒤엔 변경 불가</b> → 좋은 IV는 교배로 물려줘.</p>
+    <ul>
+      <li><b>붉은실(Destiny Knot)</b>: 지닌 부모의 IV 12개 중 <b>5개를 유전</b>(기본 3개보다 많음) — 육성 필수템</li>
+      <li><b>파워 아이템</b>: 특정 능력치의 IV를 콕 집어 유전</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>성격·특성·알기술</h2>
+    <ul>
+      <li><b>성격(Nature)</b>: 능력치 하나 +10% / 다른 하나 -10%. <b>변함없는돌(Everstone)</b>을 지닌 부모의 성격이 유전됨</li>
+      <li><b>알기술(Egg Move)</b>: <b>미러허브(Mirror Herb)</b>를 지니면 같은 목장의 다른 포켓몬이 가진 알기술을 습득(10~20분)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>노력치(EV)·이로치</h2>
+    <ul>
+      <li><b>노력치(EV)</b>: 배틀로 쌓는 능력치 보너스. <b>총 510, 한 능력치 최대 252</b></li>
+      <li>쓰러뜨린 포켓몬 종류마다 특정 능력치 EV를 줌</li>
+      <li><b>이로치</b> 확률 기본 <b>1/8192</b> (config로 조정 가능, 화석 부활로도)</li>
+    </ul>
+    <p class="note">경쟁전·강한 포켓몬이 목표면 순서: <b>IV(붉은실) → 성격(변함없는돌) → EV 트레이닝</b>.</p>
+  </div>
+</section>
+
+<!-- ============ 초반 공략 루트 ============ -->
+<section class="pane" id="pane-start">
+
+  <div class="card">
+    <h2>1. 시작 (0~1일차)</h2>
+    <ul>
+      <li><b>스타터 선택</b> — 월드당 1회, 되돌리기 불가. (스타터 종은 야생에서 초희귀로도 스폰됨)</li>
+      <li><b>포켓볼 확보</b>: <b>아프리콘(Apricorn)</b> 나무 열매를 말려 볼로 조합</li>
+      <li><b>침대</b> 하나 확보 — 포켓몬 회복이 제일 빠름</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>2. 전력 키우기 (초중반)</h2>
+    <ul>
+      <li>야생 배틀로 레벨업, 팀을 <b>4~6마리</b>로 — 타입 다양하게 구성</li>
+      <li><b>진화 아이템</b> 모으기(진화 탭 참고): 링크케이블·진화의돌 등</li>
+      <li>돈(포켓달러): <b>트레이너전 승리</b>·아이템 판매로 확보</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>3. 목표·확장</h2>
+    <ul>
+      <li><b>상성표</b> 익혀서 유리한 타입으로 팀 배치</li>
+      <li><b>구조물·던전</b> 탐험(구조물 탭) → 희귀 아이템·포켓몬</li>
+      <li><b>화석 발굴</b>로 옛 포켓몬 부활</li>
+      <li><b>Megasite</b> 찾아 메가진화 준비(메가진화 탭) → 배틀 기믹 확장</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>초보가 자주 놓치는 것</h2>
+    <ul>
+      <li>파티가 꽉 차면 새로 잡은 포켓몬은 <b>PC로 자동 이동</b></li>
+      <li>진화는 <b>파티 화면에서 진화 버튼을 직접 눌러야</b> 됨(자동 아님). 변함없는돌 지니면 진화 안 함</li>
+      <li>소형 포켓몬은 <b>어깨 탑승</b>(웅크+우클릭), 큰 포켓몬은 <b>라이딩</b>(웅크+우클릭)으로 이동 빨라짐</li>
+      <li><b>JEI</b>로 조합 레시피, <b>Xaero 미니맵</b>으로 길·구조물 찾기</li>
     </ul>
   </div>
 </section>
@@ -1515,7 +1702,7 @@ const ITEMS=[
 ["잡은 포켓몬이 안 보여요","missing pokemon PC","파티가 가득 차면 새로 잡은 포켓몬은 자동으로 PC로 이동함","FAQ"],
 ["배틀 거는 법","start battle","파티에서 포켓몬 선택 후 R키(기본)로 상대를 조준","FAQ"],
 ["어깨 탑승","shoulder mount","소형 포켓몬 한정 — 웅크리기+우클릭, 일부는 버프 제공","FAQ"],
-["이로치 확률","shiny rate","기본 1/4096 — 화석 부활로도 나올 수 있음","FAQ"],
+["이로치 확률","shiny rate","기본 1/8192(config 조정 가능) — 화석 부활로도 나올 수 있음","FAQ"],
 ["알 얻는 법","breeding pasture block","목장 블록에 호환 포켓몬 2마리 — 가라르 화석 4종은 교배 불가","FAQ"],
 ["레시피 찾는 법","recipe book","조합대 레시피북에서 영어 이름으로 검색","FAQ"],
 ["포켓몬 타기","riding mount","꺼낸 포켓몬에 웅크리기+우클릭 → 타기 (1.7). W 더블탭 질주, 비행은 스태미나 있음","FAQ"],
@@ -1531,7 +1718,17 @@ const ITEMS=[
 ["키스톤","Key Stone","Megasite(지하 Y5~20 구형 구조물) 채굴 — 메가팔찌 재료 [Mega Showdown]","메가진화"],
 ["메가스톤","Mega Stone","포켓몬이 지니면 배틀 중 메가진화 — 포켓몬별 전용, 메가원석으로 조합 [Mega Showdown]","메가진화"],
 ["메가원석","Raw Mega Stone","Megasite 채굴 — 메가스톤 조합 재료 [Mega Showdown]","메가진화"],
-["Megasite","Megasite","지하 Y5~20 구형 짙은 회색·보라 구조물 — 키스톤·메가원석 채굴처 [Mega Showdown]","메가진화"]
+["Megasite","Megasite","지하 Y5~20 구형 짙은 회색·보라 구조물 — 키스톤·메가원석 채굴처 [Mega Showdown]","메가진화"],
+["테라오브","Tera Orb","테라조각50 들고 포켓몬 우클릭 → 테라 타입 지정, 배틀서 테라스탈 발동 [Mega Showdown]","기믹"],
+["테라조각","Tera Shard","타입별 조각 — 50개로 테라스탈 타입 지정 [Mega Showdown]","기믹"],
+["Z링","Z-Ring","배틀 시작 시 착용 + 포켓몬이 Z크리스탈 지니면 Z기술 1회 [Mega Showdown]","기믹"],
+["Z크리스탈","Z-Crystal","포켓몬이 지니면 해당 타입 Z기술 사용 [Mega Showdown]","기믹"],
+["다이맥스밴드","Dynamax Band","장신구 슬롯 착용 + 파워스팟 20블록 이내서 다이맥스 발동 [Mega Showdown]","기믹"],
+["다이맥스캔디","Dynamax Candy","먹이면 다이맥스 레벨↑(HP 보너스 최대 +100%) [Mega Showdown]","기믹"],
+["붉은실","Destiny Knot","교배 시 부모 IV 5개 유전(기본3) — 개체값 육성 필수템","육성"],
+["변함없는돌","Everstone","지닌 부모의 성격 유전 / 진화 방지","육성"],
+["미러허브","Mirror Herb","같은 목장 다른 포켓몬의 알기술 습득(10~20분)","육성"],
+["목장블록","Pasture Block","밀로 활성화, 호환 암수 방목 시 ~15분당 알 1개 — 교배","육성"]
 ];
 
 /* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
