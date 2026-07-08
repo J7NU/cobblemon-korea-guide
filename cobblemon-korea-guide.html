@@ -65,6 +65,16 @@
     "Malgun Gothic",
     "Segoe UI", Roboto,
     system-ui, sans-serif;
+
+  /* ── Dex aliases (JIN-706 블록이 참조) ── */
+  --amber: var(--warning);
+  --muted: var(--text-secondary);
+  --panel: var(--surface);
+  --panel2: var(--surface-2);
+  --line: var(--border);
+  --green: var(--success);
+  --blue: var(--info);
+  --red: var(--accent);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -100,9 +110,10 @@ section.pane{display:none}
 section.pane.on{display:block}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);margin:14px 0;box-shadow:var(--shadow-sm)}
 .card h2{font-family:var(--font-body);font-weight:700;font-size:17px;color:var(--text);margin-bottom:10px;letter-spacing:.5px}
-.card h3{font-family:var(--font-body);font-weight:600;font-size:14px;color:var(--text-secondary);margin:16px 0 6px}
+.card h3{font-family:var(--font-body);font-weight:600;font-size:14px;color:var(--text);margin:16px 0 6px}
 .card p{color:var(--text);margin:6px 0}
 .card .note{font-size:13px;color:var(--text-secondary);margin-top:8px;border-left:3px solid var(--border);padding-left:10px}
+.card p,.card ul,.card ol{max-width:720px}
 .kv{color:var(--text-secondary);font-size:13px}
 
 /* tables */
@@ -189,14 +200,19 @@ button,.tab,.typebtn,.biomebtn,.filterbar button{-webkit-tap-highlight-color:tra
 }
 @supports(padding-bottom:env(safe-area-inset-bottom)){
   body{padding-bottom:max(60px,calc(20px + env(safe-area-inset-bottom)))}
-  .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:600px){
+  @supports(padding-bottom:env(safe-area-inset-bottom)){
+    .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+  }
 }
 /* 바이옴 스폰 결과: content-visibility로 초기 렌더 비용 절감 */
 #spawnResultBody{content-visibility:auto;contain-intrinsic-size:auto 400px}
 
 @media(max-width:600px){
   body{font-size:14px}
-  td,th{font-family:var(--font-body);font-weight:600;text-align:left;color:var(--text-secondary);font-size:12px;letter-spacing:0.4px;border-bottom:2px solid var(--border);padding:6px 8px}
+  th{font-family:var(--font-body);font-weight:600;text-align:left;color:var(--text-secondary);font-size:12px;letter-spacing:0.4px;border-bottom:2px solid var(--border);padding:6px 8px}
+  td{padding:6px 8px;font-size:13px}
   .card{padding:13px}
   .typegrid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
   .tab{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
@@ -276,8 +292,8 @@ button, input, select, summary { min-height: 44px; }
   <div class="dex-top">
     <div class="lens"></div>
     <div>
-      <h1>코블몬 한국어 가이드 <span class="vertag">v3</span></h1>
-      <div class="sub">Cobblemon 1.7.3 · MC 1.21.1 Fabric 기준 · 진화 / 아이템 / 화석 / 구조물 / 상성표 / 라이딩·요리</div>
+      <h1>코블몬 한국어 가이드 <span class="vertag">v4</span></h1>
+      <div class="sub">Cobblemon 1.7.3 · MC 1.21.1 Fabric 기준 · 진화 / 메가진화·배틀 기믹 / 아이템 / 화석 / 구조물 / 상성표 / 라이딩·요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
   </div>
@@ -521,7 +537,7 @@ button, input, select, summary { min-height: 44px; }
     <p><b>3턴간 포켓몬이 거대화</b>해서 HP가 늘고, 모든 기술이 타입별 추가효과가 있는 <b>«맥스 기술»</b>로 바뀌어.</p>
     <h3>준비 (조건 특이)</h3>
     <ul>
-      <li><b>다이맥스밴드(Dynamax Band)</b>를 장신구(큐리오) 슬롯에 착용</li>
+      <li><b>다이맥스밴드(Dynamax Band)</b>를 액세서리 화면 슬롯에 착용</li>
       <li><b>파워스팟(Power Spot) 20블록 이내</b>에서만 발동 가능 — 이게 핵심 제약</li>
       <li>배틀 기술 선택 화면에서 <b>뒤로가기 옆 다이맥스 버튼</b> 클릭</li>
     </ul>
@@ -806,7 +822,7 @@ button, input, select, summary { min-height: 44px; }
       <tr><td class="kr">뮤 <span class="en">Mew</span></td><td>숲·정글·어두운 숲에서 <b>정오</b>에 초희귀 자연 스폰. <b>Faraway Ruin</b> 구조물 근처에서 확률 대폭 상승. Lv.55~60</td></tr>
       <tr><td class="kr">뮤츠 <span class="en">Mewtwo</span></td><td>위더 처치 → 네더의 별 → <b>Sky Pillar</b> 꼭대기 비콘 우클릭. Lv.70, 탑당 1회</td></tr>
     </table>
-    <p class="note">1.7에서 <b>칠색조(Ho-Oh)·루기아(Lugia)</b>가 종으로 추가됐지만(모델·데이터) <b>자연 스폰은 아직 없어</b>. 프리져·썬더·파이어·레쿠쟈 등 <b>다른 전설도 베이스 모드에 자연 스폰이 없어.</b> 잡고 싶으면 서버(Aternos)에 <b>Legendary Encounters</b>나 <b>MysticMons</b> 같은 데이터팩을 설치해야 해. 예: Legendary Encounters 기준 프리져 = 눈 덮인 평원에서 얼음의돌 4개 + 비콘.</p>
+    <p class="note">1.7에서 <b>칠색조(Ho-Oh)·루기아(Lugia)</b>가 종으로 추가됐지만(모델·데이터) <b>자연 스폰은 아직 없어</b>. 프리져·썬더·파이어·레쿠쟈 등 <b>다른 전설도 베이스 모드에 자연 스폰이 없어.</b> 이 서버엔 <b>Legendary Encounters</b> 데이터팩이 이미 설치돼 있어 — 전설이 해당 바이옴에서 자연 스폰돼. 예: 프리져 = 눈 덮인 평원에서 얼음의돌 4개 + 비콘 조건.</p>
   </div>
 
   <div class="card">
@@ -1234,7 +1250,7 @@ button, input, select, summary { min-height: 44px; }
 
 </main>
 
-<footer>비공식 팬 가이드 · Cobblemon 1.7.3 (MC 1.21.1 Fabric) 자료 기준 (2026.07) · 게임 내 표기가 항상 우선 · v3: 1.7.3 버전 맞춤 — 라이딩·캠프파이어 팟 요리 추가</footer>
+<footer>비공식 팬 가이드 · Cobblemon 1.7.3 (MC 1.21.1 Fabric) 자료 기준 (2026.07) · 게임 내 표기가 항상 우선 · v4: 메가진화·다이맥스/테라/Z·배틀 기초 추가 (Mega Showdown) + 위키 사진 링크</footer>
 
 <script>
 /* ===== JIN-706: 전역 유틸 ===== */
@@ -1322,17 +1338,17 @@ Phantump:708,Trevenant:709,Pumpkaboo:710,Gourgeist:711,
 Goomy:704,Sliggoo:705,Goodra:706,
 Rowlet:722,Litten:725,Popplio:728,
 Crabrawler:739,Crabominable:740,Charjabug:737,Vikavolt:738,
-Mimikyu:778,Dreepy:886,Drakloak:887,Dragapult:888,
+Mimikyu:778,Dreepy:885,Drakloak:886,Dragapult:887,
 Grookey:810,Scorbunny:813,Sobble:816,
 Applin:840,Flapple:841,Appletun:842,
 Sinistea:854,Polteageist:855,Milcery:868,Alcremie:869,
-Dracozolt:882,Arctozolt:883,Dracovish:884,Arctovish:885,
-Duraludon:886,
+Dracozolt:880,Arctozolt:881,Dracovish:882,Arctovish:883,
+Duraludon:884,
 Sprigatito:906,Fuecoco:909,Quaxly:912,
-Charcadet:963,Armarouge:964,Ceruledge:965,
+Charcadet:935,Armarouge:936,Ceruledge:937,
 Gimmighoul:999,Gholdengo:1000,
 Dudunsparce:982,Sandile:551,
-Dipplin:1011,Hydrapple:1017,Archaludon:1018,
+Dipplin:1011,Hydrapple:1019,Archaludon:1018,
 Poltchageist:1012,Sinistcha:1013,
 Articuno:144,Rayquaza:384,
 Lugia:249,"Ho-Oh":250,
@@ -1671,12 +1687,10 @@ const ITEMS=[
 ["테라조각","Tera Shard","타입별 조각 — 50개로 테라스탈 타입 지정 [Mega Showdown]","기믹"],
 ["Z링","Z-Ring","배틀 시작 시 착용 + 포켓몬이 Z크리스탈 지니면 Z기술 1회 [Mega Showdown]","기믹"],
 ["Z크리스탈","Z-Crystal","포켓몬이 지니면 해당 타입 Z기술 사용 [Mega Showdown]","기믹"],
-["다이맥스밴드","Dynamax Band","장신구 슬롯 착용 + 파워스팟 20블록 이내서 다이맥스 발동 [Mega Showdown]","기믹"],
+["다이맥스밴드","Dynamax Band","액세서리 화면 슬롯 착용 + 파워스팟 20블록 이내서 다이맥스 발동 [Mega Showdown]","기믹"],
 ["다이맥스캔디","Dynamax Candy","먹이면 다이맥스 레벨↑(HP 보너스 최대 +100%) [Mega Showdown]","기믹"],
-["붉은실","Destiny Knot","교배 시 부모 IV 5개 유전(기본3) — 개체값 육성 필수템","육성"],
-["변함없는돌","Everstone","지닌 부모의 성격 유전 / 진화 방지","육성"],
-["미러허브","Mirror Herb","같은 목장 다른 포켓몬의 알기술 습득(10~20분)","육성"],
-["목장블록","Pasture Block","순정=포켓몬 방목·보관(최대16). 알·교배는 Cobbreeding 애드온 필요(설치 시 ~15분당 알 1개)","육성"]
+["붉은실","Destiny Knot","교배 시 부모 IV 5개 유전(기본3) — 개체값 육성 필수템 [Cobbreeding 애드온]","지닌 물건"],
+["미러허브","Mirror Herb","같은 목장 다른 포켓몬의 알기술 습득(10~20분) [Cobbreeding 애드온]","지닌 물건"]
 ];
 
 /* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
@@ -2165,7 +2179,7 @@ function _selectDex(idx){
   window._BIOMES=BIOMES;
   window._SPAWN_MAP={};
   BIOMES.forEach(b=>b.mons.forEach(m=>{
-    const k=m[0];
+    const k=m[0].replace(/\(.*?\)/g,'').trim();
     if(!window._SPAWN_MAP[k])window._SPAWN_MAP[k]=[];
     window._SPAWN_MAP[k].push({biome:b.name,emoji:b.emoji,rarity:m[2],cond:m[3]||null});
   }));
