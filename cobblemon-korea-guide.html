@@ -133,8 +133,6 @@ a{color:var(--info)}
 .vertag{display:inline-block;font-family:var(--font-body);font-size:11px;background:rgba(255,255,255,.18);color:#fff;padding:2px 6px;border-radius:3px;margin-left:6px;vertical-align:middle}
 
 /* ---- v2: 타입 상성표 ---- */
-.resetbtn{font-family:var(--font-body);font-size:11px;background:none;border:1px solid var(--border);color:var(--text-secondary);padding:6px 10px;border-radius:3px;cursor:pointer;margin-top:10px}
-.resetbtn:hover{border-color:var(--accent);color:var(--accent)}
 .modeToggle{display:flex;gap:6px;margin:12px 0}
 .modeToggle button{flex:1;font-family:var(--font-body);font-size:13px;padding:10px 4px;border-radius:3px;border:2px solid var(--border);background:var(--surface-2);color:var(--text-secondary);cursor:pointer}
 .modeToggle button.on{background:var(--accent-quiet);color:var(--accent);border:1px solid var(--accent)}
@@ -154,24 +152,7 @@ a{color:var(--info)}
 .dual-group-label{font-size:13px;font-weight:700;margin-bottom:6px}
 
 /* ---- v2: 커플 미션 ---- */
-.scoreboard{display:flex;align-items:center;justify-content:space-between;background:var(--surface-2);border:1px solid var(--border);border-radius:4px;padding:12px;margin:10px 0;gap:10px}
-.scoreboard .p{text-align:center;flex:1;min-width:0}
-.scoreboard .p input{width:100%;background:none;border:none;border-bottom:1px dashed var(--border);color:var(--text);font-family:var(--font-body);font-size:13px;text-align:center;padding:4px 0}
-.scoreboard .p input:focus{outline:none;border-bottom-color:var(--warning)}
-.scoreboard .p .score{font-family:var(--font-body);font-size:26px;color:var(--accent);margin-top:6px}
-.scoreboard .vs{font-family:var(--font-body);color:var(--text-secondary);font-size:12px;flex-shrink:0}
-.drawbtn{display:block;width:100%;font-family:var(--font-body);font-size:16px;font-weight:700;padding:13px;background:var(--accent);color:#fff;border:2px solid var(--accent-dark);border-radius:4px;cursor:pointer;box-shadow:none;margin:12px 0;min-height:48px}
-.drawbtn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 rgba(0,0,0,.35)}
-.missioncard{border:1px solid var(--accent);border-radius:var(--radius-lg);padding:20px;text-align:center;box-shadow:var(--shadow-md);animation:cardin .25s ease}
 @keyframes cardin{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.missioncard{border:1px solid var(--accent);border-radius:var(--radius-lg);padding:20px;text-align:center;box-shadow:var(--shadow-md);animation:cardin .25s ease}}
-.missioncard .txt{font-size:17px;font-weight:600;line-height:1.5;margin-top:10px}
-.winnerrow{display:flex;gap:8px;margin-top:16px}
-.winnerrow button{flex:1;font-family:var(--font-body);font-size:11.5px;padding:10px 4px;border-radius:3px;border:2px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;min-height:44px}
-.winnerrow button:hover{border-color:var(--warning)}
-.missionlist{margin-top:6px}
-.mrow{display:flex;align-items:baseline;gap:8px;padding:8px 4px;border-bottom:1px solid #2a303c}
-.mrow:last-child{border-bottom:none}
 
 /* ---- v2/Phase2: 바이옴 스폰 브라우저 ---- */
 .biomegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:8px;margin:10px 0}
@@ -195,8 +176,6 @@ button,.tab,.typebtn,.biomebtn,.filterbar button{-webkit-tap-highlight-color:tra
 @media(hover:none){
   .tab:hover{background:var(--surface);color:var(--text-secondary)}
   .tab.on:hover{background:var(--accent);color:#fff}
-  .resetbtn:hover{border-color:var(--border);color:var(--text-secondary)}
-  .winnerrow button:hover{border-color:var(--border)}
 }
 @supports(padding-bottom:env(safe-area-inset-bottom)){
   body{padding-bottom:max(60px,calc(20px + env(safe-area-inset-bottom)))}
@@ -210,8 +189,6 @@ button,.tab,.typebtn,.biomebtn,.filterbar button{-webkit-tap-highlight-color:tra
   td,th{font-family:var(--font-body);font-weight:600;text-align:left;color:var(--text-secondary);font-size:12px;letter-spacing:0.4px;border-bottom:2px solid var(--border);padding:6px 8px}
   .card{padding:13px}
   .typegrid{grid-template-columns:repeat(auto-fill,minmax(64px,1fr))}
-  .scoreboard .p .score{font-family:var(--font-body);font-size:26px;color:var(--accent);margin-top:6px}
-  .winnerrow{flex-direction:column}
   .tab{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
   .typebtn{font-family:var(--font-body);font-size:12px;padding:11px 4px;border-radius:4px;border:1px solid rgba(0,0,0,.25);color:#1c1c1c;cursor:pointer;text-align:center;box-shadow:none;min-height:44px}
   .biomebtn{font-family:var(--font-body);font-size:13px;padding:14px 6px;border-radius:4px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;text-align:center;line-height:1.35;box-shadow:none}
@@ -229,10 +206,8 @@ button:focus-visible, input:focus-visible, [role="button"]:focus-visible, summar
 /* Ensure min touch targets */
 button, input, select, summary { min-height: 44px; }
 /* Drawbtn override (it's a block element) */
-.drawbtn { min-height: 48px; }
 /* Score mobile */
 @media (max-width:600px) {
-  .scoreboard .p .score { font-size: 28px; }
   .card { padding: var(--space-4); }
 }
 /* ===== JIN-706 Dex CSS ===== */
@@ -277,6 +252,9 @@ button, input, select, summary { min-height: 44px; }
 .dex-progress-label{font-size:13px;color:var(--text-secondary);margin-bottom:6px}
 .dex-progress-track{height:8px;background:var(--surface-2);border-radius:4px;overflow:hidden;border:1px solid var(--border)}
 .dex-progress-fill{height:100%;background:var(--success);border-radius:4px;width:0%;transition:width .25s}
+/* "잡은 것만" 필터: caught 없는 카드 숨김 */
+.dex-grid.only-caught .dex-card:not(.caught){display:none}
+#dexCaughtFilter.on{background:var(--success);border-color:var(--success);color:#fff}
 .dex-catch-btn{font-family:var(--font-body);font-size:11px;padding:7px 12px;border:2px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:3px;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:44px}
 @media(hover:hover){.dex-catch-btn:hover{border-color:var(--success)}}
 .dex-catch-btn.caught-state{border-color:var(--success);background:rgba(79,184,122,0.14);color:var(--success)}
@@ -312,7 +290,6 @@ button, input, select, summary { min-height: 44px; }
   <button class="tab" data-pane="spawn">바이옴 스폰</button>
   <button class="tab" data-pane="rare">희귀·전설</button>
   <button class="tab" data-pane="types">상성표</button>
-  <button class="tab" data-pane="mission">미션</button>
   <button class="tab" data-pane="tips">팁</button>
   <button class="tab" data-pane="dex">도감</button>
 </nav>
@@ -683,32 +660,6 @@ button, input, select, summary { min-height: 44px; }
   </div>
 </section>
 
-<!-- ============ 미션 ============ -->
-<section class="pane" id="pane-mission">
-  <div class="card">
-    <h2>커플 미션</h2>
-    <p class="kv">뽑기 버튼으로 오늘의 미션을 정하고, 먼저 해낸 사람을 기록해봐.</p>
-    <div class="scoreboard">
-      <div class="p">
-        <input id="p1name" maxlength="8" value="P1">
-        <div class="score" id="p1score">0</div>
-      </div>
-      <div class="vs">VS</div>
-      <div class="p">
-        <input id="p2name" maxlength="8" value="P2">
-        <div class="score" id="p2score">0</div>
-      </div>
-    </div>
-    <button class="resetbtn" id="resetScore" type="button">스코어 초기화</button>
-    <button class="drawbtn" id="drawBtn" type="button">오늘의 미션 뽑기</button>
-    <div id="missionCardWrap"></div>
-  </div>
-  <div class="card">
-    <h2>전체 미션 목록</h2>
-    <div class="missionlist" id="missionListAll"></div>
-  </div>
-</section>
-
 <!-- ============ 팁 ============ -->
 <section class="pane" id="pane-tips">
   <div class="card">
@@ -1045,7 +996,10 @@ button, input, select, summary { min-height: 44px; }
     <p style="font-size:13px;color:var(--muted)">포켓몬 카드 클릭 → 상세 정보. 스프라이트는 원격 지연 로드 · 오프라인 시 ? 표시.</p>
   </div>
   <div id="dexProgressWrap" class="dex-progress-wrap">
-    <div id="dexProgressLabel" class="dex-progress-label">0 / 0 수집</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+      <div id="dexProgressLabel" class="dex-progress-label">0 / 0 수집</div>
+      <button id="dexCaughtFilter" class="dex-catch-btn" type="button">잡은 것만</button>
+    </div>
     <div class="dex-progress-track"><div id="dexProgressFill" class="dex-progress-fill"></div></div>
   </div>
   <div id="dexDetail" class="dex-detail"></div>
@@ -1172,7 +1126,7 @@ function _spriteFail(img){
 function sImgHtml(en,size){
   const u=spriteUrl(en);
   if(!u)return '<div style="width:'+size+'px;height:'+size+'px;font-size:'+(size*0.38|0)+'px" class="sph">?</div>';
-  return '<img src="'+u+'" width="'+size+'" height="'+size+'" loading="lazy" style="image-rendering:pixelated;display:block;margin:0 auto" alt="" onerror="_spriteFail(this)">';
+  return '<img src="'+u+'" width="'+size+'" height="'+size+'" loading="lazy" decoding="async" style="image-rendering:pixelated;display:block;margin:0 auto" alt="" onerror="_spriteFail(this)">';
 }
 
 /* ===== 호버 프리뷰 (데스크톱) / 탭 프리뷰 (모바일) ===== */
@@ -1553,16 +1507,21 @@ _lazyTab.dex=function(){
   const grid=document.getElementById('dexGrid');
   if(!grid||grid.childElementCount>0)return;
   if(!Object.keys(_DEX_IDX).length)_buildDexIdx();
-  DEX.forEach(([kr,en],i)=>{
-    const c=document.createElement('div');
-    c.className='dex-card';c.dataset.idx=i;
-    if(_caughtSet.has(en))c.classList.add('caught');
-    c.innerHTML=sImgHtml(en,52)+'<div class="dc-caught">✓</div><div class="dc-num">No.'+(DEX_NUM[en]||'?')+'</div><div class="dc-kr">'+esc(kr)+'</div>';
-    grid.appendChild(c);
-  });
+  // 338개 카드를 문자열 1회 조립 → 단일 파싱 (createElement+appendChild 루프 대비 리플로우 최소화)
+  grid.innerHTML=DEX.map(([kr,en],i)=>
+    '<div class="dex-card'+(_caughtSet.has(en)?' caught':'')+'" data-idx="'+i+'">'
+    +sImgHtml(en,52)+'<div class="dc-caught">✓</div><div class="dc-num">No.'+(DEX_NUM[en]||'?')+'</div><div class="dc-kr">'+esc(kr)+'</div></div>'
+  ).join('');
   grid.addEventListener('click',e=>{
     const c=e.target.closest('.dex-card');if(!c)return;
     _selectDex(parseInt(c.dataset.idx));
+  });
+  // "잡은 것만" 필터 토글
+  const fbtn=document.getElementById('dexCaughtFilter');
+  if(fbtn)fbtn.addEventListener('click',()=>{
+    const on=grid.classList.toggle('only-caught');
+    fbtn.classList.toggle('on',on);
+    fbtn.textContent=on?'전체 보기':'잡은 것만';
   });
   _updateProgress();
 };
@@ -1571,9 +1530,12 @@ function _selectDex(idx){
   if(idx<0||idx>=DEX.length)return;
   _dexSelIdx=idx;
   const [kr,en]=DEX[idx];
-  document.querySelectorAll('.dex-card').forEach((c,i)=>c.classList.toggle('sel',i===idx));
-  const selCard=document.querySelector('.dex-card.sel');
-  if(selCard)selCard.scrollIntoView({block:'nearest',behavior:'smooth'});
+  // 전체 순회 대신 이전 선택만 해제 — O(1)
+  const dgrid=document.getElementById('dexGrid');
+  const prevSel=dgrid&&dgrid.querySelector('.dex-card.sel');
+  if(prevSel)prevSel.classList.remove('sel');
+  const selCard=dgrid&&dgrid.querySelector('.dex-card[data-idx="'+idx+'"]');
+  if(selCard){selCard.classList.add('sel');selCard.scrollIntoView({block:'nearest',behavior:'smooth'});}
   const spawns=(window._SPAWN_MAP||{})[kr]||[];
   const spawnHtml=spawns.length
     ?'<div class="dex-spawn-section"><h3>스폰 바이옴</h3>'
@@ -1810,73 +1772,6 @@ function _selectDex(idx){
       renderDual();
     });
   }
-})();
-
-/* ===== v2: 커플 미션 ===== */
-(function(){
-  const wrap=document.getElementById('missionCardWrap');
-  if(!wrap)return;
-  const MISSIONS=[
-    ['쉬움','30분 안에 새 포켓몬 3종 먼저 잡기'],
-    ['쉬움','아프리콘 20개 먼저 수확하기'],
-    ['쉬움','서로에게 어울리는 포켓몬 1마리 잡아서 선물하기'],
-    ['쉬움','어깨에 태울 수 있는 포켓몬 찾아서 태우고 인증하기'],
-    ['보통','화석 발굴지 먼저 발견하기'],
-    ['보통','오늘 세션에서 화석 1개 먼저 발굴하기'],
-    ['보통','진화의 돌 아무거나 먼저 캐기'],
-    ['보통','지정 타입(가위바위보로 결정)만으로 3마리 잡기'],
-    ['보통','유물 코인 20개 먼저 모으기'],
-    ['보통','낚시로 물 타입 포켓몬 먼저 낚기'],
-    ['어려움','미니 던전 먼저 클리어하기'],
-    ['어려움','화석 포켓몬 먼저 부활시키기'],
-    ['어려움','링크 케이블 진화 먼저 성공하기'],
-    ['어려움','풀파티(6마리)끼리 정면 배틀 — 승자가 미션 승'],
-    ['어려움','이로치(색 다른 포켓몬) 먼저 발견 — 발견 즉시 시즌 우승']
-  ];
-  const DIFF_TAG={쉬움:'green',보통:'gold',어려움:'red'};
-  const KEY='cbmk_mission';
-  function load(){try{return Object.assign({p1n:'P1',p2n:'P2',p1s:0,p2s:0},JSON.parse(localStorage.getItem(KEY))||{})}catch(e){return {p1n:'P1',p2n:'P2',p1s:0,p2s:0}}}
-  function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
-  let st=load();
-  const p1n=document.getElementById('p1name'),p2n=document.getElementById('p2name'),p1s=document.getElementById('p1score'),p2s=document.getElementById('p2score');
-  function renderScore(){
-    p1n.value=st.p1n;p2n.value=st.p2n;p1s.textContent=st.p1s;p2s.textContent=st.p2s;
-  }
-  renderScore();
-  p1n.addEventListener('input',e=>{st.p1n=e.target.value.trim()||'P1';save(st)});
-  p2n.addEventListener('input',e=>{st.p2n=e.target.value.trim()||'P2';save(st)});
-  document.getElementById('resetScore').addEventListener('click',()=>{
-    if(!confirm('스코어를 초기화할까?'))return;
-    st.p1s=0;st.p2s=0;save(st);renderScore();
-  });
-  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-  let lastIdx=-1;
-  function draw(){
-    let idx;
-    do{idx=Math.floor(Math.random()*MISSIONS.length)}while(idx===lastIdx&&MISSIONS.length>1);
-    lastIdx=idx;
-    const diff=MISSIONS[idx][0],txt=MISSIONS[idx][1];
-    wrap.innerHTML='<div class="missioncard"><span class="tag '+DIFF_TAG[diff]+'">'+diff+'</span><div class="txt">'+txt+'</div>'
-      +'<div class="winnerrow">'
-      +'<button type="button" data-w="p1">'+esc(st.p1n)+' 승!</button>'
-      +'<button type="button" data-w="draw">무승부</button>'
-      +'<button type="button" data-w="p2">'+esc(st.p2n)+' 승!</button>'
-      +'</div></div>';
-  }
-  document.getElementById('drawBtn').addEventListener('click',draw);
-  wrap.addEventListener('click',e=>{
-    const b=e.target.closest('button[data-w]');if(!b)return;
-    let label;
-    if(b.dataset.w==='p1'){st.p1s++;label=esc(st.p1n)+' 승리로 기록했어';}
-    else if(b.dataset.w==='p2'){st.p2s++;label=esc(st.p2n)+' 승리로 기록했어';}
-    else{label='무승부로 기록했어';}
-    save(st);renderScore();
-    wrap.innerHTML='<p class="emptytype">'+label+' — 다음 미션은 위 버튼으로 뽑아줘</p>';
-  });
-  /* 지연 렌더: 미션 탭 첫 활성 시 목록 생성 (45 DOM nodes 절약) */
-  _lazyTab.mission=function(){
-    document.getElementById('missionListAll').innerHTML=MISSIONS.map(m=>'<div class="mrow"><span class="tag '+DIFF_TAG[m[0]]+'">'+m[0]+'</span><span>'+m[1]+'</span></div>').join('');
-  };
 })();
 
 /* ===== v2/Phase2: 바이옴 스폰 브라우저 ===== */
