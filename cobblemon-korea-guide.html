@@ -271,8 +271,8 @@ button, input, select, summary { min-height: 44px; }
   <div class="dex-top">
     <div class="lens"></div>
     <div>
-      <h1>코블몬 한국어 가이드 <span class="vertag">v2</span></h1>
-      <div class="sub">Cobblemon 1.6~1.7 기준 · 시작하기 / 진화 / 아이템 / 화석 / 구조물 / 상성표 / 미션</div>
+      <h1>코블몬 한국어 가이드 <span class="vertag">v3</span></h1>
+      <div class="sub">Cobblemon 1.7.3 · MC 1.21.1 Fabric 기준 · 진화 / 아이템 / 화석 / 구조물 / 상성표 / 라이딩·요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
   </div>
@@ -419,7 +419,7 @@ button, input, select, summary { min-height: 44px; }
       <tr><td class="kr">상처약 계열</td><td class="en">Potion / Super / Hyper / Max</td><td>약초 브루 + 열매 조합으로 단계 업그레이드</td></tr>
       <tr><td class="kr">기력의조각</td><td class="en">Revive</td><td>조합/전리품</td></tr>
       <tr><td class="kr">기력의덩어리</td><td class="en">Max Revive</td><td>비비초1 + 기력의조각2 (캠프파이어 포트/양조) — 치료 머신 재료</td></tr>
-      <tr><td class="kr">비비초 / 비비초 씨앗</td><td class="en">Vivichoke / Seeds</td><td>씨앗은 모든 화석 발굴지에서 가장 잘 나오는 전리품</td></tr>
+      <tr><td class="kr">비비초 / 비비초 씨앗</td><td class="en">Vivichoke / Seeds</td><td>씨앗은 모든 화석 발굴지에서 가장 잘 나오는 전리품. <b>방랑 상인</b>도 판매 (1.7.1+)</td></tr>
       <tr><td class="kr">오랭열매 등 나무열매</td><td class="en">Oran Berry 등</td><td>야생 채집·농사</td></tr>
       <tr><td class="kr">앵무조개 껍데기</td><td class="en">Nautilus Shell</td><td>낚시/드라운드 드롭 — 복원 탱크 유기물 <b>1개당 16</b>, 4개면 가득</td></tr>
     </table>
@@ -606,7 +606,7 @@ button, input, select, summary { min-height: 44px; }
       <tr><td class="kr">뮤 <span class="en">Mew</span></td><td>숲·정글·어두운 숲에서 <b>정오</b>에 초희귀 자연 스폰. <b>Faraway Ruin</b> 구조물 근처에서 확률 대폭 상승. Lv.55~60</td></tr>
       <tr><td class="kr">뮤츠 <span class="en">Mewtwo</span></td><td>위더 처치 → 네더의 별 → <b>Sky Pillar</b> 꼭대기 비콘 우클릭. Lv.70, 탑당 1회</td></tr>
     </table>
-    <p class="note">프리져·썬더·파이어·레쿠쟈 등 <b>다른 전설은 베이스 모드에 자연 스폰이 없어.</b> 잡고 싶으면 서버(Aternos)에 <b>Legendary Encounters</b>나 <b>MysticMons</b> 같은 데이터팩을 설치해야 해. 예: Legendary Encounters 기준 프리져 = 눈 덮인 평원에서 얼음의돌 4개 + 비콘.</p>
+    <p class="note">1.7에서 <b>칠색조(Ho-Oh)·루기아(Lugia)</b>가 종으로 추가됐지만(모델·데이터) <b>자연 스폰은 아직 없어</b>. 프리져·썬더·파이어·레쿠쟈 등 <b>다른 전설도 베이스 모드에 자연 스폰이 없어.</b> 잡고 싶으면 서버(Aternos)에 <b>Legendary Encounters</b>나 <b>MysticMons</b> 같은 데이터팩을 설치해야 해. 예: Legendary Encounters 기준 프리져 = 눈 덮인 평원에서 얼음의돌 4개 + 비콘.</p>
   </div>
 
   <div class="card">
@@ -674,6 +674,48 @@ button, input, select, summary { min-height: 44px; }
 <!-- ============ 팁 ============ -->
 <section class="pane" id="pane-tips">
   <div class="card">
+    <h2>포켓몬 라이딩 <span class="tag gold">1.7 신기능</span></h2>
+    <p>1.7 "Set Course!" 업데이트의 간판 기능. 이제 포켓몬을 <b>타고</b> 육지·물·하늘을 이동할 수 있어.</p>
+    <ol class="steps">
+      <li>포켓몬을 필드에 꺼낸다.</li>
+      <li><b>웅크리기(Shift) + 우클릭</b> → 메뉴에서 <b>타기</b> 선택. (메뉴에 타기가 없으면 그 종은 탑승 불가)</li>
+      <li>육상은 <b>W 더블탭</b>으로 질주(1.7.1+), 비행·수영 타입은 각각 하늘·물속 이동. 비행엔 <b>스태미나</b>가 있어서 무한정은 못 날아.</li>
+    </ol>
+    <ul>
+      <li>탈 수 있는 종은 계속 늘어나는 중 — 1.7.2에서 <b>돈크로우·만타인</b> 추가</li>
+      <li><b>아프리주스(Aprijuice)</b>를 먹이면 라이딩 능력(속도 등)이 강화돼 — 아래 요리 카드 참고</li>
+      <li>멀미가 느껴지면 설정에서 카메라 모드를 바꿀 수 있어</li>
+    </ul>
+    <p class="note">소형 포켓몬의 <b>어깨 탑승</b>(웅크리기+우클릭)과 같은 조작이야 — 크기에 따라 어깨에 타거나 내가 올라타는 것.</p>
+  </div>
+  <div class="card">
+    <h2>캠프파이어 팟 요리 <span class="tag gold">1.7 신기능</span></h2>
+    <p>모닥불 위에 <b>캠프파이어 팟(Campfire Pot)</b>을 올려서 요리하는 시스템. 아프리콘·열매·작물을 재료로 써.</p>
+    <table>
+      <tr><th>요리</th><th>용도</th></tr>
+      <tr><td class="kr">포켓 스낵 <span class="en">Poké Snack</span></td><td>설치하면 야생 포켓몬을 <b>유인·스폰</b> — 원하는 타입 몰이에 유용</td></tr>
+      <tr><td class="kr">포켓 케이크 <span class="en">Poké Cake</span></td><td>포켓몬 먹이·버프</td></tr>
+      <tr><td class="kr">아프리주스 <span class="en">Aprijuice</span></td><td><b>라이딩 능력 강화</b> — 아프리콘 베이스</td></tr>
+      <tr><td class="kr">낚시 미끼 <span class="en">Bait</span></td><td>낚시로 나오는 포켓몬 조절</td></tr>
+      <tr><td class="kr">상처약·경험사탕</td><td>기존 조합 외에 요리로도 제작 가능</td></tr>
+    </table>
+    <ul>
+      <li>새 작물 <b>Hearty Grains</b>(든든한 곡물)와 <b>사카린 나무(Saccharine)</b>가 요리 재료</li>
+      <li><b>방랑 상인</b>이 사카린 묘목·Hearty Grains·비비초 씨앗을 팔아 (1.7.1+)</li>
+    </ul>
+    <p class="note">레시피는 게임 내 레시피북 + 캠프파이어 팟 UI에서 확인. 세부 조합은 위키 "Cooking" 문서가 기준이야.</p>
+  </div>
+  <div class="card">
+    <h2>1.7에서 또 달라진 것</h2>
+    <ul>
+      <li><b>지닌 물건이 포켓몬 몸에 보여</b> — 요약 화면에서 표시 on/off</li>
+      <li><b>PC 대개편</b>: 박스 이름·배경 커스텀, 이름/레벨/도감번호/타입 정렬, IV·EV 표시</li>
+      <li><b>마크(Marks)</b>: 야생 포켓몬이 낚시·날씨·시간대별 칭호 마크를 갖고 스폰 — 수집 요소</li>
+      <li><b>AI 개선</b>: 포켓몬이 무리 짓고, 잠자고, 주인을 지켜줘 (강아지 포켓몬은 스켈레톤을 위협!)</li>
+      <li>1.7.2 신규 포켓몬: <b>던지미·타격귀·레오꼬·화염레오·슈쁘·프레프티르·나룸퍼프·나루림</b> — 향기주머니/휘핑팝 진화를 이제 실전에서 쓸 수 있어</li>
+    </ul>
+  </div>
+  <div class="card">
     <h2>자주 막히는 것들</h2>
     <details>
       <summary>아프리콘이 다시 안 자라요</summary>
@@ -708,8 +750,8 @@ button, input, select, summary { min-height: 44px; }
       <div class="inner"><p>파티에서 포켓몬을 선택한 뒤 R키(기본 키)를 눌러. 야생 포켓몬이나 다른 플레이어를 조준하고 누르면 돼.</p></div>
     </details>
     <details>
-      <summary>포켓몬을 어깨에 태우고 싶어요</summary>
-      <div class="inner"><p>소형 포켓몬만 가능해. 필드에 꺼낸 상태에서 웅크리기+우클릭. 일부는 수중호흡·신속 같은 버프도 줘.</p></div>
+      <summary>포켓몬을 어깨에 태우거나 타고 싶어요</summary>
+      <div class="inner"><p>필드에 꺼낸 상태에서 <b>웅크리기+우클릭</b>. 소형 포켓몬은 어깨에 타고(일부는 수중호흡·신속 버프), 큰 포켓몬은 메뉴에 <b>타기</b>가 떠서 라이딩할 수 있어(1.7+). 위 라이딩 카드 참고.</p></div>
     </details>
     <details>
       <summary>이로치(색 다른 포켓몬) 확률은?</summary>
@@ -786,7 +828,7 @@ button, input, select, summary { min-height: 44px; }
 
 </main>
 
-<footer>비공식 팬 가이드 · Cobblemon 1.6~1.7 자료 기준 (2026.07) · 게임 내 표기가 항상 우선 · v2: 시작하기 / 상성표 / 미션 / FAQ 추가</footer>
+<footer>비공식 팬 가이드 · Cobblemon 1.7.3 (MC 1.21.1 Fabric) 자료 기준 (2026.07) · 게임 내 표기가 항상 우선 · v3: 1.7.3 버전 맞춤 — 라이딩·캠프파이어 팟 요리 추가</footer>
 
 <script>
 /* ===== JIN-706: 전역 유틸 ===== */
@@ -886,7 +928,9 @@ Gimmighoul:999,Gholdengo:1000,
 Dudunsparce:982,Sandile:551,
 Dipplin:1011,Hydrapple:1017,Archaludon:1018,
 Poltchageist:1012,Sinistcha:1013,
-Articuno:144,Rayquaza:384
+Articuno:144,Rayquaza:384,
+Lugia:249,"Ho-Oh":250,
+Throh:538,Sawk:539,Litleo:667,Pyroar:668
 };
 
 /* 스프라이트 URL (PokeAPI GitHub CDN, loading=lazy) */
@@ -1081,7 +1125,9 @@ const DEX=[
 ["꼬렛","Rattata"],["구구","Pidgey"],["치릴리","Cottonee"],["타랑고","Joltik"],
 ["깨물부기","Sandile"],["히포포타스","Hippopotas"],["바닐프티","Vanillite"],
 ["앱솔","Absol"],["드래꼰","Dreepy"],["유니란","Solosis"],["골비람","Elgyem"],
-["프리져","Articuno"],["레쿠쟈","Rayquaza"]
+["프리져","Articuno"],["레쿠쟈","Rayquaza"],
+["루기아","Lugia"],["칠색조","Ho-Oh"],
+["던지미","Throh"],["타격귀","Sawk"],["레오꼬","Litleo"],["화염레오","Pyroar"]
 ];
 
 /* ===== 아이템 사전 (검색용) ===== */
@@ -1175,7 +1221,15 @@ const ITEMS=[
 ["어깨 탑승","shoulder mount","소형 포켓몬 한정 — 웅크리기+우클릭, 일부는 버프 제공","FAQ"],
 ["이로치 확률","shiny rate","기본 1/4096 — 화석 부활로도 나올 수 있음","FAQ"],
 ["알 얻는 법","breeding pasture block","목장 블록에 호환 포켓몬 2마리 — 가라르 화석 4종은 교배 불가","FAQ"],
-["레시피 찾는 법","recipe book","조합대 레시피북에서 영어 이름으로 검색","FAQ"]
+["레시피 찾는 법","recipe book","조합대 레시피북에서 영어 이름으로 검색","FAQ"],
+["포켓몬 타기","riding mount","꺼낸 포켓몬에 웅크리기+우클릭 → 타기 (1.7). W 더블탭 질주, 비행은 스태미나 있음","FAQ"],
+["캠프파이어 팟","Campfire Pot","모닥불 위 요리 냄비 — 스낵·케이크·아프리주스·상처약·경험사탕 제작 (1.7)","블록"],
+["포켓 스낵","Poke Snack","캠프파이어 팟 요리 — 설치하면 야생 포켓몬 유인·스폰 (1.7)","소모품"],
+["포켓 케이크","Poke Cake","캠프파이어 팟 요리 — 포켓몬 먹이·버프 (1.7)","소모품"],
+["아프리주스","Aprijuice","캠프파이어 팟 요리 — 라이딩 능력 강화, 아프리콘 베이스 (1.7)","소모품"],
+["든든한 곡물","Hearty Grains","1.7 신규 작물 — 요리 재료, 방랑 상인 판매","재료"],
+["사카린 나무","Saccharine","1.7 신규 나무 — 요리 재료, 묘목은 방랑 상인 판매","재료"],
+["마크","Marks","야생 포켓몬이 낚시·날씨·시간대 칭호 마크를 갖고 스폰 (1.7) — 요약 화면에서 확인","FAQ"]
 ];
 
 /* ===== 지연 렌더 레지스트리 (비활성 탭 DOM 지연 생성) ===== */
