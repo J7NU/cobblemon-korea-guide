@@ -665,7 +665,7 @@ button, input, select, summary { min-height: 44px; }
       <tr><td class="kr">화석 분석기</td><td class="en">Fossil Analyzer</td><td>조합: 조약돌 심층암4 + 철주괴2 + 레드스톤1 + 유리1 + 자수정 조각1</td></tr>
       <tr><td class="kr">복원 탱크</td><td class="en">Restoration Tank</td><td>조합 가능 (철·구리·유리·레드스톤 계열 — 레시피북 확인)</td></tr>
       <tr><td class="kr">데이터 모니터</td><td class="en">Data Monitor</td><td>v1.7 기준 조합 불가 — 화석 발굴지 구조물에서 곡괭이로 회수</td></tr>
-      <tr><td class="kr">목장 블록</td><td class="en">Pasture Block</td><td>포켓몬 방목·교배용. 레시피북 확인</td></tr>
+      <tr><td class="kr">목장 블록</td><td class="en">Pasture Block</td><td>포켓몬 방목·보관(최대 16마리). 교배·알은 <b class="sure">Cobbreeding 애드온</b> 필요(순정 X)</td></tr>
     </table>
   </div>
 
@@ -1210,7 +1210,7 @@ button, input, select, summary { min-height: 44px; }
     </details>
     <details>
       <summary>알은 어떻게 얻어요?</summary>
-      <div class="inner"><p>목장 블록(Pasture Block)에 호환되는 포켓몬 2마리(또는 메타몽+아무나)를 넣으면 돼. 단, 가라르 화석 4종은 교배가 안 돼.</p></div>
+      <div class="inner"><p><b>순정 Cobblemon엔 교배·알 시스템이 없어.</b> <b>Cobbreeding 애드온</b>(Cobblemon 1.7 대응판)을 깔아야 해. 설치하면 목장 블록에 호환 포켓몬 2마리(또는 메타몽+아무나)로 알을 얻어(가라르 화석 4종 제외). 순정 목장 블록은 <b>방목·보관</b> 전용.</p></div>
     </details>
     <details>
       <summary>레시피를 못 찾겠어요</summary>
@@ -1235,7 +1235,7 @@ button, input, select, summary { min-height: 44px; }
     <ul>
       <li><b>진화 아이템 분업</b>: 한 명은 얼음/바다 발굴지, 한 명은 사막/정글 담당하면 화석·아이템이 빨리 모여</li>
       <li><b>변함없는돌(Everstone)</b>을 지니게 하면 진화 방지 — 귀여운 모습 유지용</li>
-      <li>교배는 <b>목장 블록(Pasture Block)</b> — 메타몽이 있으면 대부분의 포켓몬과 교배 가능 (가라르 화석 4종 제외)</li>
+      <li>교배·알은 <b>Cobbreeding 애드온</b> 필요(순정 X) — 설치 시 목장 블록에 메타몽+아무나로 대부분 교배 가능 (가라르 화석 4종 제외)</li>
       <li>이 HTML 파일은 오프라인에서도 열리니까 여자친구 폰에도 저장해줘</li>
     </ul>
   </div>
@@ -1657,7 +1657,7 @@ const ITEMS=[
 ["화석 분석기","Fossil Analyzer","조약돌 심층암4+철2+레드스톤1+유리1+자수정1","기계"],
 ["복원 탱크","Restoration Tank","부활 머신 구성 블록","기계"],
 ["데이터 모니터","Data Monitor","v1.7 조합 불가 — 발굴지에서 회수","기계"],
-["목장 블록","Pasture Block","방목·교배","기계"],
+["목장 블록","Pasture Block","포켓몬 방목·보관(최대16). 교배·알은 Cobbreeding 애드온 필요(순정 X)","기계"],
 ["몬스터볼","Poké Ball","아프리콘+텀블스톤+금속 베이스","볼"],
 ["슈퍼볼","Great Ball","파랑 아프리콘 계열","볼"],
 ["하이퍼볼","Ultra Ball","검정+노랑 아프리콘 계열","볼"],
@@ -1703,7 +1703,7 @@ const ITEMS=[
 ["배틀 거는 법","start battle","파티에서 포켓몬 선택 후 R키(기본)로 상대를 조준","FAQ"],
 ["어깨 탑승","shoulder mount","소형 포켓몬 한정 — 웅크리기+우클릭, 일부는 버프 제공","FAQ"],
 ["이로치 확률","shiny rate","기본 1/8192(config 조정 가능) — 화석 부활로도 나올 수 있음","FAQ"],
-["알 얻는 법","breeding pasture block","목장 블록에 호환 포켓몬 2마리 — 가라르 화석 4종은 교배 불가","FAQ"],
+["알 얻는 법","breeding pasture block egg","순정엔 교배·알 없음 → Cobbreeding 애드온 필요. 설치 시 목장 블록에 2마리(가라르 화석 4종 제외)","FAQ"],
 ["레시피 찾는 법","recipe book","조합대 레시피북에서 영어 이름으로 검색","FAQ"],
 ["포켓몬 타기","riding mount","꺼낸 포켓몬에 웅크리기+우클릭 → 타기 (1.7). W 더블탭 질주, 비행은 스태미나 있음","FAQ"],
 ["캠프파이어 팟","Campfire Pot","모닥불 위 요리 냄비 — 스낵·케이크·아프리주스·상처약·경험사탕 제작 (1.7)","블록"],
