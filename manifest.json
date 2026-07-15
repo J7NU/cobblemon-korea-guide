@@ -1,12 +1,17 @@
 {
-  "name": "코블몬 한국어 가이드",
-  "short_name": "코블몬 가이드",
+  "name": "COBBLEVERSE 한국어 가이드",
+  "short_name": "코블버스 가이드",
   "start_url": "./cobblemon-korea-guide.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0f1218",
   "theme_color": "#0f1218",
   "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
