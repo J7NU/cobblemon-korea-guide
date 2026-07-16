@@ -1,6 +1,6 @@
 /* COBBLEVERSE 한국어 가이드 — 오프라인 캐시
    버전 올릴 때 CACHE 이름을 바꾸면 이전 캐시 자동 정리됨 */
-const CACHE = 'cvz-v1.2.0';
+const CACHE = 'cvz-v1.2.1';
 const SPRITES = 'cvz-sprites';
 const CORE = [
   './',

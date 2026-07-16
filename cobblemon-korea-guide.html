@@ -98,6 +98,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-si
 main{max-width:1080px;margin:10px auto;padding:0 16px}
 section.pane{display:none}
 section.pane.on{display:block}
+
+/* ---- 타입 상성표 ---- */
+.typegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin:10px 0}
+.typebtn{font-family:var(--font-body);font-size:12px;padding:11px 4px;border-radius:4px;border:1px solid rgba(0,0,0,.25);color:#1c1c1c;cursor:pointer;text-align:center;box-shadow:none;min-height:44px;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.typebtn.on{outline:2px solid #fff;outline-offset:-3px;box-shadow:0 0 0 3px rgba(255,255,255,0.18)}
+.typeresult .row{margin:14px 0}
+.typeresult .row:first-child{margin-top:0}
+.typeresult .row h3{margin-top:0}
+.chiplist{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;font-family:var(--font-body);font-size:12px;padding:6px 10px;border-radius:4px;color:#1c1c1c}
+.emptytype{color:var(--text-secondary);text-align:center;padding:18px 8px;font-size:14px}
+.dual-section{margin-top:12px}
+.dual-group{margin:10px 0}
+.dual-group-label{font-size:13px;font-weight:700;margin-bottom:6px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5);margin:14px 0;box-shadow:var(--shadow-sm)}
 .card h2{font-weight:700;font-size:17px;color:var(--text);margin-bottom:10px;letter-spacing:.5px}
 .card h3{font-weight:600;font-size:14px;color:var(--text);margin:16px 0 6px}
@@ -223,7 +237,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
     <div class="lens"></div>
     <div>
       <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.2</span></h1>
-      <div class="sub">COBBLEVERSE 1.7.40 (2026-07-11) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 요리</div>
+      <div class="sub">COBBLEVERSE 1.7.40 (2026-07-11) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 상성표 / 요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
   </div>
@@ -247,6 +261,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <button class="tab" data-pane="money">돈벌기</button>
   <button class="tab" data-pane="forms">특수 폼</button>
   <button class="tab" data-pane="gimmick">배틀 기믹</button>
+  <button class="tab" data-pane="types">상성표</button>
   <button class="tab" data-pane="cook">요리</button>
 </nav>
 
@@ -1202,6 +1217,44 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
 <!-- CONTENT:GIMMICK -->
 </section>
 
+<!-- ============ 상성표 ============ -->
+<section class="pane" id="pane-types">
+  <div class="card">
+    <h2>🎯 타입 상성표</h2>
+    <p class="kv">타입 하나를 누르면 <b>이 타입이 뭐에 약하고 뭐에 강한지</b>(방어) + <b>뭘 때릴 때 강한지</b>(공격)를 한눈에 보여준다. 배틀 중 옆에 켜두고 참고.</p>
+    <div class="typegrid" id="typegrid"></div>
+  </div>
+  <div class="card" id="typeEmptyCard">
+    <p class="emptytype">위에서 타입을 하나 선택하면 결과가 여기 나타난다</p>
+  </div>
+  <div class="card" id="typeResultCard" style="display:none">
+    <h2 id="typeResultTitle"></h2>
+    <div class="typeresult" id="typeResultBody"></div>
+  </div>
+
+  <!-- ---- 2타입 방어 계산기 ---- -->
+  <div class="card" id="typeDualCard">
+    <h2>🧮 2타입 방어 계산기</h2>
+    <p class="kv">실전 포켓몬은 타입이 2개인 경우가 많다. 두 타입을 고르면 공격 타입별 합산 배율을 계산한다. 두 번째 타입을 '없음'으로 두면 단일 타입 계산.</p>
+    <div class="dual-section">
+      <h3 style="margin-top:0">첫 번째 타입</h3>
+      <div class="typegrid" id="dualGrid1"></div>
+    </div>
+    <div class="dual-section">
+      <h3>두 번째 타입</h3>
+      <div class="typegrid" id="dualGrid2"></div>
+    </div>
+    <div id="dualEmptyMsg" style="margin-top:10px">
+      <p class="emptytype">첫 번째 타입을 선택하면 결과가 여기 나타난다</p>
+    </div>
+    <div id="dualResult" style="display:none;margin-top:14px">
+      <div id="dualResultTitle" style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:10px"></div>
+      <div class="typeresult" id="dualResultBody"></div>
+    </div>
+  </div>
+<!-- CONTENT:TYPES -->
+</section>
+
 <!-- ============ 요리 ============ -->
 <section class="pane" id="pane-cook">
 <div class="card">
@@ -1413,7 +1466,7 @@ const _tip=(function(){
 /* ===== Search index (built from DOM at load) =====
    Each entry: [kr, en, info, category, pane, element] */
 const SEARCH_INDEX=[];
-const _PANE_CAT={start:'시작',struct:'구조물',gym:'체육관',legend:'전설',items:'아이템',money:'돈',forms:'폼',gimmick:'기믹',cook:'요리'};
+const _PANE_CAT={start:'시작',struct:'구조물',gym:'체육관',legend:'전설',items:'아이템',money:'돈',forms:'폼',gimmick:'기믹',types:'상성',cook:'요리'};
 document.querySelectorAll('section.pane').forEach(sec=>{
   const pane=sec.id.replace('pane-',''),cat=_PANE_CAT[pane]||pane;
   sec.querySelectorAll('tbody tr').forEach(tr=>{
@@ -1651,6 +1704,168 @@ document.querySelectorAll('.toggle-all').forEach(btn=>{
     btn.textContent=open?'모두 접기':'모두 펼치기';
   });
 });
+
+/* ===== 타입 상성표 + 2타입 방어 계산기 (legacy 이식) ===== */
+(function(){
+  const TYPE_COLOR={노말:'#A8A878',불꽃:'#F08030',물:'#6890F0',풀:'#78C850',전기:'#F8D030',얼음:'#98D8D8',격투:'#C03028',독:'#A040A0',땅:'#E0C068',비행:'#A890F0',에스퍼:'#F85888',벌레:'#A8B820',바위:'#B8A038',고스트:'#705898',드래곤:'#7038F8',악:'#705848',강철:'#B8B8D0',페어리:'#EE99AC'};
+  const TYPE_EN={노말:'Normal',불꽃:'Fire',물:'Water',풀:'Grass',전기:'Electric',얼음:'Ice',격투:'Fighting',독:'Poison',땅:'Ground',비행:'Flying',에스퍼:'Psychic',벌레:'Bug',바위:'Rock',고스트:'Ghost',드래곤:'Dragon',악:'Dark',강철:'Steel',페어리:'Fairy'};
+  const TYPE_ORDER=['노말','불꽃','물','풀','전기','얼음','격투','독','땅','비행','에스퍼','벌레','바위','고스트','드래곤','악','강철','페어리'];
+  const ATK={
+    노말:{x2:[],x05:['바위','강철'],x0:['고스트']},
+    불꽃:{x2:['풀','얼음','벌레','강철'],x05:['불꽃','물','바위','드래곤'],x0:[]},
+    물:{x2:['불꽃','땅','바위'],x05:['물','풀','드래곤'],x0:[]},
+    풀:{x2:['물','땅','바위'],x05:['불꽃','풀','독','비행','벌레','드래곤','강철'],x0:[]},
+    전기:{x2:['물','비행'],x05:['전기','풀','드래곤'],x0:['땅']},
+    얼음:{x2:['풀','땅','비행','드래곤'],x05:['불꽃','물','얼음','강철'],x0:[]},
+    격투:{x2:['노말','얼음','바위','악','강철'],x05:['독','비행','에스퍼','벌레','페어리'],x0:['고스트']},
+    독:{x2:['풀','페어리'],x05:['독','땅','바위','고스트'],x0:['강철']},
+    땅:{x2:['불꽃','전기','독','바위','강철'],x05:['풀','벌레'],x0:['비행']},
+    비행:{x2:['풀','격투','벌레'],x05:['전기','바위','강철'],x0:[]},
+    에스퍼:{x2:['격투','독'],x05:['에스퍼','강철'],x0:['악']},
+    벌레:{x2:['풀','에스퍼','악'],x05:['불꽃','격투','독','비행','고스트','강철','페어리'],x0:[]},
+    바위:{x2:['불꽃','얼음','비행','벌레'],x05:['격투','땅','강철'],x0:[]},
+    고스트:{x2:['에스퍼','고스트'],x05:['악'],x0:['노말']},
+    드래곤:{x2:['드래곤'],x05:['강철'],x0:['페어리']},
+    악:{x2:['에스퍼','고스트'],x05:['격투','악','페어리'],x0:[]},
+    강철:{x2:['얼음','바위','페어리'],x05:['불꽃','물','전기','강철'],x0:[]},
+    페어리:{x2:['격투','드래곤','악'],x05:['불꽃','독','강철'],x0:[]}
+  };
+  function defenseFor(t){
+    const r={x2:[],x05:[],x0:[]};
+    TYPE_ORDER.forEach(a=>{
+      const c=ATK[a];
+      if(c.x2.includes(t))r.x2.push(a);
+      if(c.x05.includes(t))r.x05.push(a);
+      if(c.x0.includes(t))r.x0.push(a);
+    });
+    return r;
+  }
+  function mkTypeBtn(t){
+    const b=document.createElement('button');
+    b.className='typebtn';b.type='button';b.textContent=t;
+    b.style.background=TYPE_COLOR[t];b.dataset.type=t;
+    return b;
+  }
+
+  /* ---- 단일 타입 뷰 ---- */
+  const grid=document.getElementById('typegrid');
+  if(!grid)return;
+  let selType=null;
+  TYPE_ORDER.forEach(t=>grid.appendChild(mkTypeBtn(t)));
+  const emptyCard=document.getElementById('typeEmptyCard'),resultCard=document.getElementById('typeResultCard');
+  const titleEl=document.getElementById('typeResultTitle'),bodyEl=document.getElementById('typeResultBody');
+  function chipRow(label,arr){
+    if(!arr.length)return '';
+    return '<div class="row"><h3>'+label+'</h3><div class="chiplist">'+arr.map(t=>'<span class="chip" style="background:'+TYPE_COLOR[t]+'">'+t+'</span>').join('')+'</div></div>';
+  }
+  function render(){
+    if(!selType){resultCard.style.display='none';emptyCard.style.display='block';return}
+    emptyCard.style.display='none';resultCard.style.display='block';
+    const dfd=defenseFor(selType),atk=ATK[selType];
+    titleEl.textContent=selType+' ('+TYPE_EN[selType]+') 타입 상성';
+    let html='<h3 style="margin:6px 0 2px;font-size:15px">🛡️ 방어 — 이 타입 포켓몬이 맞을 때</h3>';
+    html+=chipRow('🔴 약점 · 2배로 아픔',dfd.x2);
+    html+=chipRow('🟢 강함 · 절반만 아픔',dfd.x05);
+    html+=chipRow('⚪ 무효 · 아예 안 통함',dfd.x0);
+    if(!dfd.x2.length&&!dfd.x05.length&&!dfd.x0.length)html+='<p class="emptytype">약점·강점 없이 모두 1배</p>';
+    html+='<h3 style="margin:16px 0 2px;font-size:15px">⚔️ 공격 — 이 타입으로 때릴 때</h3>';
+    html+=chipRow('💥 효과 굉장 · 2배',atk.x2);
+    html+=chipRow('🔻 효과 별로 · 0.5배',atk.x05);
+    html+=chipRow('🚫 안 통함 · 무효',atk.x0);
+    if(!atk.x2.length&&!atk.x05.length&&!atk.x0.length)html+='<p class="emptytype">특별한 공격 상성 없이 모두 1배</p>';
+    bodyEl.innerHTML=html;
+  }
+  grid.addEventListener('click',e=>{
+    const b=e.target.closest('.typebtn');if(!b)return;
+    grid.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');selType=b.dataset.type;render();
+  });
+
+  /* ---- 2타입 방어 계산기 ---- */
+  const g1=document.getElementById('dualGrid1'),g2=document.getElementById('dualGrid2');
+  if(!g1||!g2)return;
+  let sel1=null,sel2=null;
+  function getMult(atkType,defType){
+    const c=ATK[atkType];
+    if(!c)return 1;
+    if(c.x0.includes(defType))return 0;
+    if(c.x2.includes(defType))return 2;
+    if(c.x05.includes(defType))return 0.5;
+    return 1;
+  }
+  function calcDual(t1,t2){
+    const groups={x4:[],x2:[],x05:[],x025:[],x0:[]};
+    TYPE_ORDER.forEach(atkType=>{
+      let m=getMult(atkType,t1);
+      if(t2)m*=getMult(atkType,t2);
+      /* 배율은 {0,0.25,0.5,1,2,4} 중 하나 — 부동소수 오차 없음 */
+      if(m===4)groups.x4.push(atkType);
+      else if(m===2)groups.x2.push(atkType);
+      else if(m===0.5)groups.x05.push(atkType);
+      else if(m===0.25)groups.x025.push(atkType);
+      else if(m===0)groups.x0.push(atkType);
+    });
+    return groups;
+  }
+  function dualChipRow(label,arr,color){
+    if(!arr.length)return '';
+    return '<div class="dual-group">'
+      +'<div class="dual-group-label" style="color:'+color+'">'+label+'</div>'
+      +'<div class="chiplist">'+arr.map(t=>'<span class="chip" style="background:'+(TYPE_COLOR[t]||'#888')+'">'+t+'</span>').join('')+'</div></div>';
+  }
+  function renderDual(){
+    const emptyMsg=document.getElementById('dualEmptyMsg');
+    const resultDiv=document.getElementById('dualResult');
+    const dTitle=document.getElementById('dualResultTitle');
+    const dBody=document.getElementById('dualResultBody');
+    if(!sel1){emptyMsg.style.display='';resultDiv.style.display='none';return}
+    emptyMsg.style.display='none';resultDiv.style.display='';
+    function swatch(t){
+      return '<span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:'+(TYPE_COLOR[t]||'#888')+';vertical-align:middle;margin-right:3px"></span>';
+    }
+    dTitle.innerHTML=swatch(sel1)+sel1+(sel2?' + '+swatch(sel2)+sel2+' 방어 배율':' 방어 배율 (단일 타입)');
+    const gr=calcDual(sel1,sel2);
+    let html='';
+    html+=dualChipRow('4× 치명적 (약점 × 약점)',gr.x4,'var(--danger)');
+    html+=dualChipRow('2× 아픔 (약점)',gr.x2,'var(--warning)');
+    html+=dualChipRow('½× 버팀 (강점)',gr.x05,'var(--success)');
+    html+=dualChipRow('¼× 튼튼 (강점 × 강점)',gr.x025,'var(--info)');
+    html+=dualChipRow('0× 무효',gr.x0,'var(--text-secondary)');
+    if(!html)html='<p class="emptytype">1배 — 특별한 약점·강점 없음</p>';
+    dBody.innerHTML=html;
+  }
+  TYPE_ORDER.forEach(t=>g1.appendChild(mkTypeBtn(t)));
+  const noneBtn=document.createElement('button');
+  noneBtn.className='typebtn dual-none on';noneBtn.type='button';noneBtn.textContent='없음';
+  noneBtn.style.background='#4a5568';noneBtn.style.color='#e2e8f0';noneBtn.dataset.type='';
+  g2.appendChild(noneBtn);
+  TYPE_ORDER.forEach(t=>g2.appendChild(mkTypeBtn(t)));
+  g1.addEventListener('click',e=>{
+    const b=e.target.closest('.typebtn');if(!b)return;
+    g1.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    sel1=b.dataset.type;
+    /* sel1과 같은 타입이 sel2에 있으면 sel2 초기화 */
+    if(sel2===sel1){
+      sel2=null;
+      g2.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
+      g2.querySelector('.dual-none').classList.add('on');
+    }
+    /* sel1 타입을 grid2에서 비활성화 (같은 타입 2개 방지) */
+    g2.querySelectorAll('.typebtn').forEach(x=>{
+      if(x.dataset.type===sel1){x.disabled=true;x.style.opacity='0.35'}
+      else{x.disabled=false;x.style.opacity=''}
+    });
+    renderDual();
+  });
+  g2.addEventListener('click',e=>{
+    const b=e.target.closest('.typebtn');if(!b||b.disabled)return;
+    g2.querySelectorAll('.typebtn').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    sel2=b.dataset.type||null; /* 빈 문자열(없음) → null */
+    renderDual();
+  });
+})();
 
 /* ===== 오프라인 지원 (Service Worker) ===== */
 if(navigator.serviceWorker&&navigator.serviceWorker.register){
