@@ -222,8 +222,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <div class="dex-top">
     <div class="lens"></div>
     <div>
-      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.1</span></h1>
-      <div class="sub">COBBLEVERSE 1.7.40 (2026-07-11) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼</div>
+      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.2</span></h1>
+      <div class="sub">COBBLEVERSE 1.7.40 (2026-07-11) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
   </div>
@@ -246,6 +246,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <button class="tab" data-pane="items">특수 아이템</button>
   <button class="tab" data-pane="money">돈벌기</button>
   <button class="tab" data-pane="forms">특수 폼</button>
+  <button class="tab" data-pane="gimmick">배틀 기믹</button>
+  <button class="tab" data-pane="cook">요리</button>
 </nav>
 
 <main>
@@ -1067,6 +1069,255 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
 <!-- CONTENT:FORMS -->
 </section>
 
+<!-- ============ 배틀 기믹 ============ -->
+<section class="pane" id="pane-gimmick">
+<div class="card">
+  <h2>⚔️ 배틀 기믹 4종 개요 <span class="tag gold">Mega Showdown 모드</span></h2>
+  <p>COBBLEVERSE에 포함된 <b>Cobblemon: Mega Showdown</b> 모드가 본가 세대별 배틀 강화 기믹을 추가한다. 각 기믹은 <b>전용 키 아이템</b>이 필요하고, 발동하면 배틀에서 큰 어드밴티지를 얻는다.</p>
+  <table>
+    <thead><tr><th>기믹</th><th>세대</th><th>준비물</th><th>지속</th><th>효과 요약</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">메가진화 <span class="en">(Mega Evolution)</span></td><td>6세대</td><td>메가팔찌 + 전용 메가스톤</td><td>배틀 내내</td><td>종족값·특성 대폭 강화</td></tr>
+      <tr><td class="kr">테라스탈 <span class="en">(Terastallization)</span></td><td>9세대</td><td>테라오브 + 테라조각 50개</td><td>배틀 내내</td><td>타입을 원하는 하나로 교체</td></tr>
+      <tr><td class="kr">Z기술 <span class="en">(Z-Moves)</span></td><td>7세대</td><td>Z링 + 타입 Z크리스탈</td><td>1회</td><td>초강력 한 방</td></tr>
+      <tr><td class="kr">다이맥스·거다이맥스 <span class="en">(Dynamax / Gigantamax)</span></td><td>8세대</td><td>다이맥스밴드 + 파워스팟 근처</td><td>3턴</td><td>거대화 + HP 증가 + 맥스 기술</td></tr>
+    </tbody>
+  </table>
+  <h3>한 배틀에서의 규칙</h3>
+  <ul>
+    <li><b>지닌 물건이 기믹을 결정</b> — Z크리스탈을 지니면 Z기술만, 메가스톤을 지니면 메가진화만, 아무것도 안 지니면 다이맥스 가능</li>
+    <li>각 기믹은 <b>배틀당 1회</b>. 팀 내 다른 포켓몬이 서로 다른 기믹을 쓰는 건 가능</li>
+    <li>상대 트레이너·일부 야생도 기믹을 쓸 수 있음 — 방심 금지</li>
+  </ul>
+  <p class="note">⚠️ <b>제작 레시피는 모드 버전·서버 설정에 따라 달라진다</b> — 아래 조합법은 참고용이고, 정확한 재료는 <b>게임 내 JEI</b>(아이템 검색: "mega", "tera", "dynamax")로 확인하는 게 유일하게 확실하다. 멀티 서버에서는 관리자 설정에 따라 일부 기믹이 꺼져 있을 수 있다.</p>
+</div>
+
+<div class="card">
+  <h2>💠 메가진화 — 준비와 실행</h2>
+  <p>배틀 중 딱 한 번, 특정 포켓몬을 더 강한 <b>메가 폼</b>으로 일시 변신시킨다. 종족값이 크게 오르고 특성이 메가 전용으로 바뀌며(예: 메가캥카=부모자식사랑), 일부는 타입도 변한다(메가리자몽X=불꽃/드래곤). 배틀이 끝나면 원래 폼으로 복귀하지만 메가스톤은 그대로라 다음 배틀에 또 쓸 수 있다.</p>
+  <h3>준비물</h3>
+  <table>
+    <thead><tr><th>아이템</th><th>획득/제작</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">키스톤 <span class="en">(Key Stone)</span></td><td><b>Megasite</b> 구조물(지하 Y 5~20, 구형 회색·보라 덩어리)에서 채굴</td><td>메가팔찌 재료</td></tr>
+      <tr><td class="kr">메가팔찌 <span class="en">(Mega Bracelet)</span></td><td>철주괴 5 + 다이아 1 + 키스톤 1 + 아프리콘 2 (아프리콘 색 = 팔찌 색, 성능 동일)</td><td>트레이너 착용 — <b>월드당 1개면 충분</b></td></tr>
+      <tr><td class="kr">메가원석 <span class="en">(Raw Mega Stone)</span></td><td>Megasite에서 채굴</td><td>메가스톤 재료</td></tr>
+      <tr><td class="kr">메가스톤 <span class="en">(Mega Stone)</span></td><td>가운데 메가원석 + 아래 다이아 + 양옆 철주괴 + 위에 그 포켓몬 관련 아이템</td><td>포켓몬이 지님 — <b>포켓몬 종류마다 전용</b></td></tr>
+    </tbody>
+  </table>
+  <p class="note">Megasite는 미니맵(Xaero)을 동굴 모드로 보면 찾기 쉽다. 팔찌는 한 번만 만들면 되니 이후 채굴은 메가원석 위주로.</p>
+  <h3>실행 순서</h3>
+  <ol class="steps">
+    <li>메가팔찌를 <b>액세서리(Curios) 슬롯</b>에 착용</li>
+    <li>메가스톤을 핫바에 들고 포켓몬을 내보낸 뒤 <b>웅크리기 + 좌클릭</b> → <b>"Change Held Item(지닌 물건 변경)"</b>으로 스톤을 지니게</li>
+    <li>배틀 시작 → <b>Fight</b> 선택 → 좌하단 <b>메가진화 아이콘</b> 클릭 (무지개색으로 바뀌면 준비 완료)</li>
+    <li>기술 선택 → 그 턴에 메가진화하며 행동</li>
+  </ol>
+  <p class="note">예외: <span class="pmon" data-kr="레쿠쟈" data-en="Rayquaza">레쿠쟈</span>는 메가스톤 없이 기술 <b>"용의 승천(Dragon Ascent)"</b>만 알면 메가진화 가능. 배틀 밖 라디얼 메뉴로도 메가폼을 볼 수 있지만 겉모습만이고, 실전은 배틀 안에서 발동해야 한다.</p>
+</div>
+
+<div class="card">
+  <h2>💎 테라스탈 — 준비와 실행</h2>
+  <p>포켓몬 타입을 <b>지정한 테라 타입 하나로 교체</b>한다. 약점·저항이 새 타입 기준으로 재계산되고, 원래 타입과 같은 타입으로 테라스탈하면 자속 위력이 더 세진다. 배틀 내내 유지.</p>
+  <h3>준비</h3>
+  <table>
+    <thead><tr><th>아이템</th><th>획득</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">테라오브 <span class="en">(Tera Orb)</span></td><td>제작 (레시피는 JEI에서 "tera" 검색)</td><td>트레이너 착용 — 테라스탈 발동 조건</td></tr>
+      <tr><td class="kr">테라조각 <span class="en">(Tera Shard)</span></td><td><b>포켓몬 처치 시 드롭</b> (타입 조각 약 10%, 그 포켓몬의 타입 조각이 나옴)</td><td>같은 타입 <b>50개</b>를 들고 포켓몬 <b>우클릭</b> → 테라 타입 지정</td></tr>
+      <tr><td class="kr">스텔라 조각 <span class="en">(Stellar Shard)</span></td><td>처치 드롭 (약 1% — 초희귀)</td><td>스텔라 타입 지정</td></tr>
+    </tbody>
+  </table>
+  <h3>실행 순서</h3>
+  <ol class="steps">
+    <li>원하는 타입 테라조각 50개를 모아 포켓몬에게 <b>우클릭</b> → 테라 타입 설정</li>
+    <li>테라오브 착용 상태로 배틀 → 기술 화면의 <b>테라스탈 버튼</b> 클릭 → 기술 선택</li>
+  </ol>
+  <p class="note">활용: 약점 찔리는 포켓몬을 저항 타입으로 뒤집거나(예: 물 포켓몬을 풀 테라로 전기 반감), 에이스의 자속 타입으로 테라해 화력을 올리는 게 기본. 조각은 <b>테라 파우치(Tera Pouch)</b>에 모아둘 수 있다.</p>
+</div>
+
+<div class="card">
+  <h2>🌩️ 다이맥스 & 거다이맥스 — 준비와 실행</h2>
+  <p><b>3턴간 포켓몬이 거대화</b>해 HP가 늘고 모든 기술이 타입별 부가효과(날씨·능력치 변화 등)가 붙은 <b>맥스 기술</b>로 바뀐다. 3턴이 지나면 원래대로.</p>
+  <h3>준비</h3>
+  <table>
+    <thead><tr><th>아이템/블록</th><th>획득</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">다이맥스밴드 <span class="en">(Dynamax Band)</span></td><td>제작 (JEI에서 "dynamax" 검색)</td><td>액세서리 슬롯 착용</td></tr>
+      <tr><td class="kr">파워스팟 <span class="en">(Power Spot)</span></td><td>제작 가능한 <b>블록</b></td><td><b>20블록 이내</b>에서만 다이맥스 발동 가능 — 핵심 제약. 거점·체육관 앞에 설치해두면 편함</td></tr>
+      <tr><td class="kr">다이맥스캔디 <span class="en">(Dynamax Candy)</span></td><td>맥스버섯 채집 보너스 등</td><td>다이맥스 레벨 +1 — HP 보너스 기본 +50%, 레벨당 +5%, 최대 +100%</td></tr>
+      <tr><td class="kr">맥스버섯 <span class="en">(Max Mushroom)</span></td><td>탐험 중 발견, <b>도끼로 채집</b> (1~3개, 약 30분 후 리스폰)</td><td>맥스수프 재료 — 희귀하니 보이면 무조건 채집</td></tr>
+      <tr><td class="kr">맥스수프 <span class="en">(Max Soup)</span></td><td>맥스버섯으로 제작</td><td>먹이면 <b>거다이맥스 팩터</b> 부여</td></tr>
+    </tbody>
+  </table>
+  <h3>실행 순서</h3>
+  <ol class="steps">
+    <li>다이맥스밴드를 액세서리 슬롯에 착용</li>
+    <li><b>파워스팟 20블록 이내</b>에서 배틀 시작</li>
+    <li>기술 선택 화면에서 <b>다이맥스 버튼</b>(뒤로가기 옆) 클릭 → 그 턴부터 3턴간 거대화</li>
+    <li>포켓몬이 지닌 물건에 메가스톤·Z크리스탈이 있으면 다이맥스가 안 뜨니 <b>지닌 물건을 비우거나 다른 아이템</b>으로</li>
+  </ol>
+  <h3>거다이맥스 (G-Max)</h3>
+  <ul>
+    <li>거다이맥스 폼이 있는 <b>특정 종만</b> 가능 — 그 포켓몬에게 <b>맥스수프</b>를 먹여 팩터 부여</li>
+    <li>팩터가 있으면 다이맥스 발동 시 자동으로 <b>거다이맥스 폼</b>으로 변신, 전용 <b>G-Max 기술</b> 사용</li>
+    <li>COBBLEVERSE 1.7.40에서 G-Max 모델 추가: <span class="pmon" data-kr="피카츄" data-en="Pikachu">피카츄</span>·<span class="pmon" data-kr="거북왕" data-en="Blastoise">거북왕</span>·<span class="pmon" data-kr="석탄산" data-en="Coalossal">석탄산</span>·<span class="pmon" data-kr="대왕끼리동" data-en="Copperajah">대왕끼리동</span></li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⚡ Z기술 — 준비와 실행</h2>
+  <p>배틀당 <b>딱 1회</b> 쓰는 초강력 기술. 지닌 Z크리스탈과 <b>같은 타입의 기술</b>이 베이스가 된다.</p>
+  <h3>준비</h3>
+  <table>
+    <thead><tr><th>아이템</th><th>획득</th><th>용도</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">Z크리스탈 <span class="en">(Z-Crystal)</span></td><td><b>오미너스 키</b>로 불길한 시련 스포너 개방 시 확률 획득 (키는 로켓단 타워 — 특수 아이템 탭 참조) · 블랭크 크리스탈도 같은 곳</td><td>포켓몬이 지님 — 같은 타입 기술 필요</td></tr>
+      <tr><td class="kr">Z링 <span class="en">(Z-Ring)</span></td><td>Z크리스탈로 제작 (JEI에서 "z ring" 검색)</td><td>메인핸드에 들고 <b>우클릭</b>으로 활성화</td></tr>
+    </tbody>
+  </table>
+  <h3>실행 순서</h3>
+  <ol class="steps">
+    <li>Z링을 손에 들고 우클릭 → "배틀에서 Z기술 사용 가능" 메시지 확인</li>
+    <li>포켓몬에게 타입 Z크리스탈을 지니게 (해당 타입 기술 보유 필수)</li>
+    <li>배틀 기술 화면에서 <b>노란색으로 활성화된 Z버튼</b> 클릭 → Z기술 발동</li>
+  </ol>
+  <p class="note">특정 포켓몬 전용 Z크리스탈(고유 Z기술)도 있다 — 예: 피카슈니움Z(지우의 피카츄, 특수 폼 탭 참조). 일반 크리스탈은 타입별.</p>
+</div>
+
+<div class="card">
+  <h2>🧭 어떤 기믹을 언제 쓰나 (실전 추천)</h2>
+  <table>
+    <thead><tr><th>상황</th><th>추천 기믹</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">체육관·사천왕 에이스전</td><td>메가진화</td><td>배틀 내내 유지되는 스탯 강화 — 가장 안정적. 에이스 1마리 정해 스톤 상시 지참</td></tr>
+      <tr><td class="kr">상성이 불리한 상대</td><td>테라스탈</td><td>약점을 저항으로 뒤집기. 방어적 활용이 특히 강함</td></tr>
+      <tr><td class="kr">단단한 상대 한 방 돌파</td><td>Z기술</td><td>1회 초화력 — 내구형·전설 상대 마무리</td></tr>
+      <tr><td class="kr">거점 근처 보스전·연전</td><td>다이맥스</td><td>HP 최대 2배 + 3턴 러시. 파워스팟 근처 한정이라 거점 전투에 최적</td></tr>
+      <tr><td class="kr">전설 포획 준비</td><td>다이맥스(탱킹) 또는 테라스탈</td><td>HP 늘려 버티며 깎기 / 반감 타입으로 안전하게 약화</td></tr>
+    </tbody>
+  </table>
+  <p class="note">처음이면 <b>메가진화부터</b> 익히고 하나씩 늘리는 걸 추천. 준비 비용: 메가(채굴만) &lt; 테라(조각 50개) &lt; Z(시련 운) ≈ 다이맥스(버섯·블록).</p>
+</div>
+<!-- CONTENT:GIMMICK -->
+</section>
+
+<!-- ============ 요리 ============ -->
+<section class="pane" id="pane-cook">
+<div class="card">
+  <h2>🍲 캠프파이어 팟 요리 개요 <span class="tag gold">Cobblemon 1.7</span></h2>
+  <p>모닥불 위에 <b>캠프파이어 팟(Campfire Pot)</b>을 올려 열매·작물로 음식을 만드는 시스템. EV 조절(모찌), 라이딩 강화(아프리주스), 플레이어 버프(시니스터 티), 야생 유인(포케 스낵)까지 전부 여기서 나온다.</p>
+  <h3>냄비 만들기·설치</h3>
+  <ul>
+    <li><b>제작</b>: 윗줄 구리주괴·유리·구리주괴 / 가운뎃줄 아프리콘 2 / 아랫줄 구리주괴 3 — <b>아프리콘 색 = 냄비 색</b> (7색, 색은 아프리주스 스탯 보정에 영향)</li>
+    <li><b>설치</b>: 바닥 모닥불 위에 올리기. 곡괭이/도끼로 회수</li>
+    <li>UI에 일반 재료 칸 + <b>조미료(Seasoning) 슬롯 3칸</b> — 조미료가 결과물의 효과를 결정</li>
+  </ul>
+  <p class="note">⚠️ 본가의 <b>포핀(Poffin)은 Cobblemon에 없다.</b> 역할이 이렇게 재편됐다: 플레이어 주식 = <b>포니기리</b>, 라이딩 강화 = <b>아프리주스</b>, EV 조절 = <b>모찌</b>, 효과 음료 = <b>시니스터 티</b>. 세부 레시피는 게임 내 레시피북·냄비 UI 기준.</p>
+</div>
+
+<div class="card">
+  <h2>🍡 모찌 — 열매로 EV(노력치) 조절</h2>
+  <p><b>하티 그레인(Hearty Grains) + 꿀 + 특정 열매</b>를 냄비에 넣으면 모찌 3개. 먹인 포켓몬의 해당 스탯 EV가 <b>+4</b>씩 오른다. 비타민(EV +10)보다 정밀한 조정용.</p>
+  <table>
+    <thead><tr><th>모찌</th><th>효과</th><th>재료 열매</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">헬스모찌 <span class="en">(Health Mochi)</span></td><td>HP EV +4</td><td>파리열매 (Pomeg)</td></tr>
+      <tr><td class="kr">머슬모찌 <span class="en">(Muscle Mochi)</span></td><td>공격 EV +4</td><td>구실열매 (Kelpsy)</td></tr>
+      <tr><td class="kr">레지스트모찌 <span class="en">(Resist Mochi)</span></td><td>방어 EV +4</td><td>초나열매 (Qualot)</td></tr>
+      <tr><td class="kr">지니어스모찌 <span class="en">(Genius Mochi)</span></td><td>특수공격 EV +4</td><td>린드열매 (Hondew)</td></tr>
+      <tr><td class="kr">클레버모찌 <span class="en">(Clever Mochi)</span></td><td>특수방어 EV +4</td><td>요파열매 (Grepa)</td></tr>
+      <tr><td class="kr">스위프트모찌 <span class="en">(Swift Mochi)</span></td><td>스피드 EV +4</td><td>토망열매 (Tamato)</td></tr>
+      <tr><td class="kr">리스타트모찌 <span class="en">(Fresh-Start Mochi)</span></td><td><b>전 EV를 0으로 리셋</b></td><td>수수께끼열매 (Enigma)</td></tr>
+    </tbody>
+  </table>
+  <p class="note">활용: 에이스 포켓몬 EV를 잘못 찍었으면 리스타트모찌로 리셋 → 원하는 모찌로 재배분. EV는 스탯당 최대 252, 총 510.</p>
+</div>
+
+<div class="card">
+  <h2>🧃 아프리주스 — 라이딩(탈것) 스탯 영구 강화</h2>
+  <p><b>아프리콘 + 기운의꽃(Pep-Up Flower) + 에너지뿌리 + 맛 내기용 열매</b>를 냄비에 조리. 열매의 <b>맛(flavour)</b>이 주스에 흡수되고, 탈것 포켓몬에게 먹이면 <b>라이딩 스탯이 영구 상승</b>한다.</p>
+  <h3>맛 → 라이딩 스탯</h3>
+  <table>
+    <thead><tr><th>맛</th><th>오르는 스탯</th><th>대표 열매 (맛 점수)</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">매운맛 <span class="en">(Spicy)</span></td><td>가속 (Acceleration)</td><td>체리열매 10 · Figy 15 · Spelon 30 · 수수께끼열매 40</td></tr>
+      <tr><td class="kr">떫은맛 <span class="en">(Dry)</span></td><td>스킬 (Skill)</td><td>체스토열매 10 · Wiki 15 · Micle 40</td></tr>
+      <tr><td class="kr">단맛 <span class="en">(Sweet)</span></td><td>속도 (Speed)</td><td>피카열매 10 · Mago 15 · Custap 40</td></tr>
+      <tr><td class="kr">신맛 <span class="en">(Sour)</span></td><td>스태미나 (Stamina)</td><td>Aspear 10 · Iapapa 15 · Rowap 40</td></tr>
+      <tr><td class="kr">쓴맛 <span class="en">(Bitter)</span></td><td>점프 (Jump)</td><td>Rawst 10 · Aguav 15 · Jaboca 40</td></tr>
+      <tr><td class="kr">균형형</td><td>여러 스탯 조금씩</td><td>오랭열매·리샘열매 (4맛 각 10) · Hopo (5맛 각 10)</td></tr>
+    </tbody>
+  </table>
+  <h3>냄비 색 = 기본 보정</h3>
+  <table>
+    <thead><tr><th>냄비(아프리콘) 색</th><th>보정</th></tr></thead>
+    <tbody>
+      <tr><td>빨강</td><td>가속 +2, 스태미나 -1</td></tr>
+      <tr><td>파랑</td><td>스킬 +2, 점프 -1</td></tr>
+      <tr><td>분홍</td><td>속도 +2, 가속 -1</td></tr>
+      <tr><td>노랑</td><td>스태미나 +2, 스킬 -1</td></tr>
+      <tr><td>초록</td><td>점프 +2, 속도 -1</td></tr>
+      <tr><td>검정</td><td>보정 없음</td></tr>
+      <tr><td>하양</td><td>전 스탯 -2</td></tr>
+    </tbody>
+  </table>
+  <p>맛 점수 합계가 높을수록 부스트 상승: <b>15+ → +1 / 35+ → +2 / 45+ → +3 / 55+ → +4 / 75+ → +5 / 105+ → +6</b>. 총 부스트 4 이상이면 "Tasty", 8 이상이면 "Delicious" 주스.</p>
+  <p class="note">예시: <b>날탈것 속도 특화</b> = 분홍 냄비 + 단맛 고점수 열매 몰아넣기. 먹이기 전 툴팁에서 상승 수치 확인 가능.</p>
+</div>
+
+<div class="card">
+  <h2>🍙 포니기리 · 시니스터 티 · 포케 스낵</h2>
+  <table>
+    <thead><tr><th>요리</th><th>대상</th><th>효과·사용법</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">포니기리 <span class="en">(Ponigiri)</span></td><td>플레이어</td><td>주먹밥 (하티 그레인 3 + 말린 켈프 + 영양 조미료 → 3개). 조미료가 좋을수록 허기·포화도 큰 회복 — 소고기·금당근이 고효율. 단 열매로 만들면 이름이 <b>"젤리 도넛"</b>으로 바뀜</td></tr>
+      <tr><td class="kr">시니스터 티 <span class="en">(Sinister Tea)</span></td><td>플레이어</td><td>효과 조미료 최대 3개 흡수 — 마시면 물약 효과 발동. 설탕=신속, 개양귀비/횃불꽃=야간투시, 알리움=화염저항, 데이지=재생, 우유=효과 정화 등 30여 종</td></tr>
+      <tr><td class="kr">포케 스낵 / 포케 미끼 <span class="en">(Poké Snack / Bait)</span></td><td>야생 포켓몬</td><td>바닥에 설치하면 야생이 다가와 먹음(9번 베어 물면 소멸). <b>미끼 조미료</b>로 유인 대상 결정 — 포획·스폰 유도용</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>🧪 냄비로 만드는 배틀·회복 아이템</h2>
+  <p>요리 외에 기존 아이템도 냄비에서 대량 제작 가능 — <b>양조기 없이 네더 전에 물약을 만들 수 있는 게</b> 초반 꿀팁.</p>
+  <table>
+    <thead><tr><th>분류</th><th>냄비 제작물</th><th>활용</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">회복</td><td>약초 브루 · 상처약/좋은상처약/고급상처약 · PP에이드 · PP회복</td><td>초반 회복약 자급</td></tr>
+      <tr><td class="kr">배틀 버프 (각 4개씩)</td><td>플러스파워(X Attack)·디펜드업(X Defense)·스페셜업·스페셜가드·스피드업·잘-맞히기 · 용맹의향수(Dire Hit) · 방어스프레이(Guard Spec.)</td><td>체육관·전설전 직전 사용 — 배틀 중 1회용 능력 상승</td></tr>
+      <tr><td class="kr">육성</td><td>경험사탕 L/XL · 체력 사탕</td><td>레벨업 가속</td></tr>
+      <tr><td class="kr">명물 음식</td><td>케이크·라바 쿠키·카스테리아콘·말라사다 등 지역 명물 다수</td><td>플레이어 식량</td></tr>
+    </tbody>
+  </table>
+  <h3>핵심 재료 얻기</h3>
+  <ul>
+    <li><b>하티 그레인(Hearty Grains)</b>: 늪·강가 물가에 자연 생성. 뼛가루 성장 가속, 성숙한 윗부분만 수확(밑동 유지) — 모찌·포니기리 필수 곡물</li>
+    <li><b>열매</b>: 야생 채집 후 농사로 증식 — 고점수 열매일수록 아프리주스 효율 높음</li>
+    <li><b>사카린 나무(Saccharine)</b>: 잎 파괴 시 묘목 드롭, 떠돌이 상인도 판매</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>🎯 상황별 요리 활용 치트시트</h2>
+  <table>
+    <thead><tr><th>하고 싶은 것</th><th>만들 것</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">에이스 스탯 육성 (EV)</td><td>해당 스탯 모찌 (열매 농사로 대량 제작)</td></tr>
+      <tr><td class="kr">EV 잘못 찍음</td><td>리스타트모찌 → 리셋 후 재배분</td></tr>
+      <tr><td class="kr">탈것 더 빠르게/높게</td><td>아프리주스 (분홍 냄비+단맛=속도, 초록 냄비+쓴맛=점프)</td></tr>
+      <tr><td class="kr">야생 포켓몬 모으기</td><td>포케 스낵 + 미끼 조미료</td></tr>
+      <tr><td class="kr">초반 회복약 부족</td><td>냄비 상처약 (네더 전 제작 가능)</td></tr>
+      <tr><td class="kr">동굴·야간 탐험</td><td>시니스터 티 (야간투시·화염저항 조미료)</td></tr>
+      <tr><td class="kr">허기 관리</td><td>포니기리 (소고기·금당근 조미료)</td></tr>
+      <tr><td class="kr">체육관 직전 버프</td><td>플러스파워 등 X아이템 4개 세트</td></tr>
+    </tbody>
+  </table>
+  <p class="note">주의: 부활 허브·상처회복 가루 같은 <b>쓴 약은 친밀도를 낮춘다</b> (1.7 재도입) — 친밀도 진화 포켓몬(이브이→에브이·님피아 등)에겐 사용 자제.</p>
+</div>
+<!-- CONTENT:COOK -->
+</section>
+
 </main>
 
 <footer>
@@ -1162,7 +1413,7 @@ const _tip=(function(){
 /* ===== Search index (built from DOM at load) =====
    Each entry: [kr, en, info, category, pane, element] */
 const SEARCH_INDEX=[];
-const _PANE_CAT={start:'시작',struct:'구조물',gym:'체육관',legend:'전설',items:'아이템',money:'돈',forms:'폼'};
+const _PANE_CAT={start:'시작',struct:'구조물',gym:'체육관',legend:'전설',items:'아이템',money:'돈',forms:'폼',gimmick:'기믹',cook:'요리'};
 document.querySelectorAll('section.pane').forEach(sec=>{
   const pane=sec.id.replace('pane-',''),cat=_PANE_CAT[pane]||pane;
   sec.querySelectorAll('tbody tr').forEach(tr=>{
@@ -1183,7 +1434,7 @@ document.querySelectorAll('section.pane').forEach(sec=>{
 /* ===== Search ===== */
 const q=document.getElementById('q'),res=document.getElementById('results'),clearBtn=document.getElementById('clearq');
 function norm(s){return String(s).toLowerCase().replace(/\s/g,'')}
-const _CAT_COLOR={'포켓몬':'red','구조물':'blue','체육관':'gold','아이템':'green','전설':'gold','폼':'blue','돈':'green','시작':'gray'};
+const _CAT_COLOR={'포켓몬':'red','구조물':'blue','체육관':'gold','아이템':'green','전설':'gold','폼':'blue','돈':'green','시작':'gray','기믹':'gold','요리':'green'};
 let _lastHits=[];
 function search(v){
   const t=norm(v);
