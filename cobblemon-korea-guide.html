@@ -236,8 +236,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <div class="dex-top">
     <div class="lens"></div>
     <div>
-      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.2</span></h1>
-      <div class="sub">COBBLEVERSE 1.7.40 (2026-07-11) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 상성표 / 요리</div>
+      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.3</span></h1>
+      <div class="sub">COBBLEVERSE 1.7.41 (2026-07-15) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 상성표 / 요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
   </div>
@@ -273,13 +273,42 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <h2>🌏 COBBLEVERSE란?</h2>
   <p><b>COBBLEVERSE</b>는 Cobblemon 기반 모드팩으로, 포켓몬 본가 게임처럼 <b>지방(지역) 진행 시스템</b>을 얹은 팩이다. 체육관 리더 → 사천왕 → 챔피언을 꺾으며 관동부터 순서대로 지방을 해금한다.</p>
   <ul>
-    <li>이 가이드 기준 버전: <b>COBBLEVERSE 1.7.40</b> (2026-07-11) · MC 1.21.1 Fabric</li>
+    <li>이 가이드 기준 버전: <b>COBBLEVERSE 1.7.41</b> (2026-07-15) · MC 1.21.1 Fabric · 모드 약 154개 (Cobblemon 1.7.3 베이스)</li>
     <li>체육관 총 <b>48개</b> — 시작 시엔 관동(Kanto) 8개만 발견 가능, 이후 지방별로 순차 해금</li>
     <li>전용 구조물(전설 포켓몬 구조물 포함)은 <b>현재 진행 중인 지방의 트레이너 시리즈에 묶여</b> 있음 — 관동 진행 중엔 관동 구조물만 생성</li>
     <li>각 챔피언이 주는 <b>책</b>에 다음 지방 진행 방법이 적혀 있음</li>
   </ul>
   <p class="note">구버전(코블몬 베이스 모드 1.7) 가이드는 <a href="legacy/base-mod-guide.html">여기</a>에 보관되어 있다. 진화 조건·상성표·아이템 사전 등 베이스 모드 공통 정보는 그쪽 참조.</p>
   <p class="note">⚠️ <b>우리 서버 기준 주의:</b> <b>교배(목장 블록 알 낳기)</b> 기능은 서버에 없는 것으로 확인 — 피오네 알(마나피+메타몽) 등 교배 전제 내용은 우리 서버에서 안 될 수 있다. 게임 내 표기가 항상 우선.</p>
+</div>
+
+<div class="card">
+  <h2>🧰 팩에 뭐가 들어있나 — 주요 모드 구성</h2>
+  <p>COBBLEVERSE는 모드 약 154개짜리 팩이다. 대부분은 최적화·라이브러리 모드고, 플레이에 직접 영향을 주는 건 아래가 핵심이다.</p>
+  <table>
+    <thead><tr><th>모드</th><th>역할</th><th>알아야 할 것</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">Cobblemon 1.7.3</td><td>본체</td><td>포켓몬 1025종·포획·PC·목장 블록. 이로치 확률 1/2048</td></tr>
+      <tr><td class="kr">Mega Showdown</td><td>배틀 기믹</td><td>메가진화·Z기술·다이맥스·테라스탈·원시회귀·합체 전부 이 모드 — <b>배틀 기믹 탭</b> 참조</td></tr>
+      <tr><td class="kr">AllTheMons × Mega Showdown</td><td>메가 확장</td><td>메가 전종 고품질 모델 + <b>오리지널 신규 메가 45종</b>(메가 다크라이·메가 히드런 등) 추가</td></tr>
+      <tr><td class="kr">Radical Gyms &amp; Trainers</td><td>체육관·NPC</td><td>자연 생성 체육관 건물 + 리더·트레이너 NPC. 트레이너 배틀 = 주 수입원</td></tr>
+      <tr><td class="kr">Badges &amp; Trophies</td><td>진행</td><td>체육관 격파 시 배지 아이템 — 배지가 <b>레벨 캡</b>을 올린다</td></tr>
+      <tr><td class="kr">Battle Extras</td><td>배틀 HUD</td><td>포획률 %·타입 상성·볼 비교를 배틀 화면에 표시</td></tr>
+      <tr><td class="kr">Accessories</td><td>장비 슬롯</td><td>메가팔찌·다이맥스밴드 등을 끼우는 액세서리 슬롯 제공</td></tr>
+      <tr><td class="kr">Waystones</td><td>이동</td><td>웨이스톤 활성화 → 웨이스톤끼리 순간이동. 거점·체육관마다 찍어두면 이동 시간 급감</td></tr>
+      <tr><td class="kr">백팩·침낭</td><td>편의</td><td>업그레이드형 가방으로 인벤 확장 · 침낭은 <b>스폰 초기화 없이</b> 밤 스킵</td></tr>
+      <tr><td class="kr">PokéNav / FishingNav</td><td>탐색</td><td>주변 스폰 포켓몬 확인(도감 탭 참조) · 낚시 스폰 확인</td></tr>
+      <tr><td class="kr">Xaero 미니맵+월드맵</td><td>지도</td><td>웨이포인트 연동 · <b>체육관 표시 색: 초록=가까움, 흰색=중간, 빨강=멂</b> · 동굴 모드로 Megasite 찾기</td></tr>
+    </tbody>
+  </table>
+  <h3>기본 조작·환경</h3>
+  <ul>
+    <li><b>C</b> = 팀 요약 창 · <b>P</b> = 어디서든 PC 열기(포켓몬센터 불필요) · <b>K</b> = 셰이더 켜기/끄기(렉 걸리면 끄기)</li>
+    <li>시작 시 <b>트레이너 카드 + 가이드북 + 첫 체육관 지도</b> 지급 → 스타터 선택</li>
+    <li>바닐라 몹·배고픔은 기본 <b>비활성</b> — 몹 드롭템은 <b>목장 블록에 포켓몬을 넣으면</b> 대응 아이템이 주기적으로 나온다</li>
+    <li>아이템 조합법이 궁금하면 항상 <b>게임 내 JEI</b>(아이템 검색·레시피 보기)가 최종 정답 — 이 가이드의 레시피는 버전·서버 설정 따라 다를 수 있음</li>
+  </ul>
+  <p class="note">공식 문서: <a href="https://www.lumyverse.com/cobbleverse" target="_blank" rel="noopener">Lumyverse 공식 허브</a> (튜토리얼·FAQ) · <a href="https://www.cobbleverse.wiki/" target="_blank" rel="noopener">COBBLEVERSE 기술 위키</a> (스폰 데이터) · <a href="https://megashowdown.miraheze.org/wiki/Main_Page" target="_blank" rel="noopener">Mega Showdown 공식 위키</a> (기믹·아이템 원문)</p>
 </div>
 
 <div class="card">
@@ -439,6 +468,23 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
     </tbody>
   </table>
   <p class="note">출처 페이지 기준 — 재앙의 보물 사당·되돌아가는 동굴 등 일부는 정확한 바이옴이 원문에 없어 표기하지 않았다 (공식 위키 미기재).</p>
+</div>
+
+<div class="card">
+  <h2>⚔️ Mega Showdown 구조물 — 배틀 기믹 재료 파밍처</h2>
+  <p>배틀 기믹(메가·Z·다이맥스·테라)의 키 아이템은 아래 구조물에서 나온다. 사용법은 <b>배틀 기믹 탭</b> 참조.</p>
+  <table>
+    <thead><tr><th>구조물</th><th>위치/찾는 법</th><th>얻을 수 있는 것</th></tr></thead>
+    <tbody>
+      <tr><td class="kr">메가사이트 <span class="en">(Megasite)</span></td><td>지하 <b>Y 5~20</b> — 회색·보라 구체 덩어리. Xaero 지도 동굴 모드로 찾기 쉬움</td><td>메가로이드 채굴 → <b>키스톤</b>(메가팔찌 재료) + <b>메가원석</b>(메가스톤 재료)</td></tr>
+      <tr><td class="kr">위싱 위얼드 <span class="en">(Wishing Weald)</span></td><td>지상 구조물</td><td>내부 <b>위싱스타 크리스탈</b>을 <b>실크터치 없는</b> 곡괭이로 파괴 → <b>위싱스타</b> (다이맥스밴드 재료)</td></tr>
+      <tr><td class="kr">에어리어 제로 <span class="en">(Area Zero)</span></td><td>특수 지형</td><td><b>맥스버섯</b> (도끼 들고 우클릭 홀드, 1~3개 + 다이맥스캔디 보너스, 약 30분 리스폰)</td></tr>
+      <tr><td class="kr">다이맥스 레이드 덴 <span class="en">(Dynamax Raid Den)</span></td><td>레이드 이벤트</td><td>고난도 다이맥스 보스전 — 보상: <b>맥스수프·다이맥스캔디</b>·희귀템. 멀티 협동 가능</td></tr>
+      <tr><td class="kr">불길한 시련 스포너 <span class="en">(Ominous Trial Spawner)</span></td><td><b>오미너스 키</b>로 개방 (키 = 로켓단 타워)</td><td><b>Z크리스탈·블랭크 크리스탈</b> 확률 획득</td></tr>
+      <tr><td class="kr">오브 차저 <span class="en">(Orb Charger)</span></td><td>스폰 지점 근처 (서버 구성에 따라)</td><td>소진된 <b>테라오브</b>를 메인핸드에 들고 재충전</td></tr>
+    </tbody>
+  </table>
+  <p class="note">⚠️ 이 구조물들은 서버 버전·구성에 따라 생성 여부가 다를 수 있다 — 우리 서버에서 실제 생성되는지 인게임 확인 우선. <code>/locate structure</code>로 검색해보는 게 빠르다.</p>
 </div>
 <!-- CONTENT:STRUCT -->
 </section>
@@ -906,6 +952,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <tr><td class="kr">타락한 조각 <span class="en">(Corrupted Shard)</span></td><td>COBBLEVERSE</td><td>성도 로켓단 라디오타워 (상자)</td><td>그림자 루기아 획득 재료</td></tr>
       <tr><td class="kr">데졸레이트 젬 <span class="en">(Desolate Gem)</span></td><td>COBBLEVERSE</td><td>하늘기둥의 막스(호연) 격파 (드롭)</td><td>Sky Core 제작 재료</td></tr>
       <tr><td class="kr">테오키스의 운석 <span class="en">(Deoxys Meteorite)</span></td><td>Mega Showdown</td><td>테오키스의 운석 구조물</td><td>테오키스 폼 체인지</td></tr>
+      <tr><td class="kr">DNA 스플라이서 <span class="en">(DNA Splicers)</span></td><td>Mega Showdown</td><td>제작 (JEI에서 "dna" 검색)</td><td>큐레무 + 레시라무/제크로무 합체 (특수 폼 탭)</td></tr>
       <tr><td class="kr">드래곤 광석 <span class="en">(Dragon Ore)</span></td><td>COBBLEVERSE</td><td>Deep Dark (-60&lt;Y&lt;0)</td><td>Draco Relic 재료 (레지드래고)</td></tr>
       <tr><td class="kr">드림 캐처 <span class="en">(Dream Catcher)</span></td><td>COBBLEVERSE</td><td>제작</td><td>크레세리아 소환</td></tr>
       <tr><td class="kr">어스 코어 <span class="en">(Earth Core)</span></td><td>COBBLEVERSE</td><td>제작</td><td>그란돈 소환</td></tr>
@@ -931,6 +978,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <tr><td class="kr">엠라이트의 깃털 <span class="en">(Mesprit Plume)</span></td><td>COBBLEVERSE</td><td>신비호수</td><td>엠라이트 소환</td></tr>
       <tr><td class="kr">운석 크리스탈 <span class="en">(Meteorite Crystal)</span></td><td>COBBLEVERSE</td><td>Small End Highlands</td><td>테오키스 소환</td></tr>
       <tr><td class="kr">달빛 부적 <span class="en">(Moonlight Amulet)</span></td><td>COBBLEVERSE</td><td>크레세리아 포획 시</td><td>악몽 차원 이동 (다크라이)</td></tr>
+      <tr><td class="kr">N루나라이저 <span class="en">(N-Lunarizer)</span></td><td>Mega Showdown</td><td>제작 (JEI에서 "lunarizer" 검색)</td><td>네크로즈마 + 루나아라 합체 → 새벽의 날개 (특수 폼 탭)</td></tr>
+      <tr><td class="kr">N솔라라이저 <span class="en">(N-Solarizer)</span></td><td>Mega Showdown</td><td>제작 (JEI에서 "solarizer" 검색)</td><td>네크로즈마 + 솔가레오 합체 → 황혼의 갈기 (특수 폼 탭)</td></tr>
       <tr><td class="kr">나이트메어 위버 <span class="en">(Nightmare Weaver)</span></td><td>COBBLEVERSE</td><td>제작</td><td>다크라이 소환</td></tr>
       <tr><td class="kr">오션 코어 <span class="en">(Ocean Core)</span></td><td>COBBLEVERSE</td><td>제작</td><td>가이오가 소환</td></tr>
       <tr><td class="kr">오미너스 키 <span class="en">(Ominous Key)</span></td><td>Minecraft</td><td>로켓단 타워 (루팅·드롭)</td><td>불길한 시련 스포너 개방 → Z크리스탈 확률 획득</td></tr>
@@ -941,6 +990,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <tr><td class="kr">빨간 구슬 <span class="en">(Red Orb)</span></td><td>Mega Showdown</td><td>그란돈의 화산 내부</td><td>그란돈 원시회귀</td></tr>
       <tr><td class="kr">무지개 날개 <span class="en">(Rainbow Wing)</span></td><td>COBBLEVERSE</td><td>불탄탑의 올드 세이지 격파 (성도)</td><td>방울탑에서 칠색조 소환</td></tr>
       <tr><td class="kr">빨강 사슬 <span class="en">(Red Chain)</span></td><td>COBBLEVERSE</td><td>갤럭시단 본부의 태홍 격파</td><td>펄기아·디아루가·기라티나 소환</td></tr>
+      <tr><td class="kr">연결의 고삐 <span class="en">(Reins of Unity)</span></td><td>Mega Showdown</td><td>제작 (JEI에서 "reins" 검색)</td><td>버드렉스 + 블리자포스/레이스포스 합체 (특수 폼 탭)</td></tr>
       <tr><td class="kr">비추는 거울 <span class="en">(Reveal Glass)</span></td><td>Mega Showdown</td><td>사막 피라미드 (수상한 모래/자갈)</td><td>자연의 세력(토네로스 등) 화신↔영물 폼 전환</td></tr>
       <tr><td class="kr">바위 광석 <span class="en">(Rock Ore)</span></td><td>COBBLEVERSE</td><td>Dripstone Caves (-40&lt;Y&lt;40)</td><td>Pebble Relic 재료 (레지락)</td></tr>
       <tr><td class="kr">로켓 아머 <span class="en">(Rocket Armor)</span></td><td>COBBLEVERSE</td><td>제작</td><td>뮤츠 아머드폼</td></tr>
@@ -961,8 +1011,10 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <tr><td class="kr">타이탄 유물 <span class="en">(Titan Relic)</span></td><td>COBBLEVERSE</td><td>제작</td><td>레지기가스 소환</td></tr>
       <tr><td class="kr">찢어진 일지 <span class="en">(Torn Journal)</span></td><td>COBBLEVERSE</td><td>갤럭시단 본부</td><td>Old Journal 제작 재료</td></tr>
       <tr><td class="kr">찢어진 페이지 <span class="en">(Torn Page)</span></td><td>COBBLEVERSE</td><td>풍력발전소·갤럭시단 본부</td><td>Old Journal 제작 재료</td></tr>
+      <tr><td class="kr">울트라네크로즈뮴Z <span class="en">(Ultranecrozium Z)</span></td><td>AllTheMons × MS</td><td>제작 (JEI에서 "ultranecrozium" 검색)</td><td>네크로즈마 합체체 → 울트라네크로즈마 (울트라버스트)</td></tr>
       <tr><td class="kr">유크시의 발톱 <span class="en">(Uxie Claw)</span></td><td>COBBLEVERSE</td><td>예지호수</td><td>유크시 소환</td></tr>
       <tr><td class="kr">우물의 가면 <span class="en">(Wellspring Mask)</span></td><td>Mega Showdown</td><td>Frozen Gimmi Tower (수상한 모래/자갈)</td><td>오거폰 → 우물의 가면 폼</td></tr>
+      <tr><td class="kr">위싱스타 <span class="en">(Wishing Star)</span></td><td>Mega Showdown</td><td>위싱 위얼드 크리스탈 파괴 — <b>실크터치 X</b> (구조물 탭) · 레드스톤+자수정 블록+금괴로 복제</td><td>다이맥스밴드 제작 재료</td></tr>
       <tr><td class="kr">지가르데 코어 <span class="en">(Zygarde Core)</span></td><td>Mega Showdown</td><td>Mossy Oubliette·Crumbling Arch Ruins (수상한 모래/자갈)</td><td>지가르데 폼 조립</td></tr>
       <tr><td class="kr">지가르데 셀 <span class="en">(Zygarde Cells)</span></td><td>Mega Showdown</td><td>Wishing Weald·유적지 (상자) / 아웃스커트 스탠드 구매</td><td>지가르데 폼 조립</td></tr>
     </tbody>
@@ -1039,7 +1091,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
 <section class="pane" id="pane-forms">
 <div class="card">
   <h2>✨ 특수 폼 입수 방법 <button class="minibtn toggle-all" data-target="pane-forms">모두 펼치기</button></h2>
-  <p>공식 튜토리얼에 실린 특수 폼 6종의 입수 절차. 리전폼(알로라·가라르 등) 야생 스폰 위치는 <b>시작하기 탭의 전국 스폰 도감</b> "폼" 항목 참조.</p>
+  <p>특수 폼·합체 포켓몬의 입수 절차. 리전폼(알로라·가라르 등) 야생 스폰 위치는 <b>시작하기 탭의 전국 스폰 도감</b> "폼" 항목 참조.</p>
+  <p class="note">합체 공통 패턴: <b>아이템으로 재료 포켓몬 우클릭(흡수) → 같은 아이템으로 베이스 포켓몬 우클릭(합체)</b>. 분리도 같은 아이템으로, 빈 파티 슬롯 1개 필수.</p>
 
   <details><summary>지우개굴닌자 (Ash-Greninja)</summary><div class="inner">
     <ol class="steps">
@@ -1054,6 +1107,38 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <li><span class="pmon" data-kr="피카츄" data-en="Pikachu">피카츄</span>의 코스메틱 인벤토리에 <b>Rage Candy</b> 지급 → 폼 변경 (능력치는 일반 피카츄와 동일)</li>
       <li>피카슈니움Z 소지 시 <b>1000만볼트</b> 사용 가능 · 단 피카니움Z를 들어도 <b>가득찬볼트</b>는 사용 불가</li>
     </ul>
+  </div></details>
+
+  <details><summary>블랙·화이트큐레무 (Kyurem 합체)</summary><div class="inner">
+    <p><b>필요:</b> DNA 스플라이서(DNA Splicers) — 제작 (정확 재료는 JEI에서 "dna" 검색) + 빈 파티 슬롯 1개</p>
+    <ol class="steps">
+      <li>DNA 스플라이서를 들고 <span class="pmon" data-kr="레시라무" data-en="Reshiram">레시라무</span> 또는 <span class="pmon" data-kr="제크로무" data-en="Zekrom">제크로무</span> 우클릭 → 흡수·충전</li>
+      <li>충전된 스플라이서로 <span class="pmon" data-kr="큐레무" data-en="Kyurem">큐레무</span> 우클릭 → 합체</li>
+    </ol>
+    <table>
+      <thead><tr><th>재료</th><th>결과</th><th>전용기</th></tr></thead>
+      <tbody>
+        <tr><td class="kr">레시라무</td><td>화이트큐레무 <span class="en">(White Kyurem)</span></td><td>얼음탄</td></tr>
+        <tr><td class="kr">제크로무</td><td>블랙큐레무 <span class="en">(Black Kyurem)</span></td><td>프리즈볼트</td></tr>
+      </tbody>
+    </table>
+    <p class="note">분리도 같은 스플라이서로 우클릭 — 흡수된 포켓몬이 돌아올 <b>빈 파티 슬롯</b>이 있어야 한다.</p>
+  </div></details>
+
+  <details><summary>백마·흑마 버드렉스 (Calyrex 합체)</summary><div class="inner">
+    <p><b>필요:</b> 연결의 고삐(Reins of Unity) — 제작 (JEI에서 "reins" 검색) + 빈 파티 슬롯 1개</p>
+    <ol class="steps">
+      <li>연결의 고삐를 들고 <span class="pmon" data-kr="버드렉스" data-en="Calyrex">버드렉스</span> 우클릭</li>
+      <li>이어서 <span class="pmon" data-kr="블리자포스" data-en="Glastrier">블리자포스</span> 또는 <span class="pmon" data-kr="레이스포스" data-en="Spectrier">레이스포스</span> 우클릭 → 합체</li>
+    </ol>
+    <table>
+      <thead><tr><th>애마</th><th>결과</th><th>타입</th></tr></thead>
+      <tbody>
+        <tr><td class="kr">블리자포스</td><td>백마 탄 모습 <span class="en">(Ice Rider)</span></td><td>에스퍼/얼음 — 물리 어태커</td></tr>
+        <tr><td class="kr">레이스포스</td><td>흑마 탄 모습 <span class="en">(Shadow Rider)</span></td><td>에스퍼/고스트 — 특수 어태커</td></tr>
+      </tbody>
+    </table>
+    <p class="note">버드렉스·애마 입수는 <b>왕관 묘지/왕관 첨탑</b>(구조물 탭)과 얼음뿌리·그늘뿌리 당근(아이템 사전) 참조. 분리는 같은 고삐로 우클릭 + 빈 슬롯 필요.</p>
   </div></details>
 
   <details><summary>울트라네크로즈마 (Ultra Necrozma)</summary><div class="inner">
@@ -1122,12 +1207,16 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
       <tr><td class="kr">테라스탈 <span class="en">(Terastallization)</span></td><td>9세대</td><td>테라오브 + 테라조각 50개</td><td>배틀 내내</td><td>타입을 원하는 하나로 교체</td></tr>
       <tr><td class="kr">Z기술 <span class="en">(Z-Moves)</span></td><td>7세대</td><td>Z링 + 타입 Z크리스탈</td><td>1회</td><td>초강력 한 방</td></tr>
       <tr><td class="kr">다이맥스·거다이맥스 <span class="en">(Dynamax / Gigantamax)</span></td><td>8세대</td><td>다이맥스밴드 + 파워스팟 근처</td><td>3턴</td><td>거대화 + HP 증가 + 맥스 기술</td></tr>
+      <tr><td class="kr">원시회귀 <span class="en">(Primal Reversion)</span></td><td>3세대(ORAS)</td><td>빨간/파란 구슬 (그란돈·가이오가 전용)</td><td>배틀 내내</td><td>메가급 스탯 + 전용 날씨 특성</td></tr>
+      <tr><td class="kr">울트라버스트 <span class="en">(Ultra Burst)</span></td><td>7세대</td><td>울트라네크로즈뮴Z (네크로즈마 합체체 전용)</td><td>배틀 내내</td><td>울트라네크로즈마 변신 (특수 폼 탭)</td></tr>
     </tbody>
   </table>
+  <p>이 밖에 <b>합체 포켓몬</b>(큐레무·네크로즈마·버드렉스)도 Mega Showdown 담당 — 절차는 <b>특수 폼 탭</b> 참조.</p>
   <h3>한 배틀에서의 규칙</h3>
   <ul>
     <li><b>지닌 물건이 기믹을 결정</b> — Z크리스탈을 지니면 Z기술만, 메가스톤을 지니면 메가진화만, 아무것도 안 지니면 다이맥스 가능</li>
     <li>각 기믹은 <b>배틀당 1회</b>. 팀 내 다른 포켓몬이 서로 다른 기믹을 쓰는 건 가능</li>
+    <li>⚠️ 일부 버전에선 <b>파티 안에 메가스톤 지닌 포켓몬이 하나라도 있으면</b> Z기술·테라스탈이 아예 잠긴다는 보고가 있다 — 안 되면 파티 전체의 지닌 물건부터 확인</li>
     <li>상대 트레이너·일부 야생도 기믹을 쓸 수 있음 — 방심 금지</li>
   </ul>
   <p class="note">⚠️ <b>제작 레시피는 모드 버전·서버 설정에 따라 달라진다</b> — 아래 조합법은 참고용이고, 정확한 재료는 <b>게임 내 JEI</b>(아이템 검색: "mega", "tera", "dynamax")로 확인하는 게 유일하게 확실하다. 멀티 서버에서는 관리자 설정에 따라 일부 기믹이 꺼져 있을 수 있다.</p>
@@ -1155,6 +1244,20 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
     <li>기술 선택 → 그 턴에 메가진화하며 행동</li>
   </ol>
   <p class="note">예외: <span class="pmon" data-kr="레쿠쟈" data-en="Rayquaza">레쿠쟈</span>는 메가스톤 없이 기술 <b>"용의 승천(Dragon Ascent)"</b>만 알면 메가진화 가능. 배틀 밖 라디얼 메뉴로도 메가폼을 볼 수 있지만 겉모습만이고, 실전은 배틀 안에서 발동해야 한다.</p>
+  <p class="note">확장: 팩에 포함된 <b>AllTheMons × Mega Showdown</b> 애드온이 메가 전종 모델 + <b>오리지널 신규 메가 45종</b>(메가 다크라이·메가 히드런 등)을 추가한다. 신규 메가도 같은 방식 — 전용 메가스톤을 JEI에서 검색.</p>
+</div>
+
+<div class="card">
+  <h2>🌋 원시회귀 — 그란돈·가이오가 전용</h2>
+  <p>메가진화의 자매 기믹. 구슬을 <b>지니게 하면</b> 배틀에서 원시 폼으로 회귀한다. 스탯 대폭 상승 + 전용 특성(끝의대지=강한 햇살, 시작의바다=강한 비)으로 날씨를 강제 고정.</p>
+  <table>
+    <thead><tr><th>포켓몬</th><th>아이템</th><th>입수처</th><th>결과</th></tr></thead>
+    <tbody>
+      <tr><td class="kr"><span class="pmon" data-kr="그란돈" data-en="Groudon">그란돈</span></td><td>빨간 구슬 <span class="en">(Red Orb)</span></td><td>그란돈의 화산 내부 (아이템 사전 탭)</td><td>원시 그란돈 — 땅/불꽃</td></tr>
+      <tr><td class="kr"><span class="pmon" data-kr="가이오가" data-en="Kyogre">가이오가</span></td><td>파란 구슬 <span class="en">(Blue Orb)</span></td><td>바다의 사원 내부 (아이템 사전 탭)</td><td>원시 가이오가 — 물</td></tr>
+    </tbody>
+  </table>
+  <p class="note">메가팔찌 불필요 — 구슬만 지니면 배틀 진입 시 메가진화와 같은 UI로 발동. 원시 폼도 "동시 1마리" 규칙에 포함된다.</p>
 </div>
 
 <div class="card">
@@ -1164,8 +1267,8 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <table>
     <thead><tr><th>아이템</th><th>획득</th><th>용도</th></tr></thead>
     <tbody>
-      <tr><td class="kr">테라오브 <span class="en">(Tera Orb)</span></td><td>제작 (레시피는 JEI에서 "tera" 검색)</td><td>트레이너 착용 — 테라스탈 발동 조건</td></tr>
-      <tr><td class="kr">테라조각 <span class="en">(Tera Shard)</span></td><td><b>포켓몬 처치 시 드롭</b> (타입 조각 약 10%, 그 포켓몬의 타입 조각이 나옴)</td><td>같은 타입 <b>50개</b>를 들고 포켓몬 <b>우클릭</b> → 테라 타입 지정</td></tr>
+      <tr><td class="kr">테라오브 <span class="en">(Tera Orb)</span></td><td>제작 (레시피는 JEI에서 "tera" 검색)</td><td><b>오프핸드에 충전 1 이상</b> 상태로 배틀 시작 — 소진되면 <b>오브 차저</b>(스폰 근처, 구조물 탭)에서 메인핸드에 들고 재충전</td></tr>
+      <tr><td class="kr">테라조각 <span class="en">(Tera Shard)</span></td><td><b>내 포켓몬으로 배틀에서 처치 시 드롭</b> (타입 조각 약 10%, 그 포켓몬의 타입 조각이 나옴 — 필드 채집으론 안 나옴) · 자수정으로 둘러싸 제작도 가능 (예: 얼지않는얼음+자수정 → 얼음 조각)</td><td>같은 타입 <b>50개</b>를 들고 포켓몬 <b>우클릭</b> → 테라 타입 지정 (<code>/checkpokemon 슬롯번호</code>로 확인)</td></tr>
       <tr><td class="kr">스텔라 조각 <span class="en">(Stellar Shard)</span></td><td>처치 드롭 (약 1% — 초희귀)</td><td>스텔라 타입 지정</td></tr>
     </tbody>
   </table>
@@ -1184,11 +1287,12 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <table>
     <thead><tr><th>아이템/블록</th><th>획득</th><th>용도</th></tr></thead>
     <tbody>
-      <tr><td class="kr">다이맥스밴드 <span class="en">(Dynamax Band)</span></td><td>제작 (JEI에서 "dynamax" 검색)</td><td>액세서리 슬롯 착용</td></tr>
+      <tr><td class="kr">위싱스타 <span class="en">(Wishing Star)</span></td><td><b>위싱 위얼드</b> 구조물 내부 크리스탈을 <b>실크터치 없이</b> 파괴 (구조물 탭) · 레드스톤+자수정 블록+금괴로 복제 가능</td><td>다이맥스밴드 제작 재료</td></tr>
+      <tr><td class="kr">다이맥스밴드 <span class="en">(Dynamax Band)</span></td><td>위싱스타로 제작 (JEI에서 "dynamax" 검색)</td><td>액세서리 슬롯(또는 오프핸드) 착용</td></tr>
       <tr><td class="kr">파워스팟 <span class="en">(Power Spot)</span></td><td>제작 가능한 <b>블록</b></td><td><b>20블록 이내</b>에서만 다이맥스 발동 가능 — 핵심 제약. 거점·체육관 앞에 설치해두면 편함</td></tr>
-      <tr><td class="kr">다이맥스캔디 <span class="en">(Dynamax Candy)</span></td><td>맥스버섯 채집 보너스 등</td><td>다이맥스 레벨 +1 — HP 보너스 기본 +50%, 레벨당 +5%, 최대 +100%</td></tr>
-      <tr><td class="kr">맥스버섯 <span class="en">(Max Mushroom)</span></td><td>탐험 중 발견, <b>도끼로 채집</b> (1~3개, 약 30분 후 리스폰)</td><td>맥스수프 재료 — 희귀하니 보이면 무조건 채집</td></tr>
-      <tr><td class="kr">맥스수프 <span class="en">(Max Soup)</span></td><td>맥스버섯으로 제작</td><td>먹이면 <b>거다이맥스 팩터</b> 부여</td></tr>
+      <tr><td class="kr">다이맥스캔디 <span class="en">(Dynamax Candy)</span></td><td>맥스버섯 채집 보너스 · <b>다이맥스 레이드</b> 보상</td><td>다이맥스 레벨 +1 — HP 보너스 기본 +50%, 레벨당 +5%, 최대 +100%</td></tr>
+      <tr><td class="kr">맥스버섯 <span class="en">(Max Mushroom)</span></td><td><b>에어리어 제로</b> 지형에 자연 생성 — <b>도끼 들고 우클릭 홀드</b>로 채집 (1~3개, 약 30분 후 리스폰)</td><td>맥스수프 재료 — 희귀하니 보이면 무조건 채집</td></tr>
+      <tr><td class="kr">맥스수프 <span class="en">(Max Soup)</span></td><td>맥스버섯으로 제작 · 다이맥스 레이드 보상으로도</td><td>먹이면 <b>거다이맥스 팩터</b> 부여</td></tr>
     </tbody>
   </table>
   <h3>실행 순서</h3>
@@ -1207,14 +1311,24 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
 </div>
 
 <div class="card">
+  <h2>🛡️ 레이드 배틀 (1~7성)</h2>
+  <ul>
+    <li>COBBLEVERSE에는 <b>1성~7성 레이드</b>가 있다 — 별이 높을수록 보스가 강하고 보상이 좋다</li>
+    <li><b>멀티 협동 지원</b> — 서버원끼리 같이 도전 가능</li>
+    <li>클리어 보상: <b>포획 확정</b> + 희귀 아이템 루팅</li>
+    <li><b>다이맥스 레이드 덴</b>(구조물 탭)은 맥스수프·다이맥스캔디의 주요 수급처 — 거다이맥스 준비는 여기서</li>
+  </ul>
+</div>
+
+<div class="card">
   <h2>⚡ Z기술 — 준비와 실행</h2>
   <p>배틀당 <b>딱 1회</b> 쓰는 초강력 기술. 지닌 Z크리스탈과 <b>같은 타입의 기술</b>이 베이스가 된다.</p>
   <h3>준비</h3>
   <table>
     <thead><tr><th>아이템</th><th>획득</th><th>용도</th></tr></thead>
     <tbody>
-      <tr><td class="kr">Z크리스탈 <span class="en">(Z-Crystal)</span></td><td><b>오미너스 키</b>로 불길한 시련 스포너 개방 시 확률 획득 (키는 로켓단 타워 — 특수 아이템 탭 참조) · 블랭크 크리스탈도 같은 곳</td><td>포켓몬이 지님 — 같은 타입 기술 필요</td></tr>
-      <tr><td class="kr">Z링 <span class="en">(Z-Ring)</span></td><td>Z크리스탈로 제작 (JEI에서 "z ring" 검색)</td><td>메인핸드에 들고 <b>우클릭</b>으로 활성화</td></tr>
+      <tr><td class="kr">Z크리스탈 <span class="en">(Z-Crystal)</span></td><td><b>오미너스 키</b>로 불길한 시련 스포너 개방 시 확률 획득 (키는 로켓단 타워 — 특수 아이템 탭 참조) · 블랭크 크리스탈은 같은 곳 + 네더라이트 조각+자수정 조각 제작 보고도 있음 (JEI 확인)</td><td>포켓몬이 지님 — 같은 타입 기술 필요</td></tr>
+      <tr><td class="kr">Z링 <span class="en">(Z-Ring)</span></td><td>Z크리스탈로 제작 (JEI에서 "z ring" 검색 — 서버에 따라 스파클링 스톤 계열 레시피)</td><td>메인핸드에 들고 <b>우클릭</b>으로 활성화 · <b>배틀 시작 시점에 소지</b>하고 있어야 함</td></tr>
     </tbody>
   </table>
   <h3>실행 순서</h3>
@@ -1400,7 +1514,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
 </main>
 
 <footer>
-비공식 팬 가이드 · COBBLEVERSE 1.7.40 (MC 1.21.1 Fabric) 자료 기준 (2026.07) · 게임 내 표기가 항상 우선<br>
+비공식 팬 가이드 · COBBLEVERSE 1.7.41 (MC 1.21.1 Fabric) 자료 기준 (2026.07) · 게임 내 표기가 항상 우선<br>
 출처: <a href="https://www.lumyverse.com/en/lumyverse/" target="_blank" rel="noopener">Lumyverse 공식 COBBLEVERSE 가이드</a> · <a href="https://wiki.cobblemon.com/" target="_blank" rel="noopener">Cobblemon 공식 위키</a><br>
 <details style="margin:6px 0">
   <summary style="cursor:pointer">원문 페이지 16개 전체 보기</summary>
