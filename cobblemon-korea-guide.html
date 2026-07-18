@@ -236,7 +236,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <div class="dex-top">
     <div class="lens"></div>
     <div>
-      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.3</span></h1>
+      <h1>COBBLEVERSE 한국어 가이드 <span class="vertag">v1.3.1</span></h1>
       <div class="sub">COBBLEVERSE 1.7.41 (2026-07-15) 기준 · 지역 해금 / 구조물 / 체육관 / 전설·환상 / 특수 아이템 / 돈벌기 / 특수 폼 / 배틀 기믹 / 상성표 / 요리</div>
     </div>
     <div class="lights"><span class="g"></span><span class="y"></span><span class="b"></span></div>
@@ -1084,6 +1084,50 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   </table>
   <p class="note">코블몬은 진화가 자동이 아님 — 레벨 채우면 <b>파티 화면에서 진화 버튼</b>을 직접 눌러야 스탯 점프 적용. 트레이너 스포너 정확한 조합 재료는 게임 내 JEI에서 "trainer spawner" 검색.</p>
 </div>
+
+<div class="card">
+  <h2>🏭 경험사탕 재료 자동화 — 스컬크·벌집 파밍 <span class="tag gold">평화로움 서버용</span></h2>
+  <p>경험사탕 요리(캠프파이어 팟)의 핵심 재료 = <b>스컬크 + 벌집 + 열매</b>. 평화로움 모드는 일반 몹·동물이 안 나와서 바닐라식 몹타워·닭 팜이 불가 — 아래 루트로 대체한다.</p>
+
+  <h3>① 스컬크 — 먼저 촉매 테스트 (1분)</h3>
+  <ul>
+    <li>스컬크 촉매(Sculk Catalyst)를 설치하고 주변 바닥을 <b>흙·잔디·이끼</b>로 깐다 (스컬크가 번지는 블록)</li>
+    <li>촉매 <b>8블록 이내</b>에서 야생 포켓몬을 <b>용암으로</b> 처치 (평화로움 서버는 검 공격이 안 먹히고 용암은 먹힘)</li>
+    <li>촉매에서 영혼 파티클이 나오고 바닥이 스컬크로 변하면 <b>성공</b> — 아래 팜 건설. 안 변하면 포켓몬은 촉매를 작동시키지 않는 것 — ③ 딥다크 채굴이 유일한 수급처</li>
+  </ul>
+
+  <h3>② 테스트 성공 시 — 용암 포켓몬 스컬크 팜</h3>
+  <ul>
+    <li><b>장소</b>: 포켓몬 스폰이 잦은 평지. 포켓몬은 플레이어 근처에만 스폰되므로 팜 옆에 AFK 지점 필요</li>
+    <li><b>수집장</b>: 넓은 스폰 판 가장자리에서 중앙으로 흐르는 물길 (물은 8블록마다 간판으로 끊어 연장) — 돌아다니는 포켓몬을 중앙으로 밀어넣기</li>
+    <li><b>킬 구덩이</b>: 중앙 2블록 깊이 구덩이 바닥에 용암. 사망 지점 8블록 이내 벽에 촉매 + 흙·이끼 수확방 연결</li>
+    <li><b>수확</b>: 스컬크 블록은 <b>실크터치 호미</b>로만 회수 (없이 깨면 XP만 나오고 블록 소멸)</li>
+    <li>⚠️ <b>이로치·희귀 포켓몬도 같이 녹는다</b> — 디스펜서+양동이로 용암 개폐 레버를 만들어두면 스폰 알림 시 잠글 수 있음. 용암 킬이라 포켓몬 드랍템은 소실</li>
+  </ul>
+
+  <h3>③ 테스트 실패 시 — 딥다크 직접 채굴</h3>
+  <ul>
+    <li>스컬크는 <b>딥다크(Deep Dark) 바이옴</b> 전용 — Y 0~-64 심층암 구간, 산·고원 아래에서 잘 생성. 고대 도시 중심은 <b>Y -51</b></li>
+    <li>찾기: <code>/locate biome minecraft:deep_dark</code> · <code>/locate structure minecraft:ancient_city</code>, 명령어 못 쓰면 <a href="https://www.chunkbase.com/apps/seed-map" target="_blank" rel="noopener">Chunkbase 시드맵</a>에 서버 시드 입력</li>
+    <li>평화로움 모드는 <b>워든이 스폰 안 됨</b> — 고대 도시가 통째로 안전한 창고. 한 번 털면 스컬크 수천 개 + 촉매·센서(실크터치)까지 확보</li>
+  </ul>
+
+  <h3>④ 벌집·열매 자동화</h3>
+  <ul>
+    <li><b>벌집</b>: 자연 생성 벌둥지(꽃 많은 평원·벚나무숲)를 실크터치로 회수 → 집 옆에 설치. 벌집 밑에 <b>모닥불</b>(벌 어그로 방지), 앞에 <b>디스펜서(가위) + 옵저버</b> — 꿀 차면 자동 수확. 벌은 평화로움에서도 정상 동작</li>
+    <li><b>열매</b>: 포멜열매 등 요리용 열매는 야생 채집 후 밭으로 증식 — 심어두면 반영구 수확</li>
+  </ul>
+
+  <h3>📚 참고 영상·글</h3>
+  <ul>
+    <li><a href="https://www.youtube.com/watch?v=eUNPsQatkgQ" target="_blank" rel="noopener">[영상] Easy Passive EXP Candy Farm for Cobbleverse</a> — 코블버스 전용 패시브 경험사탕 팜</li>
+    <li><a href="https://www.youtube.com/watch?v=tsistTTK1YQ" target="_blank" rel="noopener">[영상] Sculk XP + Block Farm Tutorial</a> — 촉매 스컬크 팜 구조 (킬 방식만 용암으로 바꿔 응용)</li>
+    <li><a href="https://minecraft.wiki/w/Tutorial:Sculk_farming" target="_blank" rel="noopener">[글] Minecraft Wiki — 스컬크 파밍 튜토리얼</a> — 촉매 작동 원리·번짐 범위(3×3) 원문</li>
+    <li><a href="https://wiki.cobblemon.com/index.php/Exp._Candy" target="_blank" rel="noopener">[글] Cobblemon Wiki — Exp. Candy</a> — 요리 레시피·합성 비율 원문</li>
+    <li><a href="https://beebom.com/how-make-sculk-farm-minecraft/" target="_blank" rel="noopener">[글] Beebom — 스컬크 팜 만들기</a> — 단계별 사진 가이드</li>
+  </ul>
+  <p class="note">이상한사탕(Rare Candy)은 자동화 불가 — 유적 금장 상자 루팅 + <b>레이드 보상</b>(경험사탕 L/XL 번들 포함) + 백화점 상인 구매가 전부. 배틀 기믹 탭 레이드 참조.</p>
+</div>
 <!-- CONTENT:MONEY -->
 </section>
 
@@ -1315,7 +1359,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
   <ul>
     <li>COBBLEVERSE에는 <b>1성~7성 레이드</b>가 있다 — 별이 높을수록 보스가 강하고 보상이 좋다</li>
     <li><b>멀티 협동 지원</b> — 서버원끼리 같이 도전 가능</li>
-    <li>클리어 보상: <b>포획 확정</b> + 희귀 아이템 루팅</li>
+    <li>클리어 보상: <b>포획 확정</b> + 희귀 아이템 루팅 — <b>경험사탕 L/XL 번들·학습장치</b> 등 육성 아이템 포함, 고성급일수록 좋음 (이상한사탕의 실질 반복 수급처)</li>
     <li><b>다이맥스 레이드 덴</b>(구조물 탭)은 맥스수프·다이맥스캔디의 주요 수급처 — 거다이맥스 준비는 여기서</li>
   </ul>
 </div>
@@ -1488,6 +1532,7 @@ summary.done{text-decoration:line-through;text-decoration-color:var(--text-terti
     <li><b>하티 그레인(Hearty Grains)</b>: 늪·강가 물가에 자연 생성. 뼛가루 성장 가속, 성숙한 윗부분만 수확(밑동 유지) — 모찌·포니기리 필수 곡물</li>
     <li><b>열매</b>: 야생 채집 후 농사로 증식 — 고점수 열매일수록 아프리주스 효율 높음</li>
     <li><b>사카린 나무(Saccharine)</b>: 잎 파괴 시 묘목 드롭, 떠돌이 상인도 판매</li>
+    <li><b>스컬크·벌집</b> (경험사탕 베이스): 수급 자동화는 <b>돈벌기 탭 → 경험사탕 재료 자동화</b> 카드 참조 (평화로움 서버 대응 포함)</li>
   </ul>
 </div>
 
